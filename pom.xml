@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.gitb</groupId>
     <artifactId>gitb-types</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
     <distributionManagement>
         <repository>
             <id>public-gitb</id>
@@ -102,6 +102,26 @@
                             <wsdlDirectory>${basedir}/src/main/wsdl</wsdlDirectory>
                             <wsdlFiles>
                                 <wsdlFile>gitb_ms.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-ps</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <bindingFiles>
+                                <bindingFile>${basedir}/src/main/xjb/binding_ps.xjb</bindingFile>
+                            </bindingFiles>
+                            <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
+                            <wsdlDirectory>${basedir}/src/main/wsdl</wsdlDirectory>
+                            <wsdlFiles>
+                                <wsdlFile>gitb_ps.wsdl</wsdlFile>
                             </wsdlFiles>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
