@@ -140,6 +140,7 @@
 			<xsd:extension base="TestStep">
 				<xsd:sequence>
 					<xsd:element name="config" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
 				<xsd:attribute name="from" type="xsd:string" use="required"/>
 				<xsd:attribute name="to" type="xsd:string" use="required"/>
