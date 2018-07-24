@@ -35,12 +35,12 @@
 
     <distributionManagement>
         <repository>
-            <id>oss-sonatype-release</id>
+            <id>ossrh</id>
             <name>OSS Sonatype release repository</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
         <snapshotRepository>
-            <id>oss-sonatype-snapshot</id>
+            <id>ossrh</id>
             <name>OSS Sonatype snapshot repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
