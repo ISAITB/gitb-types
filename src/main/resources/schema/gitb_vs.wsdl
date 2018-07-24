@@ -3,7 +3,7 @@
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.gitb.com/vs/v1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="ValidationService" targetNamespace="http://www.gitb.com/vs/v1/">
 	<types>
 		<xsd:schema>
-			<xsd:import namespace="http://www.gitb.com/vs/v1/" schemaLocation="../xsd/gitb_vs.xsd"/>
+			<xsd:import namespace="http://www.gitb.com/vs/v1/" schemaLocation="gitb_vs.xsd"/>
 		</xsd:schema>
 	</types>
 	<message name="getModuleDefinition">

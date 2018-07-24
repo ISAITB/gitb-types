@@ -9,7 +9,7 @@
              xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl">
     <types>
         <xsd:schema>
-            <xsd:import namespace="http://www.gitb.com/ps/v1/" schemaLocation="../xsd/gitb_ps.xsd" />
+            <xsd:import namespace="http://www.gitb.com/ps/v1/" schemaLocation="gitb_ps.xsd" />
         </xsd:schema>
     </types>
     <message name="getModuleDefinition">

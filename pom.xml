@@ -2,23 +2,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.gitb</groupId>
+    <groupId>eu.europa.ec.itb</groupId>
     <artifactId>gitb-types</artifactId>
     <version>1.4.0</version>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
+    <url>https://joinup.ec.europa.eu/solution/interoperability-test-bed/about</url>
+
+    <licenses>
+        <license>
+            <name>European Union Public Licence (EUPL) Version 1.1, adapted by CEN for use with GITB</name>
+            <url>https://github.com/ISAITB/gitb/blob/master/LICENCE.md</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>European Commission, DIGIT, ISA2 Unit</name>
+            <email>DIGIT-ITB@ec.europa.eu</email>
+            <organization>European Commission</organization>
+            <organizationUrl>https://ec.europa.eu/isa2/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/ISAITB/gitb-types.git</connection>
+        <developerConnection>scm:git:ssh://github.com:ISAITB/gitb-types.git</developerConnection>
+        <url>https://github.com/ISAITB/gitb-types</url>
+    </scm>
+
     <distributionManagement>
         <repository>
-            <id>public-gitb</id>
-            <name>GITB Repositories</name>
-            <url>http://nexus.trasys.gr:8080/nexus/content/groups/public-gitb/</url>
+            <id>oss-sonatype-release</id>
+            <name>OSS Sonatype release repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
+        <snapshotRepository>
+            <id>oss-sonatype-snapshot</id>
+            <name>OSS Sonatype snapshot repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
+
+    <properties>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+        <jaxws-maven-plugin.version>2.5</jaxws-maven-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
+                <version>${maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -31,7 +71,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>${maven-javadoc-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -47,7 +87,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
-                <version>2.4.1</version>
+                <version>${jaxws-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>generate-tbs</id>
@@ -56,10 +96,10 @@
                         </goals>
                         <configuration>
                             <bindingFiles>
-                                <bindingFile>${basedir}/src/main/xjb/binding_tbs.xjb</bindingFile>
+                                <bindingFile>${basedir}/src/main/resources/schema/binding_tbs.xjb</bindingFile>
                             </bindingFiles>
                             <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/wsdl</wsdlDirectory>
+                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
                             <wsdlFiles>
                                 <wsdlFile>gitb_tbs.wsdl</wsdlFile>
                             </wsdlFiles>
@@ -76,10 +116,10 @@
                         </goals>
                         <configuration>
                             <bindingFiles>
-                                <bindingFile>${basedir}/src/main/xjb/binding_vs.xjb</bindingFile>
+                                <bindingFile>${basedir}/src/main/resources/schema/binding_vs.xjb</bindingFile>
                             </bindingFiles>
                             <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/wsdl</wsdlDirectory>
+                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
                             <wsdlFiles>
                                 <wsdlFile>gitb_vs.wsdl</wsdlFile>
                             </wsdlFiles>
@@ -96,10 +136,10 @@
                         </goals>
                         <configuration>
                             <bindingFiles>
-                                <bindingFile>${basedir}/src/main/xjb/binding_ms.xjb</bindingFile>
+                                <bindingFile>${basedir}/src/main/resources/schema/binding_ms.xjb</bindingFile>
                             </bindingFiles>
                             <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/wsdl</wsdlDirectory>
+                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
                             <wsdlFiles>
                                 <wsdlFile>gitb_ms.wsdl</wsdlFile>
                             </wsdlFiles>
@@ -116,10 +156,10 @@
                         </goals>
                         <configuration>
                             <bindingFiles>
-                                <bindingFile>${basedir}/src/main/xjb/binding_ps.xjb</bindingFile>
+                                <bindingFile>${basedir}/src/main/resources/schema/binding_ps.xjb</bindingFile>
                             </bindingFiles>
                             <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/wsdl</wsdlDirectory>
+                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
                             <wsdlFiles>
                                 <wsdlFile>gitb_ps.wsdl</wsdlFile>
                             </wsdlFiles>
@@ -133,4 +173,29 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>sign-artifacts</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
