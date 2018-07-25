@@ -31,5 +31,5 @@ This profile triggers in addition the following:
 * Generation of the Javadocs.
 * PGP signature of all artefacts. To do this you need a GPG local installation. In addition if multiple keys are
   defined you can specify the appropriate one using the `gpg.keyname` system property (either on the command line or
-  in `setting.xml`).  
+  in `settings.xml`).  
 * Deploy to the Central repository's staging environment and automatically promote the release.
