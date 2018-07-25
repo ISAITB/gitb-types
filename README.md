@@ -20,9 +20,16 @@ This library is developed in Java and is built using Maven 3+. To build issue th
 mvn clean install
 ```  
 
-To also sign the resulting artefacts use the `sign-artifacts` profile as follows (you can optionally specify the 
-key to use for signing through the system property `gpg.keyname`).
+To perform a release and deploy to the Central Repository the profile `release` needs to be specified:
 
 ```
-mvn clean install -P sign-artifacts
+mvn clean install -P release
 ``` 
+
+This profile triggers in addition the following:
+* Generation of the source JAR.
+* Generation of the Javadocs.
+* PGP signature of all artefacts. To do this you need a GPG local installation. In addition if multiple keys are
+  defined you can specify the appropriate one using the `gpg.keyname` system property (either on the command line or
+  in `setting.xml`).  
+* Deploy to the Central repository's staging environment and automatically promote the release.
