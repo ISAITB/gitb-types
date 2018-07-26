@@ -23,13 +23,14 @@ mvn clean install
 To perform a release and deploy to the Central Repository the profile `release` needs to be specified:
 
 ```
-mvn clean install -P release
+mvn clean deploy -P release
 ``` 
 
 This profile triggers in addition the following:
 * Generation of the source JAR.
 * Generation of the Javadocs.
 * PGP signature of all artefacts. To do this you need a GPG local installation. In addition if multiple keys are
-  defined you can specify the appropriate one using the `gpg.keyname` system property (either on the command line or
-  in `settings.xml`).  
+  defined you can specify the appropriate one using the `gpg.keyname` system property. Furthermore, the passphrase 
+  entry mode is set to use system property `gpg.passphrase`. These properties can be provided either on the command 
+  line or in Maven's `settings.xml` by means of a profile.
 * Deploy to the Central repository's staging environment and automatically promote the release.
