@@ -1,3 +1,5 @@
+[![Maven Central](https://img.shields.io/maven-central/v/eu.europa.ec.itb/gitb-types.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22eu.europa.ec.itb%22%20AND%20a:%22gitb-types%22)
+
 # Introduction
 
 The **gitb-types** library is a supporting resource for the GITB test bed software and specifications. It encapsulates the
