@@ -39,6 +39,8 @@
 			<xsd:element name="endpoint" type="Endpoint" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="ID" use="required"/>
+		<xsd:attribute name="default" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="displayOrder" type="xsd:short"/>
 	</xsd:complexType>
 	<!--Endpoint definition-->
 	<xsd:complexType name="Endpoint">
@@ -62,6 +64,7 @@
 		<xsd:attribute name="id" type="xsd:ID" use="required"/>
 		<xsd:attribute name="name" type="xsd:string" use="required"/>
 		<xsd:attribute name="role" type="TestRoleEnumeration" use="required"/>
+		<xsd:attribute name="displayOrder" type="xsd:short"/>
 	</xsd:complexType>
 	<!-- Configuration name-value pair -->
 	<xsd:complexType name="Configuration">
