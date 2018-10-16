@@ -206,7 +206,7 @@
 				<xsd:sequence>
 					<xsd:element name="cond" type="Expression"/>
 					<xsd:element name="then" type="Sequence"/>
-					<xsd:element name="else" type="Sequence"/>
+					<xsd:element name="else" type="Sequence" minOccurs="0"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
