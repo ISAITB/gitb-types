@@ -245,7 +245,9 @@
 	</xsd:complexType>
 	<xsd:complexType name="ExitStep">
 		<xsd:complexContent>
-			<xsd:extension base="TestStep"/>
+			<xsd:extension base="TestStep">
+				<xsd:attribute name="success" type="gitb:BooleanOrVariable" default="false"/>
+			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="FlowStep">
