@@ -34,7 +34,7 @@
 	<!-- Complete Definition of an Actor-->
 	<xsd:complexType name="Actor">
 		<xsd:sequence>
-			<xsd:element name="name" type="xsd:string"/>
+			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="desc" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="endpoint" type="Endpoint" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
