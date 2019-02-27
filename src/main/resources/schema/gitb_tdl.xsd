@@ -151,9 +151,11 @@
 	<xsd:complexType name="Send">
 		<xsd:complexContent>
 			<xsd:extension base="MessagingStep">
-				<xsd:sequence>
-					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
-				</xsd:sequence>
+				<!--
+                                <xsd:sequence>
+                                    <xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
+                                </xsd:sequence>
+                -->
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
