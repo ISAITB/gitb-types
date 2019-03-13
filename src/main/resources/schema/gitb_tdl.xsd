@@ -19,7 +19,7 @@
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestCase">
-		<xsd:all>
+		<xsd:sequence>
 			<xsd:element name="metadata" type="gitb:Metadata"/>
 			<xsd:element name="namespaces" type="Namespaces" minOccurs="0"/>
 			<xsd:element name="imports" type="Imports" minOccurs="0"/>
@@ -28,7 +28,7 @@
 			<xsd:element name="actors" type="gitb:Roles"/>
 			<xsd:element name="steps" type="Sequence"/>
 			<xsd:element name="scriptlets" type="Scriptlets" minOccurs="0"/>
-		</xsd:all>
+		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
 	<xsd:complexType name="Namespaces">
@@ -69,7 +69,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="Variables">
 		<xsd:sequence>
-			<xsd:element name="var" type="Variable" maxOccurs="unbounded"/>
+			<xsd:element name="var" type="Variable" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="Variable">
@@ -81,7 +81,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="Scriptlets">
 		<xsd:sequence>
-			<xsd:element name="scriptlet" type="Scriptlet" maxOccurs="unbounded"/>
+			<xsd:element name="scriptlet" type="Scriptlet" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="Scriptlet">
@@ -335,7 +335,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="Process">
 		<xsd:complexContent>
-			<xsd:extension base="TestStep">
+			<xsd:extension base="TestConstruct">
 				<xsd:sequence>
 					<xsd:element name="operation" type="xsd:string" minOccurs="0"/>
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
