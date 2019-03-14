@@ -4,7 +4,7 @@
 	<!--General Metadata element to describe the metadata of artifacts-->
 	<xsd:simpleType name="ID">
 		<xsd:restriction base="xsd:string">
-			<xsd:pattern value="[a-zA-Z0-9_]+"/>
+			<xsd:pattern value="[a-zA-Z0-9_\-]+"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:complexType name="Metadata">
@@ -62,7 +62,7 @@
 			<xsd:element name="endpoint" type="Endpoint" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID" use="required"/>
-		<xsd:attribute name="name" type="xsd:string" use="required"/>
+		<xsd:attribute name="name" type="xsd:string"/>
 		<xsd:attribute name="role" type="TestRoleEnumeration" use="required"/>
 		<xsd:attribute name="displayOrder" type="xsd:short"/>
 	</xsd:complexType>
