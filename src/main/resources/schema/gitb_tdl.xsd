@@ -74,7 +74,7 @@
 	</xsd:complexType>
 	<xsd:complexType name="Variable">
 		<xsd:sequence>
-			<xsd:element name="value" type="TypedBinding" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="value" type="NamedTypedString" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="name" type="xsd:string" use="required"/>
 		<xsd:attribute name="type" type="xsd:string" use="required"/>
@@ -384,6 +384,14 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
+    <xsd:complexType name="NamedTypedString">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="name" type="xsd:string"/>
+                <xsd:attribute name="type" type="xsd:string"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
 	<xsd:complexType name="TypedBinding">
 		<xsd:complexContent>
 			<xsd:extension base="Binding">
