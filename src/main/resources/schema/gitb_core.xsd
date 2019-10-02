@@ -129,9 +129,11 @@
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
 				<xsd:attribute name="name" type="xsd:string" use="required"/>
-				<xsd:attribute name="use" type="UsageEnumeration" use="optional" default="R"/>
-				<xsd:attribute name="kind" type="ConfigurationType" use="optional" default="SIMPLE"/>
-				<xsd:attribute name="desc" type="xsd:string" use="optional"/>
+				<xsd:attribute name="use" type="UsageEnumeration" default="R"/>
+				<xsd:attribute name="kind" type="ConfigurationType" default="SIMPLE"/>
+				<xsd:attribute name="desc" type="xsd:string"/>
+				<xsd:attribute name="adminOnly" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="notForTests" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
@@ -181,6 +183,7 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="SIMPLE"/>
 			<xsd:enumeration value="BINARY"/>
+			<xsd:enumeration value="SECRET"/>
 			<!-- simple type, i.e. string -->
 			<!-- binary type -->
 		</xsd:restriction>
