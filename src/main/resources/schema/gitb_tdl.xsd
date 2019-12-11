@@ -374,6 +374,7 @@
 			<xsd:extension base="xsd:string">
 				<xsd:attribute name="lang" type="xsd:string" use="optional"/>
 				<xsd:attribute name="source" type="xsd:string" use="optional"/>
+				<xsd:attribute name="asTemplate" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
