@@ -112,6 +112,7 @@
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="SUCCESS"/>
             <xsd:enumeration value="FAILURE"/>
+            <xsd:enumeration value="WARNING"/>
             <xsd:enumeration value="UNDEFINED"/>
         </xsd:restriction>
     </xsd:simpleType>

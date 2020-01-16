@@ -226,6 +226,7 @@
 			<xsd:enumeration value="SKIPPED"/>
 			<xsd:enumeration value="WAITING"/>
 			<xsd:enumeration value="ERROR"/>
+			<xsd:enumeration value="WARNING"/>
 			<xsd:enumeration value="COMPLETED"/>
 		</xsd:restriction>
 	</xsd:simpleType>
