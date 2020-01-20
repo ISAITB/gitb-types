@@ -31,6 +31,7 @@
 	<xsd:complexType name="TestStep">
 		<xsd:sequence>
 			<xsd:element name="desc" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
@@ -94,7 +95,7 @@
 	<xsd:complexType name="InstructionOrRequest">
 		<xsd:complexContent>
 			<xsd:extension base="TestStep">
-				<xsd:attribute name="with" type="xsd:string" use="optional"/>
+				<xsd:attribute name="with" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

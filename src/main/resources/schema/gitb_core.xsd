@@ -23,7 +23,7 @@
 			<xsd:element name="config" type="Configuration" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="actor" type="xsd:string" use="required"/>
-		<xsd:attribute name="endpoint" type="xsd:string" use="optional"/>
+		<xsd:attribute name="endpoint" type="xsd:string"/>
 	</xsd:complexType>
 	<!-- List of Actor Definitions-->
 	<xsd:complexType name="Actors">
@@ -40,6 +40,7 @@
 		</xsd:sequence>
 		<xsd:attribute name="id" type="ID" use="required"/>
 		<xsd:attribute name="default" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="hidden" type="xsd:boolean" default="false"/>
 		<xsd:attribute name="displayOrder" type="xsd:short"/>
 	</xsd:complexType>
 	<!--Endpoint definition-->
@@ -48,7 +49,7 @@
 			<xsd:element name="config" type="Parameter" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="name" type="ID" use="required"/>
-		<xsd:attribute name="desc" type="xsd:string" use="optional"/>
+		<xsd:attribute name="desc" type="xsd:string"/>
 	</xsd:complexType>
 	<!-- List of Testcase Role Definitions-->
 	<xsd:complexType name="Roles">
@@ -84,7 +85,7 @@
 		<xsd:attribute name="id" type="xsd:string"/>
 		<xsd:attribute name="uri" type="xsd:string"/>
 		<xsd:attribute name="isRemote" type="xsd:boolean" default="true"/>
-		<xsd:attribute name="serviceLocation" type="xsd:string" use="optional"/>
+		<xsd:attribute name="serviceLocation" type="xsd:string"/>
 	</xsd:complexType>
 	<!-- Validation Module Definition-->
 	<xsd:complexType name="ValidationModule">
@@ -93,7 +94,7 @@
 				<xsd:sequence>
 					<xsd:element name="configs" type="ConfigurationParameters" minOccurs="0"/>
 				</xsd:sequence>
-				<xsd:attribute name="operation" type="xsd:string" use="optional"/>
+				<xsd:attribute name="operation" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -108,7 +109,7 @@
 					<xsd:element name="receiveConfigs" type="ConfigurationParameters" minOccurs="0"/>
 					<xsd:element name="sendConfigs" type="ConfigurationParameters" minOccurs="0"/>
 				</xsd:sequence>
-				<xsd:attribute name="isProxy" type="xsd:boolean" use="optional" default="true"/>
+				<xsd:attribute name="isProxy" type="xsd:boolean" default="true"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -142,7 +143,7 @@
 		<xsd:simpleContent>
 			<xsd:extension base="Parameter">
 				<xsd:attribute name="type" type="xsd:string" use="required"/>
-				<xsd:attribute name="encoding" type="xsd:string" use="optional"/>
+				<xsd:attribute name="encoding" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
@@ -194,10 +195,10 @@
 			<xsd:element name="item" type="AnyContent" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="value" type="StringUriOrBase64Type" minOccurs="0" maxOccurs="1" />
 		</xsd:sequence>
-		<xsd:attribute name="name" type="xsd:string" use="optional"/>
-		<xsd:attribute name="embeddingMethod" type="ValueEmbeddingEnumeration" use="optional" default="BASE64"/>
-		<xsd:attribute name="type" type="xsd:string" use="optional"/>
-		<xsd:attribute name="encoding" type="xsd:string" use="optional"/>
+		<xsd:attribute name="name" type="xsd:string"/>
+		<xsd:attribute name="embeddingMethod" type="ValueEmbeddingEnumeration" default="BASE64"/>
+		<xsd:attribute name="type" type="xsd:string"/>
+		<xsd:attribute name="encoding" type="xsd:string"/>
 	</xsd:complexType>
 	<!-- Enumeration for embedding method for the value -->
 	<xsd:simpleType name="ValueEmbeddingEnumeration">

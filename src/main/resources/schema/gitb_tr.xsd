@@ -3,8 +3,7 @@
            targetNamespace="http://www.gitb.com/tr/v1/"
            xmlns="http://www.gitb.com/tr/v1/"
            xmlns:gitb="http://www.gitb.com/core/v1/"
-           elementFormDefault="qualified" 
-           attributeFormDefault="unqualified">
+           elementFormDefault="qualified">
 
     <xsd:import namespace="http://www.gitb.com/core/v1/" schemaLocation="gitb_core.xsd"/>
 
@@ -28,7 +27,7 @@
             <xsd:element name="date" type="xsd:dateTime"/>
             <xsd:element name="result" type="TestResultType"/>
         </xsd:sequence>
-        <xsd:attribute name="id" type="xsd:string" use="optional"/>
+        <xsd:attribute name="id" type="xsd:string"/>
     </xsd:complexType>
     <!--Report format for Decision and Loop steps-->
     <xsd:complexType name="DR">
@@ -56,7 +55,7 @@
                     <xsd:element name="context" type="gitb:AnyContent" minOccurs="0"/>
                     <xsd:element name="reports" type="TestAssertionGroupReportsType" minOccurs="0"/>
                 </xsd:sequence>
-                <xsd:attribute name="name" type="xsd:string" use="optional"/>
+                <xsd:attribute name="name" type="xsd:string"/>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>

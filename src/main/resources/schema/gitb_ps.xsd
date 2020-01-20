@@ -29,7 +29,7 @@
 		<xsd:attribute name="id" type="xsd:string"/>
 		<xsd:attribute name="uri" type="xsd:string"/>
 		<xsd:attribute name="isRemote" type="xsd:boolean" default="true"/>
-		<xsd:attribute name="serviceLocation" type="xsd:string" use="optional"/>
+		<xsd:attribute name="serviceLocation" type="xsd:string"/>
 	</xsd:complexType>
 	<xsd:complexType name="GetModuleDefinitionResponse">
 		<xsd:sequence>
