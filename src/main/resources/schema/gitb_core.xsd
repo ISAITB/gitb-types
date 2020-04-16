@@ -16,6 +16,7 @@
 			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="published" type="xsd:string" minOccurs="0"/>
 			<xsd:element name="lastModified" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
 		</xsd:all>
 	</xsd:complexType>
 	<xsd:complexType name="ActorConfiguration">
