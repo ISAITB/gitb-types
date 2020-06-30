@@ -33,13 +33,6 @@
         <url>https://github.com/ISAITB/gitb-types</url>
     </scm>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <properties>
         <java.release>8</java.release>
         <jaxb.version>2.3.1</jaxb.version>
@@ -173,7 +166,29 @@
 
     <profiles>
         <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>itbRepoWrite</id>
+                    <url>${itbRepoWriteUrl}</url>
+                </repository>
+                <snapshotRepository>
+                    <id>itbRepoWrite</id>
+                    <url>${itbRepoWriteUrl}</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
             <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
             <build>
                 <plugins>
                     <plugin>
