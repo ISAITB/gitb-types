@@ -114,6 +114,7 @@
 				<xsd:element name="exit" type="ExitStep"/>
 				<!--Testing & Supplementary constructs -->
 				<xsd:element name="assign" type="Assign"/>
+				<xsd:element name="log" type="Log"/>
 				<xsd:element name="group" type="Group"/>
 				<xsd:element name="verify" type="Verify"/>
 				<xsd:element name="call" type="CallStep"/>
@@ -132,7 +133,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="TestConstruct">
 				<xsd:sequence>
-					<xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="documentation" type="gitb:Documentation" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="desc" type="xsd:string" use="required"/>
 			</xsd:extension>
@@ -267,11 +268,16 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
+	<xsd:complexType name="Log">
+		<xsd:complexContent>
+			<xsd:extension base="Expression"/>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="Group">
 		<xsd:complexContent>
 			<xsd:extension base="Sequence">
 				<xsd:sequence>
-					<xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="documentation" type="gitb:Documentation" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="id" type="xsd:string"/>
 				<xsd:attribute name="desc" type="xsd:string" use="required"/>
