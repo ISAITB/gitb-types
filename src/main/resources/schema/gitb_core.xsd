@@ -136,6 +136,7 @@
 				<xsd:attribute name="desc" type="xsd:string"/>
 				<xsd:attribute name="adminOnly" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="notForTests" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="hidden" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
