@@ -208,6 +208,7 @@
 					<xsd:element name="then" type="Sequence"/>
 					<xsd:element name="else" type="Sequence" minOccurs="0"/>
 				</xsd:sequence>
+				<xsd:attribute name="title" type="xsd:string" default="decision"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -218,6 +219,7 @@
 					<xsd:element name="cond" type="Expression"/>
 					<xsd:element name="do" type="Sequence"/>
 				</xsd:sequence>
+				<xsd:attribute name="title" type="xsd:string" default="loop"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -228,6 +230,7 @@
 					<xsd:element name="do" type="Sequence"/>
 					<xsd:element name="cond" type="Expression"/>
 				</xsd:sequence>
+				<xsd:attribute name="title" type="xsd:string" default="loop"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -240,6 +243,7 @@
 				<xsd:attribute name="counter" type="xsd:string" default="i"/>
 				<xsd:attribute name="start" type="gitb:NumberOrVariable" default="0"/>
 				<xsd:attribute name="end" type="gitb:NumberOrVariable" use="required"/>
+				<xsd:attribute name="title" type="xsd:string" default="loop"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -256,6 +260,7 @@
 				<xsd:sequence>
 					<xsd:element name="thread" type="Sequence" maxOccurs="unbounded"/>
 				</xsd:sequence>
+				<xsd:attribute name="title" type="xsd:string" default="flow"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -318,6 +323,7 @@
 					</xsd:choice>
 				</xsd:sequence>
 				<xsd:attribute name="with" type="xsd:string"/>
+				<xsd:attribute name="title" type="xsd:string" default="interact"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
