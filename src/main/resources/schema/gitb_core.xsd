@@ -47,7 +47,7 @@
 	<!--Endpoint definition-->
 	<xsd:complexType name="Endpoint">
 		<xsd:sequence>
-			<xsd:element name="config" type="Parameter" maxOccurs="unbounded"/>
+			<xsd:element name="config" type="EndpointParameter" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="name" type="ID" use="required"/>
 		<xsd:attribute name="desc" type="xsd:string"/>
@@ -127,6 +127,19 @@
 		</xsd:sequence>
 	</xsd:complexType>
 	<!--Parameter Definition-->
+	<xsd:complexType name="EndpointParameter">
+		<xsd:simpleContent>
+			<xsd:extension base="Parameter">
+				<xsd:attribute name="adminOnly" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="notForTests" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="hidden" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="dependsOn" type="xsd:string"/>
+				<xsd:attribute name="dependsOnValue" type="xsd:string"/>
+				<xsd:attribute name="allowedValues" type="xsd:string"/>
+				<xsd:attribute name="allowedValueLabels" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
 	<xsd:complexType name="Parameter">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
@@ -134,12 +147,6 @@
 				<xsd:attribute name="use" type="UsageEnumeration" default="R"/>
 				<xsd:attribute name="kind" type="ConfigurationType" default="SIMPLE"/>
 				<xsd:attribute name="desc" type="xsd:string"/>
-				<xsd:attribute name="adminOnly" type="xsd:boolean" default="false"/>
-				<xsd:attribute name="notForTests" type="xsd:boolean" default="false"/>
-				<xsd:attribute name="hidden" type="xsd:boolean" default="false"/>
-				<xsd:attribute name="allowedValues" type="xsd:string"/>
-				<xsd:attribute name="dependsOn" type="xsd:string"/>
-				<xsd:attribute name="dependsOnValue" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
