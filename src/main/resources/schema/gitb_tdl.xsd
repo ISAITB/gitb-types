@@ -27,6 +27,7 @@
 			<xsd:element name="variables" type="Variables" minOccurs="0"/>
 			<xsd:element name="actors" type="gitb:Roles"/>
 			<xsd:element name="steps" type="Sequence"/>
+			<xsd:element name="output" type="Output" minOccurs="0"/>
 			<xsd:element name="scriptlets" type="Scriptlets" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
@@ -425,4 +426,22 @@
 			<xsd:enumeration value="WARNING"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+	<xsd:complexType name="Output">
+		<xsd:sequence>
+			<xsd:element name="success" type="OutputCaseSet" minOccurs="0"/>
+			<xsd:element name="failure" type="OutputCaseSet" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OutputCaseSet">
+		<xsd:sequence>
+			<xsd:element name="case" type="OutputCase" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="default" type="Expression" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OutputCase">
+		<xsd:sequence>
+			<xsd:element name="cond" type="Expression"/>
+			<xsd:element name="message" type="Expression"/>
+		</xsd:sequence>
+	</xsd:complexType>
 </xsd:schema>
