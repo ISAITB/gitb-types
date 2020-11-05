@@ -300,6 +300,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="level" type="ErrorLevel" default="ERROR"/>
+				<xsd:attribute name="output" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
