@@ -106,6 +106,7 @@
 			</xsd:choice>
 		</xsd:sequence>
 		<xsd:attribute name="with" type="xsd:string"/>
+		<xsd:attribute name="inputTitle" type="xsd:string"/>
 	</xsd:complexType>
 	<xsd:complexType name="Instruction">
 		<xsd:complexContent>

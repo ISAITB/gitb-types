@@ -326,6 +326,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="title" type="xsd:string" default="interact"/>
+                <xsd:attribute name="inputTitle" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
