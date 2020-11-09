@@ -8,6 +8,7 @@
 			<xsd:element name="actors" type="gitb:Roles"/>
 			<xsd:element name="preliminary" type="Preliminary" minOccurs="0"/>
 			<xsd:element name="steps" type="Sequence"/>
+			<xsd:element name="output" type="xsd:string" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
