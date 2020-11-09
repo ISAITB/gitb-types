@@ -126,9 +126,11 @@
 				<xsd:element name="eptxn" type="EndProcessingTransaction"/>
 			</xsd:choice>
 		</xsd:sequence>
+		<xsd:attribute name="stopOnError" type="xsd:boolean" default="false"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestConstruct">
 		<xsd:attribute name="id" type="xsd:string"/>
+		<xsd:attribute name="stopOnError" type="xsd:boolean" default="false"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStep">
 		<xsd:complexContent>
