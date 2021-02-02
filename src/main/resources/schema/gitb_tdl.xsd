@@ -3,6 +3,7 @@
 	<xsd:import namespace="http://www.gitb.com/core/v1/" schemaLocation="gitb_core.xsd"/>
 	<xsd:element name="testcase" type="TestCase"/>
 	<xsd:element name="testsuite" type="TestSuite"/>
+	<xsd:element name="scriptlet" type="Scriptlet"/>
 	<xsd:complexType name="TestSuite">
 		<xsd:sequence>
 			<xsd:element name="metadata" type="gitb:Metadata"/>
@@ -93,7 +94,7 @@
 			<xsd:element name="params" type="Variables" minOccurs="0"/>
 			<xsd:element name="variables" type="Variables" minOccurs="0"/>
 			<xsd:element name="steps" type="Sequence"/>
-			<xsd:element name="output" type="Binding" maxOccurs="unbounded"/>
+			<xsd:element name="output" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
