@@ -314,6 +314,7 @@
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="output" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
+				<xsd:attribute name="from" type="xsd:string"/>
 				<xsd:attribute name="path" type="xsd:string" use="required"/>
 			</xsd:extension>
 		</xsd:complexContent>
