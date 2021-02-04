@@ -266,6 +266,7 @@
 	<xsd:complexType name="Documentation">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
+				<xsd:attribute name="from" type="xsd:string"/>
 				<xsd:attribute name="import" type="xsd:string"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
 			</xsd:extension>
