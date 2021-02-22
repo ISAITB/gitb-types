@@ -7,8 +7,8 @@
 	<xsd:complexType name="TestSuite">
 		<xsd:sequence>
 			<xsd:element name="metadata" type="gitb:Metadata"/>
-			<xsd:element name="actors" type="gitb:Actors"/>
-			<xsd:element name="testcase" type="TestCaseEntry" maxOccurs="unbounded"/>
+			<xsd:element name="actors" type="gitb:Actors" minOccurs="0"/>
+			<xsd:element name="testcase" type="TestCaseEntry" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
