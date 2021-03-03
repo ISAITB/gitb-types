@@ -26,7 +26,7 @@
 
     <xsd:complexType name="ValidateRequest">
         <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string" />
+            <xsd:element name="sessionId" type="xsd:string" minOccurs="0"/>
             <xsd:element name="config" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="input" type="gitb:AnyContent" maxOccurs="unbounded"/>
         </xsd:sequence>

@@ -3,11 +3,12 @@
 	<xsd:import namespace="http://www.gitb.com/core/v1/" schemaLocation="gitb_core.xsd"/>
 	<xsd:element name="testcase" type="TestCase"/>
 	<xsd:element name="testsuite" type="TestSuite"/>
+	<xsd:element name="scriptlet" type="Scriptlet"/>
 	<xsd:complexType name="TestSuite">
 		<xsd:sequence>
 			<xsd:element name="metadata" type="gitb:Metadata"/>
-			<xsd:element name="actors" type="gitb:Actors"/>
-			<xsd:element name="testcase" type="TestCaseEntry" maxOccurs="unbounded"/>
+			<xsd:element name="actors" type="gitb:Actors" minOccurs="0"/>
+			<xsd:element name="testcase" type="TestCaseEntry" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
@@ -55,9 +56,10 @@
 	<xsd:complexType name="TestArtifact">
 		<xsd:simpleContent>
 			<xsd:extension base="gitb:StringOrVariable">
-				<xsd:attribute name="name" type="xsd:ID" use="required"/>
+				<xsd:attribute name="name" type="xsd:string" use="required"/>
 				<xsd:attribute name="type" type="xsd:string" use="required"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
+				<xsd:attribute name="from" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
@@ -93,7 +95,7 @@
 			<xsd:element name="params" type="Variables" minOccurs="0"/>
 			<xsd:element name="variables" type="Variables" minOccurs="0"/>
 			<xsd:element name="steps" type="Sequence"/>
-			<xsd:element name="output" type="Binding" maxOccurs="unbounded"/>
+			<xsd:element name="output" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
@@ -313,6 +315,7 @@
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="output" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
+				<xsd:attribute name="from" type="xsd:string"/>
 				<xsd:attribute name="path" type="xsd:string" use="required"/>
 			</xsd:extension>
 		</xsd:complexContent>
