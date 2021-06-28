@@ -22,12 +22,14 @@
 						<xsd:element name="loop" type="LoopStep"/>
 						<xsd:element name="flow" type="FlowStep"/>
 						<xsd:element name="verify" type="VerifyStep"/>
+						<xsd:element name="process" type="ProcessStep"/>
 						<xsd:element name="exit" type="ExitStep"/>
 						<xsd:element name="interact" type="UserInteractionStep"/>
 						<xsd:element name="group" type="GroupStep"/>
 					</xsd:choice>
 				</xsd:sequence>
 				<xsd:attribute name="title" type="xsd:string"/>
+				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -37,6 +39,7 @@
 			<xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
+		<xsd:attribute name="hidden" type="xsd:boolean" default="false"/>
 	</xsd:complexType>
 	<xsd:complexType name="DecisionStep">
 		<xsd:complexContent>
@@ -46,6 +49,7 @@
 					<xsd:element name="else" type="Sequence" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="title" type="xsd:string"/>
+				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -63,6 +67,7 @@
 					<xsd:element name="thread" type="Sequence" maxOccurs="unbounded"/>
 				</xsd:sequence>
 				<xsd:attribute name="title" type="xsd:string"/>
+				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -77,6 +82,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="title" type="xsd:string"/>
+				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -126,6 +132,11 @@
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="VerifyStep">
+		<xsd:complexContent>
+			<xsd:extension base="TestStep"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProcessStep">
 		<xsd:complexContent>
 			<xsd:extension base="TestStep"/>
 		</xsd:complexContent>
