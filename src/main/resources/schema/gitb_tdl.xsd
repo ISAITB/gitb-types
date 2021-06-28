@@ -100,35 +100,38 @@
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
 	<xsd:complexType name="Sequence">
-		<xsd:sequence>
-			<xsd:choice maxOccurs="unbounded">
-				<!-- Messaging Test Steps Constructs -->
-				<xsd:element name="send" type="Send"/>
-				<xsd:element name="receive" type="Receive"/>
-				<xsd:element name="listen" type="Listen"/>
-				<xsd:element name="btxn" type="BeginTransaction"/>
-				<xsd:element name="etxn" type="EndTransaction"/>
-				<!-- Flow constructs -->
-				<xsd:element name="if" type="IfStep"/>
-				<xsd:element name="while" type="WhileStep"/>
-				<xsd:element name="repuntil" type="RepeatUntilStep"/>
-				<xsd:element name="foreach" type="ForEachStep"/>
-				<xsd:element name="flow" type="FlowStep"/>
-				<xsd:element name="exit" type="ExitStep"/>
-				<!--Testing & Supplementary constructs -->
-				<xsd:element name="assign" type="Assign"/>
-				<xsd:element name="log" type="Log"/>
-				<xsd:element name="group" type="Group"/>
-				<xsd:element name="verify" type="Verify"/>
-				<xsd:element name="call" type="CallStep"/>
-				<xsd:element name="interact" type="UserInteraction"/>
-				<!--Processing constructs -->
-				<xsd:element name="process" type="Process"/>
-				<xsd:element name="bptxn" type="BeginProcessingTransaction"/>
-				<xsd:element name="eptxn" type="EndProcessingTransaction"/>
-			</xsd:choice>
-		</xsd:sequence>
-		<xsd:attribute name="stopOnError" type="xsd:boolean" default="false"/>
+		<xsd:complexContent>
+			<xsd:extension base="TestStep">
+				<xsd:sequence>
+					<xsd:choice maxOccurs="unbounded">
+						<!-- Messaging Test Steps Constructs -->
+						<xsd:element name="send" type="Send"/>
+						<xsd:element name="receive" type="Receive"/>
+						<xsd:element name="listen" type="Listen"/>
+						<xsd:element name="btxn" type="BeginTransaction"/>
+						<xsd:element name="etxn" type="EndTransaction"/>
+						<!-- Flow constructs -->
+						<xsd:element name="if" type="IfStep"/>
+						<xsd:element name="while" type="WhileStep"/>
+						<xsd:element name="repuntil" type="RepeatUntilStep"/>
+						<xsd:element name="foreach" type="ForEachStep"/>
+						<xsd:element name="flow" type="FlowStep"/>
+						<xsd:element name="exit" type="ExitStep"/>
+						<!--Testing & Supplementary constructs -->
+						<xsd:element name="assign" type="Assign"/>
+						<xsd:element name="log" type="Log"/>
+						<xsd:element name="group" type="Group"/>
+						<xsd:element name="verify" type="Verify"/>
+						<xsd:element name="call" type="CallStep"/>
+						<xsd:element name="interact" type="UserInteraction"/>
+						<!--Processing constructs -->
+						<xsd:element name="process" type="Process"/>
+						<xsd:element name="bptxn" type="BeginProcessingTransaction"/>
+						<xsd:element name="eptxn" type="EndProcessingTransaction"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="TestConstruct">
 		<xsd:attribute name="id" type="xsd:string"/>
@@ -140,7 +143,7 @@
 				<xsd:sequence>
 					<xsd:element name="documentation" type="gitb:Documentation" minOccurs="0"/>
 				</xsd:sequence>
-				<xsd:attribute name="desc" type="xsd:string" use="required"/>
+				<xsd:attribute name="desc" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -286,11 +289,7 @@
 	<xsd:complexType name="Group">
 		<xsd:complexContent>
 			<xsd:extension base="Sequence">
-				<xsd:sequence>
-					<xsd:element name="documentation" type="gitb:Documentation" minOccurs="0"/>
-				</xsd:sequence>
-				<xsd:attribute name="id" type="xsd:string"/>
-				<xsd:attribute name="desc" type="xsd:string" use="required"/>
+				<xsd:attribute name="title" type="xsd:string" default="group"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

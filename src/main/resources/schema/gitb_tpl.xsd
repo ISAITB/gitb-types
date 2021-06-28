@@ -19,11 +19,12 @@
 					<xsd:choice maxOccurs="unbounded">
 						<xsd:element name="msg" type="MessagingStep"/>
 						<xsd:element name="decision" type="DecisionStep"/>
-						<xsd:element name="loop" type="Sequence"/>
+						<xsd:element name="loop" type="LoopStep"/>
 						<xsd:element name="flow" type="FlowStep"/>
-						<xsd:element name="verify" type="TestStep"/>
+						<xsd:element name="verify" type="VerifyStep"/>
 						<xsd:element name="exit" type="ExitStep"/>
 						<xsd:element name="interact" type="UserInteractionStep"/>
+						<xsd:element name="group" type="GroupStep"/>
 					</xsd:choice>
 				</xsd:sequence>
 				<xsd:attribute name="title" type="xsd:string"/>
@@ -114,4 +115,20 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
+	<xsd:complexType name="LoopStep">
+		<xsd:complexContent>
+			<xsd:extension base="Sequence"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GroupStep">
+		<xsd:complexContent>
+			<xsd:extension base="Sequence"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="VerifyStep">
+		<xsd:complexContent>
+			<xsd:extension base="TestStep"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+
 </xsd:schema>
