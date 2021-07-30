@@ -137,6 +137,8 @@
 		<xsd:attribute name="options" type="xsd:string"/>
 		<xsd:attribute name="optionLabels" type="xsd:string"/>
 		<xsd:attribute name="multiple" type="xsd:boolean"/>
+		<xsd:attribute name="inputType" type="gitb:InputRequestInputType"/>
+		<xsd:attribute name="mimeType" type="xsd:string"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStepStatus">
 		<xsd:sequence>
