@@ -384,6 +384,7 @@
 				<xsd:attribute name="options" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="optionLabels" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="multiple" type="gitb:BooleanOrVariable"/>
+				<xsd:attribute name="inputType" type="gitb:InputRequestInputType"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -394,6 +395,7 @@
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="contentType" type="gitb:ValueEmbeddingEnumeration"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
+				<xsd:attribute name="mimeType" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
