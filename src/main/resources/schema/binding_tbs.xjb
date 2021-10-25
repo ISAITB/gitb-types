@@ -6,6 +6,18 @@
         <jxb:bindings schemaLocation="gitb_tdl.xsd" node="//xs:complexType[@name='Sequence']//xs:sequence//xs:choice">
             <jxb:property name="steps"/>
         </jxb:bindings>
+        <jxb:bindings schemaLocation="gitb_tdl.xsd" node="//xs:complexType[@name='Process']//xs:attribute[@name='operation']">
+            <jxb:property name="operationAttribute"/>
+        </jxb:bindings>
+        <jxb:bindings schemaLocation="gitb_tdl.xsd" node="//xs:complexType[@name='Process']//xs:attribute[@name='input']">
+            <jxb:property name="inputAttribute"/>
+        </jxb:bindings>
+        <jxb:bindings schemaLocation="gitb_tdl.xsd" node="//xs:complexType[@name='CallStep']//xs:attribute[@name='input']">
+            <jxb:property name="inputAttribute"/>
+        </jxb:bindings>
+        <jxb:bindings schemaLocation="gitb_tdl.xsd" node="//xs:complexType[@name='CallStep']//xs:attribute[@name='output']">
+            <jxb:property name="outputAttribute"/>
+        </jxb:bindings>
     </jxb:bindings>
     <jxb:bindings>
         <jxb:bindings schemaLocation="gitb_tpl.xsd" node="//xs:complexType[@name='Sequence']//xs:sequence//xs:choice">

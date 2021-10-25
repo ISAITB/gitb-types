@@ -323,6 +323,8 @@
 				</xsd:sequence>
 				<xsd:attribute name="from" type="xsd:string"/>
 				<xsd:attribute name="path" type="xsd:string" use="required"/>
+				<xsd:attribute name="input" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="output" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -370,6 +372,9 @@
 				</xsd:sequence>
 				<xsd:attribute name="txnId" type="xsd:string"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="operation" type="xsd:string"/>
+				<xsd:attribute name="input" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="output" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
