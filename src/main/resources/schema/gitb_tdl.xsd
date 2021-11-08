@@ -309,7 +309,7 @@
 					<xsd:element name="input" type="Binding" maxOccurs="unbounded"/>
 				</xsd:sequence>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
-				<xsd:attribute name="level" type="ErrorLevel" default="ERROR"/>
+				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
 				<xsd:attribute name="output" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -445,6 +445,11 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="ERROR"/>
 			<xsd:enumeration value="WARNING"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ErrorLevelOrVariable">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:complexType name="Output">
