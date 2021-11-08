@@ -27,7 +27,7 @@
 			<xsd:element name="preliminary" type="UserInteraction" minOccurs="0"/>
 			<xsd:element name="variables" type="Variables" minOccurs="0"/>
 			<xsd:element name="actors" type="gitb:Roles"/>
-			<xsd:element name="steps" type="Sequence"/>
+			<xsd:element name="steps" type="TestCaseSteps"/>
 			<xsd:element name="output" type="Output" minOccurs="0"/>
 			<xsd:element name="scriptlets" type="Scriptlets" minOccurs="0"/>
 		</xsd:sequence>
@@ -98,6 +98,13 @@
 			<xsd:element name="output" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="TestCaseSteps">
+		<xsd:complexContent>
+			<xsd:extension base="Sequence">
+				<xsd:attribute name="logLevel" type="LogLevel" default="DEBUG"/>
+			</xsd:extension>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="Sequence">
 		<xsd:complexContent>
@@ -289,7 +296,9 @@
 	</xsd:complexType>
 	<xsd:complexType name="Log">
 		<xsd:complexContent>
-			<xsd:extension base="Expression"/>
+			<xsd:extension base="Expression">
+				<xsd:attribute name="level" type="LogLevel" default="INFO"/>
+			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="Group">
@@ -445,6 +454,14 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="ERROR"/>
 			<xsd:enumeration value="WARNING"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LogLevel">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ERROR"/>
+			<xsd:enumeration value="WARNING"/>
+			<xsd:enumeration value="INFO"/>
+			<xsd:enumeration value="DEBUG"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:simpleType name="ErrorLevelOrVariable">
