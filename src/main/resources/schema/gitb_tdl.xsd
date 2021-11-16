@@ -27,7 +27,7 @@
 			<xsd:element name="preliminary" type="UserInteraction" minOccurs="0"/>
 			<xsd:element name="variables" type="Variables" minOccurs="0"/>
 			<xsd:element name="actors" type="gitb:Roles"/>
-			<xsd:element name="steps" type="Sequence"/>
+			<xsd:element name="steps" type="TestCaseSteps"/>
 			<xsd:element name="output" type="Output" minOccurs="0"/>
 			<xsd:element name="scriptlets" type="Scriptlets" minOccurs="0"/>
 		</xsd:sequence>
@@ -99,6 +99,13 @@
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
+	<xsd:complexType name="TestCaseSteps">
+		<xsd:complexContent>
+			<xsd:extension base="Sequence">
+				<xsd:attribute name="logLevel" type="LogLevel" default="DEBUG"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="Sequence">
 		<xsd:complexContent>
 			<xsd:extension base="TestStep">
@@ -158,6 +165,7 @@
 				<xsd:attribute name="from" type="xsd:string" use="required"/>
 				<xsd:attribute name="to" type="xsd:string" use="required"/>
 				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
+				<xsd:attribute name="reply" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -289,7 +297,9 @@
 	</xsd:complexType>
 	<xsd:complexType name="Log">
 		<xsd:complexContent>
-			<xsd:extension base="Expression"/>
+			<xsd:extension base="Expression">
+				<xsd:attribute name="level" type="LogLevel" default="INFO"/>
+			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="Group">
@@ -309,7 +319,7 @@
 					<xsd:element name="input" type="Binding" maxOccurs="unbounded"/>
 				</xsd:sequence>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
-				<xsd:attribute name="level" type="ErrorLevel" default="ERROR"/>
+				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
 				<xsd:attribute name="output" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -323,6 +333,8 @@
 				</xsd:sequence>
 				<xsd:attribute name="from" type="xsd:string"/>
 				<xsd:attribute name="path" type="xsd:string" use="required"/>
+				<xsd:attribute name="input" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="output" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -370,6 +382,9 @@
 				</xsd:sequence>
 				<xsd:attribute name="txnId" type="xsd:string"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="operation" type="xsd:string"/>
+				<xsd:attribute name="input" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="output" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -440,6 +455,19 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="ERROR"/>
 			<xsd:enumeration value="WARNING"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LogLevel">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ERROR"/>
+			<xsd:enumeration value="WARNING"/>
+			<xsd:enumeration value="INFO"/>
+			<xsd:enumeration value="DEBUG"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ErrorLevelOrVariable">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:complexType name="Output">

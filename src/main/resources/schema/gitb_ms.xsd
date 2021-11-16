@@ -44,7 +44,7 @@
 
     <xsd:complexType name="InitiateResponse">
         <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string" />
+            <xsd:element name="sessionId" type="xsd:string" minOccurs="0"/>
             <xsd:element name="actorConfiguration" type="gitb:ActorConfiguration" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
