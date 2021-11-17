@@ -48,7 +48,7 @@
 	</xsd:complexType>
     <xsd:complexType name="BeginTransactionResponse">
         <xsd:sequence>
-            <xsd:element name="sessionId" type="xsd:string" />
+            <xsd:element name="sessionId" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
 	<xsd:complexType name="ProcessRequest">
