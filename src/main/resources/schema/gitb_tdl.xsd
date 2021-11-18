@@ -102,7 +102,7 @@
 	<xsd:complexType name="TestCaseSteps">
 		<xsd:complexContent>
 			<xsd:extension base="Sequence">
-				<xsd:attribute name="logLevel" type="LogLevel" default="DEBUG"/>
+				<xsd:attribute name="logLevel" type="LogLevelOrVariable" default="DEBUG"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -298,7 +298,7 @@
 	<xsd:complexType name="Log">
 		<xsd:complexContent>
 			<xsd:extension base="Expression">
-				<xsd:attribute name="level" type="LogLevel" default="INFO"/>
+				<xsd:attribute name="level" type="LogLevelOrVariable" default="INFO"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -468,6 +468,11 @@
 	<xsd:simpleType name="ErrorLevelOrVariable">
 		<xsd:restriction base="xsd:string">
 			<xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LogLevelOrVariable">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING|INFO|DEBUG"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:complexType name="Output">
