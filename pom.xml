@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.europa.ec.itb</groupId>
     <artifactId>gitb-types</artifactId>
-    <version>1.15.0</version>
+    <version>1.15.1</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
     <url>https://joinup.ec.europa.eu/solution/interoperability-test-bed/about</url>
@@ -20,10 +20,10 @@
 
     <developers>
         <developer>
-            <name>European Commission, DIGIT, ISA2 Unit</name>
+            <name>European Commission, DIGIT</name>
             <email>DIGIT-ITB@ec.europa.eu</email>
             <organization>European Commission</organization>
-            <organizationUrl>https://ec.europa.eu/isa2/</organizationUrl>
+            <organizationUrl>https://ec.europa.eu/info/departments/informatics_en</organizationUrl>
         </developer>
     </developers>
 
