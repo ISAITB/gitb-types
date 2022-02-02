@@ -11,6 +11,7 @@
 			<xsd:element name="output" type="xsd:string" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
+		<xsd:attribute name="supportsParallelExecution" type="xsd:boolean" default="true"/>
 	</xsd:complexType>
 	<xsd:complexType name="Sequence">
 		<xsd:complexContent>
