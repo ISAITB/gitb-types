@@ -11,7 +11,7 @@
 	<xsd:element name="GetTestCaseDefinitionResponse" type="tns:GetTestCaseDefinitionResponse"/>
 	<xsd:element name="GetActorDefinitionRequest" type="tns:GetActorDefinitionRequest"/>
 	<xsd:element name="GetActorDefinitionResponse" type="tns:GetActorDefinitionResponse"/>
-	<xsd:element name="InitiateRequest" type="tns:BasicRequest"/>
+	<xsd:element name="InitiateRequest" type="tns:InitiateRequest"/>
 	<xsd:element name="InitiateResponse" type="tns:InitiateResponse"/>
 	<xsd:element name="ConfigureRequest" type="tns:ConfigureRequest"/>
 	<xsd:element name="ConfigureResponse" type="tns:ConfigureResponse"/>
@@ -64,6 +64,15 @@
 			<xsd:element name="actor" type="gitb:Actor"/>
 		</xsd:sequence>
 	</xsd:complexType>
+	<xsd:complexType name="InitiateRequest">
+		<xsd:complexContent>
+			<xsd:extension base="BasicRequest">
+				<xsd:sequence>
+					<xsd:element name="tcInstanceId" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
 	<xsd:complexType name="InitiateResponse">
 		<xsd:sequence>
 			<xsd:element name="tcInstanceId" type="xsd:string"/>
@@ -74,6 +83,7 @@
 			<xsd:extension base="BasicCommand">
 				<xsd:sequence>
 					<xsd:element name="configs" type="gitb:ActorConfiguration" maxOccurs="unbounded"/>
+					<xsd:element name="inputs" type="gitb:AnyContent" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
