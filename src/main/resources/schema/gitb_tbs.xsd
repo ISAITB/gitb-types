@@ -14,7 +14,7 @@
 	<xsd:element name="InitiateRequest" type="tns:InitiateRequest"/>
 	<xsd:element name="InitiateResponse" type="tns:InitiateResponse"/>
 	<xsd:element name="ConfigureRequest" type="tns:ConfigureRequest"/>
-	<xsd:element name="ConfigureResponse" type="tns:ConfigureResponse"/>
+	<xsd:element name="ConfigureResponse" type="tns:Void"/>
 	<xsd:element name="ProvideInputRequest" type="tns:ProvideInputRequest"/>
 	<xsd:element name="InitiatePreliminaryRequest" type="tns:BasicCommand"/>
 	<xsd:element name="InitiatePreliminaryResponse" type="tns:Void"/>
@@ -23,6 +23,7 @@
 	<xsd:element name="RestartRequest" type="tns:BasicCommand"/>
 	<!--Callback request/responses-->
 	<xsd:element name="UpdateStatusRequest" type="tns:TestStepStatus"/>
+	<xsd:element name="ConfigurationCompleteRequest" type="tns:ConfigurationCompleteRequest"/>
 	<xsd:element name="InteractWithUsersRequest" type="tns:InteractWithUsersRequest"/>
 	<xsd:element name="Void" type="tns:Void"/>
 	<xsd:element name="ErrorInfo" type="gitb:ErrorInfo"/>
@@ -88,9 +89,12 @@
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
-	<xsd:complexType name="ConfigureResponse">
+	<xsd:complexType name="ConfigurationCompleteRequest">
 		<xsd:sequence>
-			<xsd:element name="configs" type="SUTConfiguration" maxOccurs="unbounded"/>
+			<xsd:element name="tcInstanceId" type="xsd:string"/>
+			<xsd:element name="errorCode" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="errorDescription" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="configs" type="SUTConfiguration" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="SUTConfiguration">
