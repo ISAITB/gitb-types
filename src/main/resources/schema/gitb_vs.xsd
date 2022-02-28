@@ -13,6 +13,8 @@
 	<xsd:element name="GetModuleDefinitionResponse" type="tns:GetModuleDefinitionResponse" />
     <xsd:element name="ValidateRequest" type="tns:ValidateRequest" />
     <xsd:element name="ValidationResponse" type="tns:ValidationResponse" />
+    <xsd:element name="LogRequest" type="tns:LogRequest" />
+    <xsd:element name="LogResponse" type="tns:Void" />
 
     <xsd:complexType name="Void">
 		<xsd:sequence/>
@@ -37,5 +39,14 @@
             <xsd:element name="report" type="tr:TAR" />
         </xsd:sequence>
     </xsd:complexType>
+
+    <xsd:complexType name="LogRequest">
+        <xsd:sequence>
+            <xsd:element name="sessionId" type="xsd:string" />
+            <xsd:element name="message" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="level" type="gitb:LogLevel" default="INFO" />
+    </xsd:complexType>
+
 </xsd:schema>
 

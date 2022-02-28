@@ -25,7 +25,8 @@
     <xsd:element name="EndTransactionResponse" type="tns:Void" />
     <xsd:element name="FinalizeRequest" type="tns:FinalizeRequest" />
     <xsd:element name="FinalizeResponse" type="tns:Void" />
-
+    <xsd:element name="LogRequest" type="tns:LogRequest" />
+    <xsd:element name="LogResponse" type="tns:Void" />
     <xsd:complexType name="Void">
         <xsd:sequence/>
     </xsd:complexType>
@@ -114,5 +115,14 @@
             <xsd:element name="sessionId" type="xsd:string" />
         </xsd:sequence>
     </xsd:complexType>
+
+    <xsd:complexType name="LogRequest">
+        <xsd:sequence>
+            <xsd:element name="sessionId" type="xsd:string" />
+            <xsd:element name="message" type="xsd:string" />
+        </xsd:sequence>
+        <xsd:attribute name="level" type="gitb:LogLevel" default="INFO" />
+    </xsd:complexType>
+
 </xsd:schema>
 

@@ -286,4 +286,12 @@
 			<xsd:enumeration value="SELECT_MULTIPLE"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+	<xsd:simpleType name="LogLevel">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ERROR"/>
+			<xsd:enumeration value="WARNING"/>
+			<xsd:enumeration value="INFO"/>
+			<xsd:enumeration value="DEBUG"/>
+		</xsd:restriction>
+	</xsd:simpleType>
 </xsd:schema>
