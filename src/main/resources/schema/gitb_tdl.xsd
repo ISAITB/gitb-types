@@ -20,7 +20,7 @@
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestCase">
-		<xsd:sequence>
+		<xsd:all>
 			<xsd:element name="metadata" type="gitb:Metadata"/>
 			<xsd:element name="namespaces" type="Namespaces" minOccurs="0"/>
 			<xsd:element name="imports" type="Imports" minOccurs="0"/>
@@ -30,7 +30,7 @@
 			<xsd:element name="steps" type="TestCaseSteps"/>
 			<xsd:element name="output" type="Output" minOccurs="0"/>
 			<xsd:element name="scriptlets" type="Scriptlets" minOccurs="0"/>
-		</xsd:sequence>
+		</xsd:all>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 		<xsd:attribute name="supportsParallelExecution" type="xsd:boolean" default="true"/>
 	</xsd:complexType>
