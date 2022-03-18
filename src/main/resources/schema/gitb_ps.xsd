@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xsd:schema xmlns="http://www.gitb.com/ps/v1/" xmlns:tns="http://www.gitb.com/ps/v1/" xmlns:tr="http://www.gitb.com/tr/v1/" xmlns:gitb="http://www.gitb.com/core/v1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gitb.com/ps/v1/" version="1.0">
+<xsd:schema version="1.0" targetNamespace="http://www.gitb.com/ps/v1/"
+		xmlns="http://www.gitb.com/ps/v1/"
+		xmlns:tns="http://www.gitb.com/ps/v1/"
+		xmlns:tr="http://www.gitb.com/tr/v1/"
+		xmlns:gitb="http://www.gitb.com/core/v1/"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:import namespace="http://www.gitb.com/tr/v1/" schemaLocation="gitb_tr.xsd"/>
 	<xsd:import namespace="http://www.gitb.com/core/v1/" schemaLocation="gitb_core.xsd"/>
 	<xsd:element name="GetModuleDefinitionRequest" type="tns:Void"/>
@@ -10,6 +15,8 @@
 	<xsd:element name="BeginTransactionResponse" type="tns:BeginTransactionResponse"/>
 	<xsd:element name="EndTransactionRequest" type="tns:BasicRequest"/>
 	<xsd:element name="EndTransactionResponse" type="tns:Void"/>
+	<xsd:element name="LogRequest" type="tns:LogRequest"/>
+	<xsd:element name="LogResponse" type="tns:Void"/>
 	<xsd:complexType name="Void">
 		<xsd:sequence/>
 	</xsd:complexType>
@@ -66,5 +73,12 @@
 			<xsd:element name="report" type="tr:TAR"/>
 			<xsd:element name="output" type="gitb:AnyContent" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LogRequest">
+		<xsd:sequence>
+			<xsd:element name="sessionId" type="xsd:string" />
+			<xsd:element name="message" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attribute name="level" type="gitb:LogLevel" default="INFO" />
 	</xsd:complexType>
 </xsd:schema>

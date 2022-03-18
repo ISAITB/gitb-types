@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by SRDC (EMBRACE) -->
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.gitb.com/vs/v1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="ValidationService" targetNamespace="http://www.gitb.com/vs/v1/">
+<definitions
+		targetNamespace="http://www.gitb.com/vs/v1/"
+		name="ValidationService"
+		xmlns="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:tns="http://www.gitb.com/vs/v1/"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+		xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl">
 	<types>
 		<xsd:schema>
 			<xsd:import namespace="http://www.gitb.com/vs/v1/" schemaLocation="gitb_vs.xsd"/>
@@ -18,17 +25,30 @@
 	<message name="validateResponse">
 		<part name="parameters" element="tns:ValidationResponse"/>
 	</message>
+	<message name="log">
+		<part name="parameters" element="tns:LogRequest" />
+	</message>
+	<message name="logResponse">
+		<part name="parameters" element="tns:LogResponse" />
+	</message>
 	<portType name="ValidationService">
 		<operation name="getModuleDefinition">
-			<input message="tns:getModuleDefinition"/>
-			<output message="tns:getModuleDefinitionResponse"/>
+			<input wsam:Action="http://gitb.com/ValidationService/getModuleDefinition" message="tns:getModuleDefinition"/>
+			<output wsam:Action="http://gitb.com/ValidationService/getModuleDefinitionResponse" message="tns:getModuleDefinitionResponse"/>
 		</operation>
 		<operation name="validate">
-			<input message="tns:validate"/>
-			<output message="tns:validateResponse"/>
+			<input wsam:Action="http://gitb.com/ValidationService/validate" message="tns:validate"/>
+			<output wsam:Action="http://gitb.com/ValidationService/validateResponse" message="tns:validateResponse"/>
+		</operation>
+	</portType>
+	<portType name="ValidationClient">
+		<operation name="log">
+			<input wsam:Action="http://gitb.com/ValidationClient/log" message="tns:log" />
+			<output wsam:Action="http://gitb.com/ValidationClient/logResponse" message="tns:logResponse" />
 		</operation>
 	</portType>
 	<binding name="ValidationServicePortBinding" type="tns:ValidationService">
+		<wsaw:UsingAddressing required="true"/>
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 		<operation name="getModuleDefinition">
 			<soap:operation soapAction=""/>
@@ -49,9 +69,27 @@
 			</output>
 		</operation>
 	</binding>
+	<binding name="ValidationClientPortBinding" type="tns:ValidationClient">
+		<wsaw:UsingAddressing required="true"/>
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+		<operation name="log">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
 	<service name="ValidationService">
 		<port name="ValidationServicePort" binding="tns:ValidationServicePortBinding">
-			<soap:address location="/service/ValidationService"/>
+			<soap:address location="REPLACE_WITH_ACTUAL_URL"/>
+		</port>
+	</service>
+	<service name="ValidationClientService">
+		<port name="ValidationClientPort" binding="tns:ValidationClientPortBinding">
+			<soap:address location="REPLACE_WITH_ACTUAL_URL" />
 		</port>
 	</service>
 	<!-- to generate sources in given package -->

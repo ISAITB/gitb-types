@@ -54,86 +54,61 @@
     <message name="finalizeResponse">
         <part name="parameters" element="tns:FinalizeResponse" />
     </message>
-
     <message name="notifyForMessage">
         <part name="parameters" element="tns:NotifyForMessageRequest" />
     </message>
     <message name="notifyForMessageResponse">
         <part name="parameters" element="tns:NotifyForMessageResponse" />
     </message>
-
+    <message name="log">
+        <part name="parameters" element="tns:LogRequest" />
+    </message>
+    <message name="logResponse">
+        <part name="parameters" element="tns:LogResponse" />
+    </message>
     <portType name="MessagingService">
         <operation name="getModuleDefinition">
-            <input
-                    wsam:Action="http://gitb.com/MessagingService/getModuleDefinition"
-                    message="tns:getModuleDefinition" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingService/getModuleDefinitionResponse"
-                    message="tns:getModuleDefinitionResponse" />
+            <input wsam:Action="http://gitb.com/MessagingService/getModuleDefinition" message="tns:getModuleDefinition" />
+            <output wsam:Action="http://gitb.com/MessagingService/getModuleDefinitionResponse" message="tns:getModuleDefinitionResponse" />
         </operation>
         <operation name="initiate">
-            <input
-                    wsam:Action="http://gitb.com/MessagingService/initiate"
-                    message="tns:initiate" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingService/initiateResponse"
-                    message="tns:initiateResponse" />
+            <input wsam:Action="http://gitb.com/MessagingService/initiate" message="tns:initiate" />
+            <output wsam:Action="http://gitb.com/MessagingService/initiateResponse" message="tns:initiateResponse" />
         </operation>
         <operation name="receive">
-            <input
-                    wsam:Action="http://gitb.com/MessagingService/receive"
-                    message="tns:receive" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingService/receiveResponse"
-                    message="tns:receiveResponse" />
+            <input wsam:Action="http://gitb.com/MessagingService/receive" message="tns:receive" />
+            <output wsam:Action="http://gitb.com/MessagingService/receiveResponse" message="tns:receiveResponse" />
         </operation>
         <operation name="send">
-            <input
-                    wsam:Action="http://gitb.com/MessagingService/send"
-                    message="tns:send" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingService/sendResponse"
-                    message="tns:sendResponse" />
+            <input wsam:Action="http://gitb.com/MessagingService/send" message="tns:send" />
+            <output wsam:Action="http://gitb.com/MessagingService/sendResponse" message="tns:sendResponse" />
         </operation>
         <operation name="beginTransaction">
-            <input
-                    wsam:Action="http://gitb.com/MessagingService/beginTransaction"
-                    message="tns:beginTransaction" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingService/beginTransactionResponse"
-                    message="tns:beginTransactionResponse" />
+            <input wsam:Action="http://gitb.com/MessagingService/beginTransaction" message="tns:beginTransaction" />
+            <output wsam:Action="http://gitb.com/MessagingService/beginTransactionResponse" message="tns:beginTransactionResponse" />
         </operation>
         <operation name="endTransaction">
-            <input
-                    wsam:Action="http://gitb.com/MessagingService/endTransaction"
-                    message="tns:endTransaction" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingService/endTransactionResponse"
-                    message="tns:endTransactionResponse" />
+            <input wsam:Action="http://gitb.com/MessagingService/endTransaction" message="tns:endTransaction" />
+            <output wsam:Action="http://gitb.com/MessagingService/endTransactionResponse" message="tns:endTransactionResponse" />
         </operation>
         <operation name="finalize">
-            <input
-                    wsam:Action="http://gitb.com/MessagingService/finalize"
-                    message="tns:finalize" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingService/finalizeResponse"
-                    message="tns:finalizeResponse" />
+            <input wsam:Action="http://gitb.com/MessagingService/finalize" message="tns:finalize" />
+            <output wsam:Action="http://gitb.com/MessagingService/finalizeResponse" message="tns:finalizeResponse" />
         </operation>
     </portType>
     <portType name="MessagingClient">
         <operation name="notifyForMessage">
-            <input
-                    wsam:Action="http://gitb.com/MessagingClient/notifyForMessage"
-                    message="tns:notifyForMessage" />
-            <output
-                    wsam:Action="http://gitb.com/MessagingClient/notifyForMessageResponse"
-                    message="tns:notifyForMessageResponse" />
+            <input wsam:Action="http://gitb.com/MessagingClient/notifyForMessage" message="tns:notifyForMessage" />
+            <output wsam:Action="http://gitb.com/MessagingClient/notifyForMessageResponse" message="tns:notifyForMessageResponse" />
+        </operation>
+        <operation name="log">
+            <input wsam:Action="http://gitb.com/MessagingClient/log" message="tns:log" />
+            <output wsam:Action="http://gitb.com/MessagingClient/logResponse" message="tns:logResponse" />
         </operation>
     </portType>
     <binding name="MessagingServicePortBinding" type="tns:MessagingService">
         <wsaw:UsingAddressing required="true"/>
-        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"
-                      style="document" />
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
         <operation name="getModuleDefinition">
             <soap:operation soapAction="" />
             <input>
@@ -200,9 +175,17 @@
     </binding>
     <binding name="MessagingClientPortBinding" type="tns:MessagingClient">
         <wsaw:UsingAddressing required="true"/>
-        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"
-                      style="document" />
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
         <operation name="notifyForMessage">
+            <soap:operation soapAction="" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+        <operation name="log">
             <soap:operation soapAction="" />
             <input>
                 <soap:body use="literal" />

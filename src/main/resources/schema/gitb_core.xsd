@@ -65,7 +65,7 @@
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:ID" use="required"/>
 		<xsd:attribute name="name" type="xsd:string"/>
-		<xsd:attribute name="role" type="TestRoleEnumeration" use="required"/>
+		<xsd:attribute name="role" type="TestRoleEnumeration" default="SIMULATED"/>
 		<xsd:attribute name="displayOrder" type="xsd:short"/>
 	</xsd:complexType>
 	<!-- Configuration name-value pair -->
@@ -284,6 +284,14 @@
 			<xsd:enumeration value="CODE"/>
 			<xsd:enumeration value="SELECT_SINGLE"/>
 			<xsd:enumeration value="SELECT_MULTIPLE"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LogLevel">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ERROR"/>
+			<xsd:enumeration value="WARNING"/>
+			<xsd:enumeration value="INFO"/>
+			<xsd:enumeration value="DEBUG"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 </xsd:schema>

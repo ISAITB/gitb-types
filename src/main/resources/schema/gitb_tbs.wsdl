@@ -67,6 +67,12 @@
         <part name="parameters" element="tns:Void"/>
     </message>
     <!--request/responses for Callbacks-->
+    <message name="configurationCompleteRequest">
+        <part name="parameters" element="tns:ConfigurationCompleteRequest"/>
+    </message>
+    <message name="configurationCompleteResponse">
+        <part name="parameters" element="tns:Void"/>
+    </message>
     <message name="updateStatusRequest">
         <part name="parameters" element="tns:UpdateStatusRequest"/>
     </message>
@@ -152,6 +158,14 @@
         </operation>
     </portType>
     <portType name="TestbedClient">
+        <operation name="configurationComplete">
+            <input
+                    wsam:Action="http://www.gitb.com/tbs/v1/TestbedClient/configurationCompleteRequest"
+                    message="tns:configurationCompleteRequest"/>
+            <output
+                    wsam:Action="http://www.gitb.com/tbs/v1/TestbedClient/configurationCompleteResponse"
+                    message="tns:configurationCompleteResponse"/>
+        </operation>
         <operation name="updateStatus">
             <input
                     wsam:Action="http://www.gitb.com/tbs/v1/TestbedClient/updateStatusRequest"
@@ -286,6 +300,15 @@
         <wsaw:UsingAddressing required="true"/>
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http"
                       style="document"/>
+        <operation name="configurationComplete">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
         <operation name="updateStatus">
             <soap:operation soapAction=""/>
             <input>
