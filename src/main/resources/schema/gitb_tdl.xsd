@@ -151,7 +151,7 @@
 				<xsd:sequence>
 					<xsd:element name="documentation" type="gitb:Documentation" minOccurs="0"/>
 				</xsd:sequence>
-				<xsd:attribute name="desc" type="xsd:string"/>
+				<xsd:attribute name="desc" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="hidden" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -160,12 +160,14 @@
 		<xsd:complexContent>
 			<xsd:extension base="TestStep">
 				<xsd:sequence>
+					<xsd:element name="property" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="config" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
-				<xsd:attribute name="from" type="xsd:string" use="required"/>
-				<xsd:attribute name="to" type="xsd:string" use="required"/>
-				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
+				<xsd:attribute name="from" type="gitb:StringOrVariable" use="required"/>
+				<xsd:attribute name="to" type="gitb:StringOrVariable" use="required"/>
+				<xsd:attribute name="txnId" type="xsd:string"/>
+				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="reply" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -204,8 +206,8 @@
 					<xsd:element name="property" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="config" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
-				<xsd:attribute name="from" type="xsd:string" use="required"/>
-				<xsd:attribute name="to" type="xsd:string" use="required"/>
+				<xsd:attribute name="from" type="gitb:StringOrVariable" use="required"/>
+				<xsd:attribute name="to" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
 			</xsd:extension>
@@ -226,7 +228,7 @@
 					<xsd:element name="then" type="Sequence"/>
 					<xsd:element name="else" type="Sequence" minOccurs="0"/>
 				</xsd:sequence>
-				<xsd:attribute name="title" type="xsd:string" default="decision"/>
+				<xsd:attribute name="title" type="gitb:StringOrVariable" default="decision"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -238,7 +240,7 @@
 					<xsd:element name="cond" type="Expression"/>
 					<xsd:element name="do" type="Sequence"/>
 				</xsd:sequence>
-				<xsd:attribute name="title" type="xsd:string" default="loop"/>
+				<xsd:attribute name="title" type="gitb:StringOrVariable" default="loop"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -250,7 +252,7 @@
 					<xsd:element name="do" type="Sequence"/>
 					<xsd:element name="cond" type="Expression"/>
 				</xsd:sequence>
-				<xsd:attribute name="title" type="xsd:string" default="loop"/>
+				<xsd:attribute name="title" type="gitb:StringOrVariable" default="loop"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -264,7 +266,7 @@
 				<xsd:attribute name="counter" type="xsd:string" default="i"/>
 				<xsd:attribute name="start" type="gitb:NumberOrVariable" default="0"/>
 				<xsd:attribute name="end" type="gitb:NumberOrVariable" use="required"/>
-				<xsd:attribute name="title" type="xsd:string" default="loop"/>
+				<xsd:attribute name="title" type="gitb:StringOrVariable" default="loop"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -282,7 +284,7 @@
 				<xsd:sequence>
 					<xsd:element name="thread" type="Sequence" maxOccurs="unbounded"/>
 				</xsd:sequence>
-				<xsd:attribute name="title" type="xsd:string" default="flow"/>
+				<xsd:attribute name="title" type="gitb:StringOrVariable" default="flow"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -306,7 +308,7 @@
 	<xsd:complexType name="Group">
 		<xsd:complexContent>
 			<xsd:extension base="Sequence">
-				<xsd:attribute name="title" type="xsd:string" default="group"/>
+				<xsd:attribute name="title" type="gitb:StringOrVariable" default="group"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -349,8 +351,8 @@
 					</xsd:choice>
 				</xsd:sequence>
 				<xsd:attribute name="with" type="xsd:string"/>
-				<xsd:attribute name="title" type="xsd:string" default="interact"/>
-                <xsd:attribute name="inputTitle" type="xsd:string"/>
+				<xsd:attribute name="title" type="gitb:StringOrVariable" default="interact"/>
+                <xsd:attribute name="inputTitle" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -378,6 +380,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="TestStep">
 				<xsd:sequence>
+					<xsd:element name="property" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="operation" type="xsd:string" minOccurs="0"/>
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
@@ -407,7 +410,7 @@
 	<xsd:complexType name="InstructionOrRequest" abstract="true">
 		<xsd:complexContent>
 			<xsd:extension base="TypedBinding">
-				<xsd:attribute name="desc" type="xsd:string" use="required"/>
+				<xsd:attribute name="desc" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="contentType" type="gitb:ValueEmbeddingEnumeration"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
