@@ -160,12 +160,14 @@
 		<xsd:complexContent>
 			<xsd:extension base="TestStep">
 				<xsd:sequence>
+					<xsd:element name="property" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="config" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
 				<xsd:attribute name="from" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="to" type="gitb:StringOrVariable" use="required"/>
-				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
+				<xsd:attribute name="txnId" type="xsd:string"/>
+				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="reply" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
@@ -378,6 +380,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="TestStep">
 				<xsd:sequence>
+					<xsd:element name="property" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="operation" type="xsd:string" minOccurs="0"/>
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
