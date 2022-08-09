@@ -144,6 +144,7 @@
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
 				<xsd:attribute name="name" type="xsd:string" use="required"/>
+				<xsd:attribute name="label" type="xsd:string"/>
 				<xsd:attribute name="use" type="UsageEnumeration" default="R"/>
 				<xsd:attribute name="kind" type="ConfigurationType" default="SIMPLE"/>
 				<xsd:attribute name="desc" type="xsd:string"/>
