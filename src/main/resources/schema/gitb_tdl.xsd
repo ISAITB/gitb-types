@@ -230,6 +230,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="decision"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="static" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
