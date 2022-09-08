@@ -78,10 +78,19 @@
 	</xsd:complexType>
 	<!-- Abstract TestModule definition -->
 	<xsd:complexType name="TestModule">
+		<xsd:complexContent>
+			<xsd:extension base="BaseTestModule">
+				<xsd:sequence>
+					<xsd:element name="inputs" type="TypedParameters" minOccurs="0"/>
+					<xsd:element name="outputs" type="TypedParameters" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- Abstract BaseTestModule definition -->
+	<xsd:complexType name="BaseTestModule">
 		<xsd:sequence>
 			<xsd:element name="metadata" type="Metadata"/>
-			<xsd:element name="inputs" type="TypedParameters" minOccurs="0"/>
-			<xsd:element name="outputs" type="TypedParameters" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string"/>
 		<xsd:attribute name="uri" type="xsd:string"/>

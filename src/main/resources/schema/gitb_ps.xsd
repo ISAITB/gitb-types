@@ -28,15 +28,14 @@
 		<xsd:attribute name="name" type="xsd:string" use="required"/>
 	</xsd:complexType>
 	<xsd:complexType name="ProcessingModule">
-		<xsd:sequence>
-			<xsd:element name="metadata" type="gitb:Metadata"/>
-			<xsd:element name="configs" type="gitb:ConfigurationParameters" minOccurs="0"/>
-			<xsd:element name="operation" type="ProcessingOperation" maxOccurs="unbounded"/>
-		</xsd:sequence>
-		<xsd:attribute name="id" type="xsd:string"/>
-		<xsd:attribute name="uri" type="xsd:string"/>
-		<xsd:attribute name="isRemote" type="xsd:boolean" default="true"/>
-		<xsd:attribute name="serviceLocation" type="xsd:string"/>
+		<xsd:complexContent>
+			<xsd:extension base="gitb:BaseTestModule">
+				<xsd:sequence>
+					<xsd:element name="configs" type="gitb:ConfigurationParameters" minOccurs="0"/>
+					<xsd:element name="operation" type="ProcessingOperation" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="GetModuleDefinitionResponse">
 		<xsd:sequence>
