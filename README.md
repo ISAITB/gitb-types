@@ -9,10 +9,9 @@ of the GITB test bed software and GITB-compliant services.
 
 The GITB specifications are the result of the
 [CEN Global eBusiness Interoperability Test bed (GITB) Workshop Agreement](http://www.cen.eu/work/areas/ict/ebusiness/pages/ws-gitb.aspx).
-Evolutive maintenance of the GITB specifications and software is now performed by the European Commission's DIGIT [ISA Unit](http://ec.europa.eu/isa/isa2)
-and specifically [ISA Action 2016.25](https://ec.europa.eu/isa2/actions/platform-test-it-systems-services-and-products_en).
-For more information please check the [Interoperability Test Bed's site](https://joinup.ec.europa.eu/solution/interoperability-test-bed/about)
-on Joinup. 
+Evolutive maintenance of the GITB specifications and software is now performed by the European Commission's DIGIT and specifically 
+the [Interoperability Test Bed Action](https://joinup.ec.europa.eu/collection/interoperability-test-bed-repository/solution/interoperability-test-bed)
+of the [Interoperable EU initiative](https://joinup.ec.europa.eu/collection/interoperable-europe/interoperable-europe).
 
 # Build instructions
 
@@ -36,3 +35,30 @@ This profile triggers in addition the following:
   entry mode is set to use system property `gpg.passphrase`. These properties can be provided either on the command 
   line or in Maven's `settings.xml` by means of a profile.
 * Deploy to the Central repository's staging environment and automatically promote the release.
+
+# Licence
+
+This software is shared using the [European Union Public Licence (EUPL) version 1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).
+
+# Legal notice
+
+The authors of this library waive any and all liability linked to its usage either directly or as a dependency in other software.
+
+# Contact
+
+For feedback or questions regarding this library you are invited to post issues in the current repository. In addition,
+feel free to contact the Test Bed team via email at [DIGIT-ITB@ec.europa.eu](mailto:DIGIT-ITB@ec.europa.eu).
+
+# See also
+
+The `gitb-types` library encapsulates the key artefacts and classes foreseen by the GITB specifications. For more information
+on these you may refer to:
+* The [GITB Test Description Language (TDL)](https://www.itb.ec.europa.eu/docs/tdl/latest/), for authoring conformance test cases.
+* The [GITB test services](https://www.itb.ec.europa.eu/docs/services/latest/), for extension services (e.g. validators).
+
+The `gitb-types` library is a key dependency used by the Test Bed software and its reusable validators. For more information on these you may refer to:
+* The [GITB Test Bed software](https://github.com/ISAITB/gitb), providing a full platform for scenario-based conformance testing.
+* The Test Bed's validators for [XML](https://github.com/ISAITB/xml-validator), [RDF](https://github.com/ISAITB/shacl-validator),
+  [JSON](https://github.com/ISAITB/json-validator) and [CSV](https://github.com/ISAITB/csv-validator), used as standalone services or as conformance testing building blocks.
+
+For general information on all aspects of the Interoperability Test Bed you may refer to its [Joinup space](https://joinup.ec.europa.eu/collection/interoperability-test-bed-repository/solution/interoperability-test-bed).
