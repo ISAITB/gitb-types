@@ -78,19 +78,10 @@
 	</xsd:complexType>
 	<!-- Abstract TestModule definition -->
 	<xsd:complexType name="TestModule">
-		<xsd:complexContent>
-			<xsd:extension base="BaseTestModule">
-				<xsd:sequence>
-					<xsd:element name="inputs" type="TypedParameters" minOccurs="0"/>
-					<xsd:element name="outputs" type="TypedParameters" minOccurs="0"/>
-				</xsd:sequence>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
-	<!-- Abstract BaseTestModule definition -->
-	<xsd:complexType name="BaseTestModule">
 		<xsd:sequence>
 			<xsd:element name="metadata" type="Metadata"/>
+			<xsd:element name="inputs" type="TypedParameters" minOccurs="0"/>
+			<xsd:element name="outputs" type="TypedParameters" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string"/>
 		<xsd:attribute name="uri" type="xsd:string"/>
@@ -169,13 +160,13 @@
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
-    <!-- Enumeration for test case types-->
-    <xsd:simpleType name="TestCaseType">
-        <xsd:restriction base="xsd:NMTOKEN">
-            <xsd:enumeration value="CONFORMANCE"/>
-            <xsd:enumeration value="INTEROPERABILITY"/>
-        </xsd:restriction>
-    </xsd:simpleType>
+	<!-- Enumeration for test case types-->
+	<xsd:simpleType name="TestCaseType">
+		<xsd:restriction base="xsd:NMTOKEN">
+			<xsd:enumeration value="CONFORMANCE"/>
+			<xsd:enumeration value="INTEROPERABILITY"/>
+		</xsd:restriction>
+	</xsd:simpleType>
 	<!-- Enumeration for usage indicator-->
 	<xsd:simpleType name="UsageEnumeration">
 		<xsd:restriction base="xsd:string">
@@ -256,26 +247,26 @@
 			<xsd:enumeration value="COMPLETED"/>
 		</xsd:restriction>
 	</xsd:simpleType>
-    <xsd:simpleType name="ErrorCode">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="ACTOR_DEFINITION_NOT_FOUND"/>
-            <xsd:enumeration value="ARTIFACT_NOT_FOUND"/>
-            <xsd:enumeration value="CANCELLATION" />
-            <xsd:enumeration value="DATATYPE_ERROR" />
-            <xsd:enumeration value="INTERNAL_ERROR"/>
-            <xsd:enumeration value="INVALID_SESSION" />
-            <xsd:enumeration value="INVALID_TEST_CASE" />
-            <xsd:enumeration value="MISSING_CONFIGURATION" />
-            <xsd:enumeration value="INVALID_CONFIGURATION" />
-            <xsd:enumeration value="TEST_CASE_DEFINITION_NOT_FOUND"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:complexType name="ErrorInfo">
-        <xsd:sequence>
-            <xsd:element name="errorCode" type="ErrorCode" />
-            <xsd:element name="description" type="xsd:string" />
-        </xsd:sequence>
-    </xsd:complexType>
+	<xsd:simpleType name="ErrorCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ACTOR_DEFINITION_NOT_FOUND"/>
+			<xsd:enumeration value="ARTIFACT_NOT_FOUND"/>
+			<xsd:enumeration value="CANCELLATION" />
+			<xsd:enumeration value="DATATYPE_ERROR" />
+			<xsd:enumeration value="INTERNAL_ERROR"/>
+			<xsd:enumeration value="INVALID_SESSION" />
+			<xsd:enumeration value="INVALID_TEST_CASE" />
+			<xsd:enumeration value="MISSING_CONFIGURATION" />
+			<xsd:enumeration value="INVALID_CONFIGURATION" />
+			<xsd:enumeration value="TEST_CASE_DEFINITION_NOT_FOUND"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="ErrorInfo">
+		<xsd:sequence>
+			<xsd:element name="errorCode" type="ErrorCode" />
+			<xsd:element name="description" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
 	<xsd:complexType name="Documentation">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
