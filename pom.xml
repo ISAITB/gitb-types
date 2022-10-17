@@ -6,15 +6,15 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.europa.ec.itb</groupId>
     <artifactId>gitb-types</artifactId>
-    <version>1.17.0</version>
+    <version>1.18.0</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
     <url>https://joinup.ec.europa.eu/solution/interoperability-test-bed/about</url>
 
     <licenses>
         <license>
-            <name>European Union Public Licence (EUPL) Version 1.1, adapted by CEN for use with GITB</name>
-            <url>https://github.com/ISAITB/gitb/blob/master/LICENCE.md</url>
+            <name>European Union Public Licence (EUPL) Version 1.2</name>
+            <url>https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12</url>
         </license>
     </licenses>
 

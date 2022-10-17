@@ -9,8 +9,10 @@
 
     <!-- Root elements for TestCaseReport and TestStepReport-->
     <xsd:element name="TestCaseReport" type="TestCaseReportType"/>
+    <xsd:element name="TestCaseOverviewReport" type="TestCaseOverviewReportType"/>
     <xsd:element name="TestStepReport" type="TestStepReportType"/>
     <!-- Represents the Testcase Report-->
+
     <xsd:complexType name="TestCaseReportType">
         <xsd:complexContent>
             <xsd:extension base="TestStepReportType">
@@ -21,6 +23,33 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
+
+    <xsd:complexType name="TestCaseOverviewReportType">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="gitb:Metadata" minOccurs="0"/>
+            <xsd:element name="startTime" type="xsd:dateTime"/>
+            <xsd:element name="endTime" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="result" type="TestResultType"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="steps" type="TestCaseStepsType" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="TestCaseStepsType">
+        <xsd:sequence>
+            <xsd:element name="step" type="TestCaseStepReportType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TestCaseStepReportType">
+        <xsd:sequence>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="report" type="TestStepReportType"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
     <!-- Abstract type for Test Step Report-->
     <xsd:complexType name="TestStepReportType" abstract="true">
         <xsd:sequence>

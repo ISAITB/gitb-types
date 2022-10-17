@@ -152,7 +152,7 @@
 					<xsd:element name="documentation" type="gitb:Documentation" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="desc" type="gitb:StringOrVariable"/>
-				<xsd:attribute name="hidden" type="xsd:boolean"/>
+				<xsd:attribute name="hidden" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -168,7 +168,7 @@
 				<xsd:attribute name="to" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="txnId" type="xsd:string"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
-				<xsd:attribute name="reply" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="reply" type="gitb:BooleanOrVariable" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -230,6 +230,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="decision"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="static" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -338,6 +339,7 @@
 				<xsd:attribute name="path" type="xsd:string" use="required"/>
 				<xsd:attribute name="input" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="output" type="xsd:string"/>
+				<xsd:attribute name="hidden" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
