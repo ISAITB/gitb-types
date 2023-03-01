@@ -9,7 +9,7 @@
              xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl">
     <types>
         <xsd:schema>
-            <xsd:import namespace="http://www.gitb.com/tbs/v1/" schemaLocation="gitb_tbs.xsd"/>
+            <xsd:import namespace="http://www.gitb.com/tbs/v1/" schemaLocation="../schema/gitb_tbs.xsd"/>
         </xsd:schema>
     </types>
     <message name="getTestCaseDefinitionRequest">
@@ -340,11 +340,5 @@
             <soap:address location="/service/TestbedClient"/>
         </port>
     </service>
-    <!-- to generate sources in given package -->
-    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
-        <jaxws:package name="com.gitb.tbs">
-        </jaxws:package>
-    </jaxws:bindings>
-
 </definitions>
 

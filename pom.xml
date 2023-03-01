@@ -5,8 +5,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.europa.ec.itb</groupId>
-    <artifactId>gitb-types</artifactId>
-    <version>1.19.0-SNAPSHOT</version>
+    <artifactId>gitb-types-parent</artifactId>
+    <version>1.18.1</version>
+    <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
     <url>https://joinup.ec.europa.eu/solution/interoperability-test-bed/about</url>
@@ -26,6 +27,11 @@
             <organizationUrl>https://ec.europa.eu/info/departments/informatics_en</organizationUrl>
         </developer>
     </developers>
+    <modules>
+        <module>gitb-types-javax</module>
+        <module>gitb-types-jakarta</module>
+        <module>gitb-types-specs</module>
+    </modules>
 
     <scm>
         <connection>scm:git:git://github.com/ISAITB/gitb-types.git</connection>
@@ -34,136 +40,51 @@
     </scm>
 
     <properties>
-        <java.release>11</java.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <specsRoot>${basedir}/../gitb-types-specs</specsRoot>
+        <java.release>11</java.release>
+        <!-- API library versions -->
         <jaxb.version>2.3.1</jaxb.version>
         <jaxws.version>2.3.1</jaxws.version>
         <jws.version>1.1</jws.version>
+        <jakarta.version>4.0.0</jakarta.version>
+        <!-- Plugin versions -->
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-        <jaxws-maven-plugin.version>2.6.2</jaxws-maven-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>${jaxb.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml.ws</groupId>
-            <artifactId>jaxws-api</artifactId>
-            <version>${jaxws.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.jws</groupId>
-            <artifactId>javax.jws-api</artifactId>
-            <version>${jws.version}</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.helger.maven</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <version>${jaxws-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-tbs</id>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <bindingFiles>
-                                <bindingFile>${basedir}/src/main/resources/schema/binding_tbs.xjb</bindingFile>
-                            </bindingFiles>
-                            <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
-                            <wsdlFiles>
-                                <wsdlFile>gitb_tbs.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>generate-vs</id>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <bindingFiles>
-                                <bindingFile>${basedir}/src/main/resources/schema/binding_vs.xjb</bindingFile>
-                            </bindingFiles>
-                            <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
-                            <wsdlFiles>
-                                <wsdlFile>gitb_vs.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>generate-ms</id>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <bindingFiles>
-                                <bindingFile>${basedir}/src/main/resources/schema/binding_ms.xjb</bindingFile>
-                            </bindingFiles>
-                            <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
-                            <wsdlFiles>
-                                <wsdlFile>gitb_ms.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>generate-ps</id>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <bindingFiles>
-                                <bindingFile>${basedir}/src/main/resources/schema/binding_ps.xjb</bindingFile>
-                            </bindingFiles>
-                            <wsdlLocation>http://www.gitb.com/services</wsdlLocation>
-                            <wsdlDirectory>${basedir}/src/main/resources/schema</wsdlDirectory>
-                            <wsdlFiles>
-                                <wsdlFile>gitb_ps.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
-                            <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <release>${java.release}</release>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>${jakarta.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.xml.ws</groupId>
+                <artifactId>jakarta.xml.ws-api</artifactId>
+                <version>${jakarta.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.bind</groupId>
+                <artifactId>jaxb-api</artifactId>
+                <version>${jaxb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.xml.ws</groupId>
+                <artifactId>jaxws-api</artifactId>
+                <version>${jaxws.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.jws</groupId>
+                <artifactId>javax.jws-api</artifactId>
+                <version>${jws.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <profiles>
         <profile>
