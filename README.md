@@ -67,7 +67,7 @@ feel free to contact the Test Bed team via email at [DIGIT-ITB@ec.europa.eu](mai
 
 # See also
 
-The `gitb-types` libraries encapsulates the key artefacts and classes foreseen by the GITB specifications. For more information
+The `gitb-types` libraries encapsulate the key artefacts and classes foreseen by the GITB specifications. For more information
 on these you may refer to:
 * The [GITB Test Description Language (TDL)](https://www.itb.ec.europa.eu/docs/tdl/latest/), for authoring conformance test cases.
 * The [GITB test services](https://www.itb.ec.europa.eu/docs/services/latest/), for extension services (e.g. validators).
