@@ -9,7 +9,7 @@
              xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl">
     <types>
         <xsd:schema>
-            <xsd:import namespace="http://www.gitb.com/ps/v1/" schemaLocation="gitb_ps.xsd" />
+            <xsd:import namespace="http://www.gitb.com/ps/v1/" schemaLocation="../schema/gitb_ps.xsd" />
         </xsd:schema>
     </types>
     <message name="getModuleDefinition">
@@ -129,10 +129,5 @@
             <soap:address location="REPLACE_WITH_ACTUAL_URL" />
         </port>
     </service>
-    <!-- to generate sources in given package -->
-    <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
-        <jaxws:package name="com.gitb.ps">
-        </jaxws:package>
-    </jaxws:bindings>
 </definitions>
 

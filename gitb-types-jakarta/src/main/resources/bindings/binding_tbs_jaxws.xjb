@@ -1,0 +1,3 @@
+<jaxws:bindings xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws">
+    <jaxws:package name="com.gitb.tbs"/>
+</jaxws:bindings>
