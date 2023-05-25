@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.europa.ec.itb</groupId>
     <artifactId>gitb-types-parent</artifactId>
-    <version>1.20.0</version>
+    <version>1.20.1-M1</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
@@ -42,7 +42,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <specsRoot>${basedir}/../gitb-types-specs</specsRoot>
-        <java.release>11</java.release>
+        <java.release>8</java.release>
         <!-- API library versions -->
         <jaxb.version>2.3.1</jaxb.version>
         <jaxws.version>2.3.1</jaxws.version>
