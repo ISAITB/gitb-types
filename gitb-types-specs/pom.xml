@@ -6,7 +6,7 @@
     <parent>
         <groupId>eu.europa.ec.itb</groupId>
         <artifactId>gitb-types-parent</artifactId>
-        <version>1.20.1-M1</version>
+        <version>1.20.1</version>
     </parent>
     <artifactId>gitb-types-specs</artifactId>
     <description>Specifications (WSDLs and XSDs) for GITB types and services.</description>
