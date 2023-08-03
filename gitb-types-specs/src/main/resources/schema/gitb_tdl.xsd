@@ -33,6 +33,8 @@
 		</xsd:all>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 		<xsd:attribute name="supportsParallelExecution" type="xsd:boolean" default="true"/>
+		<xsd:attribute name="optional" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="disabled" type="xsd:boolean" default="false"/>
 	</xsd:complexType>
 	<xsd:complexType name="Namespaces">
 		<xsd:sequence>
