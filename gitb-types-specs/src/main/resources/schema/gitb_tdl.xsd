@@ -398,7 +398,9 @@
 	</xsd:complexType>
 	<xsd:complexType name="Instruction">
 		<xsd:complexContent>
-			<xsd:extension base="InstructionOrRequest"/>
+			<xsd:extension base="InstructionOrRequest">
+				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
+			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="UserRequest">
