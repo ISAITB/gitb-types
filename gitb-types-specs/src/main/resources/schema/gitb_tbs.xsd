@@ -137,6 +137,7 @@
 				<xsd:attribute name="id" type="xsd:string"/>
 				<xsd:attribute name="desc" type="xsd:string"/>
 				<xsd:attribute name="with" type="xsd:string"/>
+				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
