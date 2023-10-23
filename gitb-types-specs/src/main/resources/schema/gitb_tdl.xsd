@@ -420,7 +420,7 @@
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="contentType" type="gitb:ValueEmbeddingEnumeration"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
-				<xsd:attribute name="mimeType" type="xsd:string"/>
+				<xsd:attribute name="mimeType" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
