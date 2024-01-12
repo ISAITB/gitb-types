@@ -84,6 +84,7 @@
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="title" type="xsd:string"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="admin" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
