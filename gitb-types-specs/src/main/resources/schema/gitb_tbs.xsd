@@ -111,6 +111,7 @@
 					<xsd:element name="stepId" type="xsd:string"/>
 					<xsd:element name="input" type="UserInput" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
+				<xsd:attribute name="admin" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -130,6 +131,9 @@
 		</xsd:sequence>
 		<xsd:attribute name="with" type="xsd:string"/>
 		<xsd:attribute name="inputTitle" type="xsd:string"/>
+		<xsd:attribute name="admin" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="desc" type="xsd:string"/>
+		<xsd:attribute name="hasTimeout" type="xsd:boolean" default="false"/>
 	</xsd:complexType>
 	<xsd:complexType name="Instruction">
 		<xsd:complexContent>
