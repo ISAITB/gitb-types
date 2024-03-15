@@ -1,18 +1,285 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://www.gitb.com/tr/v1/"
-           xmlns="http://www.gitb.com/tr/v1/"
-           xmlns:gitb="http://www.gitb.com/core/v1/"
-           elementFormDefault="qualified">
+            targetNamespace="http://www.gitb.com/tr/v1/"
+            xmlns="http://www.gitb.com/tr/v1/"
+            xmlns:gitb="http://www.gitb.com/core/v1/"
+            elementFormDefault="qualified">
 
     <xsd:import namespace="http://www.gitb.com/core/v1/" schemaLocation="gitb_core.xsd"/>
 
-    <!-- Root elements for TestCaseReport and TestStepReport-->
+    <!-- Root elements -->
     <xsd:element name="TestCaseReport" type="TestCaseReportType"/>
     <xsd:element name="TestCaseOverviewReport" type="TestCaseOverviewReportType"/>
     <xsd:element name="TestStepReport" type="TestStepReportType"/>
-    <!-- Represents the Testcase Report-->
+    <xsd:element name="ConformanceStatementReport" type="ConformanceStatementReportType"/>
+    <xsd:element name="ConformanceOverviewReport" type="ConformanceOverviewReportType"/>
 
+    <!-- Conformance overview report -->
+    <xsd:complexType name="ConformanceOverviewReportType">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="ReportMetadata"/>
+            <xsd:element name="overview" type="ConformanceOverview"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The content of a conformance overview report -->
+    <xsd:complexType name="ConformanceOverview">
+        <xsd:sequence>
+            <xsd:element name="definition" type="ConformanceOverviewDefinition"/>
+            <xsd:element name="summary" type="ResultSummary"/>
+            <xsd:element name="statementOverview" type="ConformanceStatementOverview"/>
+            <xsd:element name="statementDetails" type="ConformanceStatements"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The summary of conformance statements for a conformance overview -->
+    <xsd:complexType name="ConformanceStatementOverview">
+        <xsd:choice>
+            <xsd:element name="domain" type="DomainOverview" maxOccurs="unbounded"/>
+            <xsd:element name="specificationGroup" type="SpecificationGroupOverview"/>
+            <xsd:element name="specification" type="SpecificationOverview"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <!-- Base type for the different aggregation levels for conformance statements -->
+    <xsd:complexType name="ConformanceItemOverview" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="result" type="TestResultType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Summary conformance statement listing at domain level -->
+    <xsd:complexType name="DomainOverview">
+        <xsd:complexContent>
+            <xsd:extension base="ConformanceItemOverview">
+                <xsd:sequence>
+                    <xsd:choice maxOccurs="unbounded">
+                        <xsd:element name="specificationGroup" type="SpecificationGroupOverview"/>
+                        <xsd:element name="specification" type="SpecificationOverview"/>
+                    </xsd:choice>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Summary conformance statement listing at specification group level -->
+    <xsd:complexType name="SpecificationGroupOverview">
+        <xsd:complexContent>
+            <xsd:extension base="ConformanceItemOverview">
+                <xsd:sequence>
+                    <xsd:element name="specification" type="SpecificationOverview" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Summary conformance statement listing at specification level (standalone specification of specification group option) -->
+    <xsd:complexType name="SpecificationOverview">
+        <xsd:complexContent>
+            <xsd:extension base="ConformanceItemOverview">
+                <xsd:sequence>
+                    <xsd:element name="actor" type="ActorOverview" maxOccurs="unbounded">
+                        <!-- If statement details are included in the overview report the actor elements refer to detailed conformance statement reports -->
+                        <xsd:key name="ConformanceStatementKey">
+                            <xsd:selector xpath="ConformanceStatement"/>
+                            <xsd:field xpath="@id"/>
+                        </xsd:key>
+                        <xsd:keyref name="ConformanceStatementKeyRef" refer="ConformanceStatementKey">
+                            <xsd:selector xpath="ActorOverview"/>
+                            <xsd:field xpath="@statement"/>
+                        </xsd:keyref>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Summary conformance statement listing at actor level -->
+    <xsd:complexType name="ActorOverview">
+        <xsd:complexContent>
+            <xsd:extension base="ConformanceItemOverview">
+                <!-- The statement attribute references a detailed conformance statement report -->
+                <xsd:attribute name="statement" type="xsd:string"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Listing of detailed conformance statement reports within a conformance overview report -->
+    <xsd:complexType name="ConformanceStatements">
+        <xsd:sequence>
+            <xsd:element name="statement" type="ConformanceStatement" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Conformance statement report -->
+    <xsd:complexType name="ConformanceStatementReportType">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="ReportMetadata"/>
+            <xsd:element name="statement" type="ConformanceStatement"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Detailed information on a conformance statement -->
+    <xsd:complexType name="ConformanceStatement">
+        <xsd:sequence>
+            <xsd:element name="definition" type="ConformanceStatementDefinition"/>
+            <xsd:element name="summary" type="ResultSummary"/>
+            <xsd:element name="testOverview" type="TestSuiteOverviews"/>
+            <xsd:element name="testDetails" type="TestCaseDetails" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string"/>
+    </xsd:complexType>
+
+    <!-- Metadata applicable for all report types -->
+    <xsd:complexType name="ReportMetadata">
+        <xsd:sequence>
+            <xsd:element name="reportTime" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The definition elements for a conformance overview report (the relevant party and specification references) -->
+    <xsd:complexType name="ConformanceOverviewDefinition">
+        <xsd:complexContent>
+            <xsd:extension base="ConformanceReportDefinition">
+                <xsd:sequence>
+                    <xsd:element name="domain" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="specificationGroup" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="specification" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- The definition elements for a conformance statement report (the relevant party and specification references) -->
+    <xsd:complexType name="ConformanceStatementDefinition">
+        <xsd:complexContent>
+            <xsd:extension base="ConformanceReportDefinition">
+                <xsd:sequence>
+                    <xsd:element name="domain" type="xsd:string"/>
+                    <xsd:element name="specificationGroup" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="specification" type="xsd:string"/>
+                    <xsd:element name="actor" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Base information for all conformance report (statement and overview) definitions -->
+    <xsd:complexType name="ConformanceReportDefinition" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="party" type="PartyDefinition"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Information on the party relevant to a given report -->
+    <xsd:complexType name="PartyDefinition">
+        <xsd:sequence>
+            <xsd:element name="organisation" type="Organisation"/>
+            <xsd:element name="system" type="System"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The summary of results for a conformance statement or overview report (test cases or statements respectively) -->
+    <xsd:complexType name="ResultSummary">
+        <xsd:sequence>
+            <xsd:element name="status" type="TestResultType"/>
+            <xsd:element name="succeeded" type="xsd:nonNegativeInteger"/>
+            <xsd:element name="failed" type="xsd:nonNegativeInteger"/>
+            <xsd:element name="incomplete" type="xsd:nonNegativeInteger"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Information on the organisation relevant to a given report -->
+    <xsd:complexType name="Organisation">
+        <xsd:complexContent>
+            <xsd:extension base="Party"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Information on the system relevant to a given report -->
+    <xsd:complexType name="System">
+        <xsd:complexContent>
+            <xsd:extension base="Party"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Base information common to the organisation and system related to a given report -->
+    <xsd:complexType name="Party" abstract="true">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="properties" type="PartyProperties" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Custom properties defined for the organisation or system -->
+    <xsd:complexType name="PartyProperties">
+        <xsd:sequence>
+            <xsd:element name="property" type="PartyProperty" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Information on a custom property for an organisation or system -->
+    <xsd:complexType name="PartyProperty">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <!-- The overview of all test suites in a conformance statement -->
+    <xsd:complexType name="TestSuiteOverviews">
+        <xsd:sequence>
+            <xsd:element name="testSuite" type="TestSuiteOverview" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- A list of detailed test case reports -->
+    <xsd:complexType name="TestCaseDetails">
+        <xsd:sequence>
+            <xsd:element name="testCase" type="TestCaseOverviewReportType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The overview information for a specific test suite -->
+    <xsd:complexType name="TestSuiteOverview">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="gitb:Metadata" minOccurs="0"/>
+            <xsd:element name="result" type="TestResultType"/>
+            <xsd:element name="testCases" type="TestCaseOverviews" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- A list of test cases, optionally referring to separate detailed test case reports -->
+    <xsd:complexType name="TestCaseOverviews">
+        <xsd:sequence>
+            <xsd:element name="testCase" type="TestCaseOverview" maxOccurs="unbounded">
+                <!-- The ref attribute is used to reference (by id) a detailed test case report -->
+                <xsd:key name="TestCaseReportKey">
+                    <xsd:selector xpath="TestCaseOverviewReportType"/>
+                    <xsd:field xpath="@id"/>
+                </xsd:key>
+                <xsd:keyref name="TestCaseReportKeyRef" refer="TestCaseReportKey">
+                    <xsd:selector xpath="TestCaseOverview"/>
+                    <xsd:field xpath="@ref"/>
+                </xsd:keyref>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Overview information for a given test case -->
+    <xsd:complexType name="TestCaseOverview">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="gitb:Metadata" minOccurs="0"/>
+            <xsd:element name="result" type="TestResultType"/>
+        </xsd:sequence>
+        <xsd:attribute name="optional" type="xsd:boolean" default="false"/>
+        <xsd:attribute name="disabled" type="xsd:boolean" default="false"/>
+        <xsd:attribute name="ref" type="xsd:string"/>
+    </xsd:complexType>
+
+    <!-- Detailed test case report -->
     <xsd:complexType name="TestCaseReportType">
         <xsd:complexContent>
             <xsd:extension base="TestStepReportType">
@@ -24,6 +291,7 @@
         </xsd:complexContent>
     </xsd:complexType>
 
+    <!-- Test case overview report -->
     <xsd:complexType name="TestCaseOverviewReportType">
         <xsd:sequence>
             <xsd:element name="metadata" type="gitb:Metadata" minOccurs="0"/>
@@ -36,12 +304,14 @@
         <xsd:attribute name="id" type="xsd:string" use="required"/>
     </xsd:complexType>
 
+    <!-- The steps included in a test case report -->
     <xsd:complexType name="TestCaseStepsType">
         <xsd:sequence>
             <xsd:element name="step" type="TestCaseStepReportType" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
 
+    <!-- A test case step -->
     <xsd:complexType name="TestCaseStepReportType">
         <xsd:sequence>
             <xsd:element name="description" type="xsd:string" minOccurs="0"/>
@@ -50,7 +320,7 @@
         <xsd:attribute name="id" type="xsd:string" use="required"/>
     </xsd:complexType>
 
-    <!-- Abstract type for Test Step Report-->
+    <!-- Abstract type for Test Step Report -->
     <xsd:complexType name="TestStepReportType" abstract="true">
         <xsd:sequence>
             <xsd:element name="date" type="xsd:dateTime"/>
@@ -58,7 +328,8 @@
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:string"/>
     </xsd:complexType>
-    <!--Report format for Decision and Loop steps-->
+
+    <!-- Report format for Decision and Loop steps -->
     <xsd:complexType name="DR">
         <xsd:complexContent>
             <xsd:extension base="TestStepReportType">
@@ -68,13 +339,15 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <!-- Report format for simple steps (exit, interact, flow)-->
+
+    <!-- Report format for simple steps (exit, interact, flow) -->
     <xsd:complexType name="SR">
         <xsd:complexContent>
             <xsd:extension base="TestStepReportType"/>
         </xsd:complexContent>
     </xsd:complexType>
-    <!--Report format for Messaging and Validation Steps-->
+
+    <!-- Report format for Messaging and Validation Steps -->
     <xsd:complexType name="TAR">
         <xsd:complexContent>
             <xsd:extension base="TestStepReportType">
@@ -88,7 +361,8 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <!-- The Overview of Validation procedure-->
+
+    <!-- The Overview of Validation procedure -->
     <xsd:complexType name="ValidationOverview">
         <xsd:sequence>
             <xsd:element name="profileID" type="xsd:string" minOccurs="0"/>
@@ -99,6 +373,7 @@
             <xsd:element name="note" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
+
     <!-- Statistics of the Validation -->
     <xsd:complexType name="ValidationCounters">
         <xsd:sequence>
@@ -107,7 +382,8 @@
             <xsd:element name="nrOfWarnings" type="xsd:integer" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
-    <!--Supplementary class to include either AssertionReports or AssertionGroups -->
+
+    <!-- Supplementary class to include either AssertionReports or AssertionGroups -->
     <xsd:complexType name="TestAssertionGroupReportsType">
         <xsd:choice>
             <xsd:element name="reports" type="TAR" maxOccurs="unbounded"/>
@@ -118,9 +394,11 @@
             </xsd:choice>
         </xsd:choice>
     </xsd:complexType>
+
     <!-- Abstract Test Assertion Report class -->
     <xsd:complexType name="TestAssertionReportType" abstract="true"/>
-    <!-- Base assertion report format for GITB-->
+
+    <!-- Base assertion report format for GITB -->
     <xsd:complexType name="BAR">
         <xsd:complexContent>
             <xsd:extension base="TestAssertionReportType">
@@ -135,7 +413,8 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <!-- Enumeration for representing the test result-->
+
+    <!-- Enumeration for representing the test result -->
     <xsd:simpleType name="TestResultType">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="SUCCESS"/>
