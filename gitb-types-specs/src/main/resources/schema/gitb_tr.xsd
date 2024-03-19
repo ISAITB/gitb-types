@@ -136,6 +136,7 @@
         <xsd:sequence>
             <xsd:element name="definition" type="ConformanceStatementDefinition"/>
             <xsd:element name="summary" type="ResultSummary"/>
+            <xsd:element name="lastUpdate" type="xsd:dateTime" minOccurs="0"/>
             <xsd:element name="testOverview" type="TestSuiteOverviews"/>
             <xsd:element name="testDetails" type="TestCaseDetails" minOccurs="0"/>
         </xsd:sequence>
@@ -280,6 +281,7 @@
         <xsd:sequence>
             <xsd:element name="metadata" type="gitb:Metadata" minOccurs="0"/>
             <xsd:element name="result" type="TestResultType"/>
+            <xsd:element name="lastUpdate" type="xsd:dateTime" minOccurs="0"/>
         </xsd:sequence>
         <xsd:attribute name="optional" type="xsd:boolean" default="false"/>
         <xsd:attribute name="disabled" type="xsd:boolean" default="false"/>
