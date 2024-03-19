@@ -43,9 +43,20 @@
 
     <!-- Base type for the different aggregation levels for conformance statements -->
     <xsd:complexType name="ConformanceItemOverview" abstract="true">
+        <xsd:complexContent>
+            <xsd:extension base="ConformanceItemInformation">
+                <xsd:sequence>
+                    <xsd:element name="result" type="TestResultType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Base type for the core information of a conformance item at any aggregation level -->
+    <xsd:complexType name="ConformanceItemInformation">
         <xsd:sequence>
             <xsd:element name="name" type="xsd:string"/>
-            <xsd:element name="result" type="TestResultType"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -143,9 +154,9 @@
         <xsd:complexContent>
             <xsd:extension base="ConformanceReportDefinition">
                 <xsd:sequence>
-                    <xsd:element name="domain" type="xsd:string" minOccurs="0"/>
-                    <xsd:element name="specificationGroup" type="xsd:string" minOccurs="0"/>
-                    <xsd:element name="specification" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="domain" type="ConformanceItemInformation" minOccurs="0"/>
+                    <xsd:element name="specificationGroup" type="ConformanceItemInformation" minOccurs="0"/>
+                    <xsd:element name="specification" type="ConformanceItemInformation" minOccurs="0"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -156,10 +167,10 @@
         <xsd:complexContent>
             <xsd:extension base="ConformanceReportDefinition">
                 <xsd:sequence>
-                    <xsd:element name="domain" type="xsd:string"/>
-                    <xsd:element name="specificationGroup" type="xsd:string" minOccurs="0"/>
-                    <xsd:element name="specification" type="xsd:string"/>
-                    <xsd:element name="actor" type="xsd:string"/>
+                    <xsd:element name="domain" type="ConformanceItemInformation"/>
+                    <xsd:element name="specificationGroup" type="ConformanceItemInformation" minOccurs="0"/>
+                    <xsd:element name="specification" type="ConformanceItemInformation"/>
+                    <xsd:element name="actor" type="ConformanceItemInformation"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -192,22 +203,18 @@
 
     <!-- Information on the organisation relevant to a given report -->
     <xsd:complexType name="Organisation">
-        <xsd:complexContent>
-            <xsd:extension base="Party"/>
-        </xsd:complexContent>
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="properties" type="PartyProperties" minOccurs="0"/>
+        </xsd:sequence>
     </xsd:complexType>
 
     <!-- Information on the system relevant to a given report -->
     <xsd:complexType name="System">
-        <xsd:complexContent>
-            <xsd:extension base="Party"/>
-        </xsd:complexContent>
-    </xsd:complexType>
-
-    <!-- Base information common to the organisation and system related to a given report -->
-    <xsd:complexType name="Party" abstract="true">
         <xsd:sequence>
             <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
             <xsd:element name="properties" type="PartyProperties" minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
