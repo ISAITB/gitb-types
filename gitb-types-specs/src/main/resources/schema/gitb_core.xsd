@@ -19,6 +19,7 @@
 			<xsd:element name="documentation" type="Documentation" minOccurs="0"/>
 			<xsd:element name="update" type="Update" minOccurs="0"/>
 			<xsd:element name="tags" type="Tags" minOccurs="0"/>
+			<xsd:element name="specification" type="SpecificationInfo" minOccurs="0"/>
 		</xsd:all>
 	</xsd:complexType>
 	<xsd:complexType name="Tags">
@@ -297,6 +298,13 @@
 				<xsd:attribute name="encoding" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="SpecificationInfo">
+		<xsd:all>
+			<xsd:element name="reference" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="link" type="xsd:string" minOccurs="0"/>
+		</xsd:all>
 	</xsd:complexType>
 	<xsd:complexType name="Update">
 		<xsd:attribute name="updateMetadata" type="xsd:boolean" default="false"/>

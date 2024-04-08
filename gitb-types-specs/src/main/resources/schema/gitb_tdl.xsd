@@ -358,6 +358,8 @@
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="interact"/>
                 <xsd:attribute name="inputTitle" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="admin" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="timeout" type="gitb:NumberOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -410,6 +412,7 @@
 				<xsd:attribute name="optionLabels" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="multiple" type="gitb:BooleanOrVariable"/>
 				<xsd:attribute name="inputType" type="gitb:InputRequestInputType"/>
+				<xsd:attribute name="report" type="xsd:boolean" default="true"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -420,7 +423,7 @@
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="contentType" type="gitb:ValueEmbeddingEnumeration"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
-				<xsd:attribute name="mimeType" type="xsd:string"/>
+				<xsd:attribute name="mimeType" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
