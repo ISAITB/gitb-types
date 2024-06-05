@@ -105,7 +105,7 @@
 	<xsd:complexType name="TestCaseSteps">
 		<xsd:complexContent>
 			<xsd:extension base="Sequence">
-				<xsd:attribute name="logLevel" type="LogLevelOrVariable" default="DEBUG"/>
+				<xsd:attribute name="logLevel" type="LogLevelOrVariable" default="INFO"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
