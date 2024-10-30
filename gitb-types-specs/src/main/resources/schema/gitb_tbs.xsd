@@ -119,6 +119,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="gitb:AnyContent">
 				<xsd:attribute name="id" type="xsd:string"/>
+				<xsd:attribute name="fileName" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
