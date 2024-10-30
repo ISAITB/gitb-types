@@ -291,6 +291,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="TestStep">
 				<xsd:attribute name="success" type="gitb:BooleanOrVariable" default="false"/>
+				<xsd:attribute name="undefined" type="gitb:BooleanOrVariable" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
