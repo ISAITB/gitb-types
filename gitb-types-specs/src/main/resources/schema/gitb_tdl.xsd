@@ -184,6 +184,8 @@
 				<xsd:attribute name="txnId" type="xsd:string"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="reply" type="gitb:BooleanOrVariable" default="false"/>
+				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
+				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -341,6 +343,7 @@
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
 				<xsd:attribute name="output" type="xsd:string"/>
+				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -409,6 +412,8 @@
 				<xsd:attribute name="operation" type="xsd:string"/>
 				<xsd:attribute name="input" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="output" type="xsd:string"/>
+				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
+				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
