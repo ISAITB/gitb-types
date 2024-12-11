@@ -153,6 +153,7 @@
 						<xsd:element name="eptxn" type="EndProcessingTransaction"/>
 					</xsd:choice>
 				</xsd:sequence>
+				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -248,6 +249,7 @@
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="decision"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="static" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -260,6 +262,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="loop"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -272,6 +275,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="loop"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -286,6 +290,7 @@
 				<xsd:attribute name="end" type="gitb:NumberOrVariable" use="required"/>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="loop"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -305,6 +310,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="flow"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -359,6 +365,7 @@
 				<xsd:attribute name="input" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="output" type="xsd:string"/>
 				<xsd:attribute name="hidden" type="gitb:BooleanOrVariable"/>
+				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
