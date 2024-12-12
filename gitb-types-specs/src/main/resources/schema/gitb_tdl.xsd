@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<xsd:schema xmlns="http://www.gitb.com/tdl/v1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gitb="http://www.gitb.com/core/v1/" targetNamespace="http://www.gitb.com/tdl/v1/" elementFormDefault="qualified" version="1.0">
+<xsd:schema xmlns="http://www.gitb.com/tdl/v1/" xmlns:tdl="http://www.gitb.com/tdl/v1/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gitb="http://www.gitb.com/core/v1/" targetNamespace="http://www.gitb.com/tdl/v1/" elementFormDefault="qualified" version="1.0">
 	<xsd:import namespace="http://www.gitb.com/core/v1/" schemaLocation="gitb_core.xsd"/>
 	<xsd:element name="testcase" type="TestCase"/>
-	<xsd:element name="testsuite" type="TestSuite"/>
+	<xsd:element name="testsuite" type="TestSuite">
+		<xsd:key name="TestCaseGroupKey">
+			<xsd:selector xpath="./tdl:groups/tdl:group"/>
+			<xsd:field xpath="@id"/>
+		</xsd:key>
+		<xsd:keyref name="TestCaseGroupKeyRef" refer="TestCaseGroupKey">
+			<xsd:selector xpath="./tdl:testcase"/>
+			<xsd:field xpath="@group"/>
+		</xsd:keyref>
+	</xsd:element>
 	<xsd:element name="scriptlet" type="Scriptlet"/>
 	<xsd:complexType name="TestSuite">
 		<xsd:sequence>
 			<xsd:element name="metadata" type="gitb:Metadata"/>
 			<xsd:element name="actors" type="gitb:Actors" minOccurs="0"/>
+			<xsd:element name="groups" type="TestCaseGroups" minOccurs="0"/>
 			<xsd:element name="testcase" type="TestCaseEntry" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
@@ -16,6 +26,19 @@
 		<xsd:sequence>
 			<xsd:element name="prequisite" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="option" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string" use="required"/>
+		<xsd:attribute name="group" type="xsd:string"/>
+	</xsd:complexType>
+	<xsd:complexType name="TestCaseGroups">
+		<xsd:sequence>
+			<xsd:element name="group" type="TestCaseGroup" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TestCaseGroup">
+		<xsd:sequence>
+			<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="desc" type="xsd:string" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
 	</xsd:complexType>
@@ -335,6 +358,7 @@
 			<xsd:extension base="Sequence">
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="group"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="hiddenContainer" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
