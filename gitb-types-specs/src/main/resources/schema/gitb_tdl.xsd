@@ -335,6 +335,7 @@
 			<xsd:extension base="Sequence">
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="group"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="hiddenContainer" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
