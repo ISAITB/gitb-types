@@ -136,7 +136,7 @@
     <xsd:complexType name="ConformanceStatement">
         <xsd:sequence>
             <xsd:element name="definition" type="ConformanceStatementDefinition"/>
-            <xsd:element name="summary" type="ResultSummary"/>
+            <xsd:element name="summary" type="ResultSummaryWithIgnoredResults"/>
             <xsd:element name="lastUpdate" type="xsd:dateTime" minOccurs="0"/>
             <xsd:element name="testOverview" type="TestSuiteOverviews"/>
             <xsd:element name="testDetails" type="TestCaseDetails" minOccurs="0"/>
@@ -203,6 +203,19 @@
         </xsd:sequence>
     </xsd:complexType>
 
+    <!-- The summary of results for a conformance statement or overview report (including results that are ignored) -->
+    <xsd:complexType name="ResultSummaryWithIgnoredResults">
+        <xsd:complexContent>
+            <xsd:extension base="ResultSummary">
+                <xsd:sequence>
+                    <xsd:element name="succeededIgnored" type="xsd:nonNegativeInteger"/>
+                    <xsd:element name="failedIgnored" type="xsd:nonNegativeInteger"/>
+                    <xsd:element name="incompleteIgnored" type="xsd:nonNegativeInteger"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
     <!-- Information on the organisation relevant to a given report -->
     <xsd:complexType name="Organisation">
         <xsd:sequence>
@@ -256,8 +269,25 @@
         <xsd:sequence>
             <xsd:element name="metadata" type="gitb:Metadata" minOccurs="0"/>
             <xsd:element name="result" type="TestResultType"/>
+            <xsd:element name="testCaseGroups" type="TestCaseGroups" minOccurs="0"/>
             <xsd:element name="testCases" type="TestCaseOverviews" minOccurs="0"/>
         </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- A list of test case groups -->
+    <xsd:complexType name="TestCaseGroups">
+        <xsd:sequence>
+            <xsd:element name="group" type="TestCaseGroup" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The information on a specific test case group -->
+    <xsd:complexType name="TestCaseGroup">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="description" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string" use="required"/>
     </xsd:complexType>
 
     <!-- A list of test cases, optionally referring to separate detailed test case reports -->
@@ -284,6 +314,7 @@
             <xsd:element name="result" type="TestResultType"/>
             <xsd:element name="lastUpdate" type="xsd:dateTime" minOccurs="0"/>
         </xsd:sequence>
+        <xsd:attribute name="group" type="xsd:string"/>
         <xsd:attribute name="optional" type="xsd:boolean" default="false"/>
         <xsd:attribute name="disabled" type="xsd:boolean" default="false"/>
         <xsd:attribute name="ref" type="xsd:string"/>
