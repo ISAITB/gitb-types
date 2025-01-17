@@ -543,6 +543,7 @@
 		<xsd:sequence>
 			<xsd:element name="success" type="OutputCaseSet" minOccurs="0"/>
 			<xsd:element name="failure" type="OutputCaseSet" minOccurs="0"/>
+			<xsd:element name="undefined" type="OutputCaseSet" minOccurs="0"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="OutputCaseSet">
