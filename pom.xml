@@ -122,6 +122,13 @@
                                     <licenseMerge>Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception)|CDDL/GPLv2+CE|CDDL + GPLv2 with classpath exception|</licenseMerge>
                                 </licenseMerges>
                             </configuration>
+                            <!--
+                                To generate the complete third party licence file run `mvn license:aggregate-add-third-party`
+                                The resulting licence file is prepared in target/generated-sources/license/THIRD_PARTY_LICENCES.md
+                                In case specific licences and attributions need to be included, these need to be added to etc/licence/third-party-licence-template.ftl
+
+                                In specific validator projects based on the itb-commons, similarly use `mvn license:aggregate-add-third-party`
+                            -->
                         </plugin>
                     </plugins>
                 </pluginManagement>
