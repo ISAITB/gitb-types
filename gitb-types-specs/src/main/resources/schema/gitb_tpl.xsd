@@ -133,7 +133,9 @@
 	</xsd:complexType>
 	<xsd:complexType name="GroupStep">
 		<xsd:complexContent>
-			<xsd:extension base="Sequence"/>
+			<xsd:extension base="Sequence">
+				<xsd:attribute name="hiddenContainer" type="xsd:boolean" default="false"/>
+			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="VerifyStep">
