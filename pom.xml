@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.europa.ec.itb</groupId>
     <artifactId>gitb-types-parent</artifactId>
-    <version>1.25.0</version>
+    <version>1.26.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
@@ -54,6 +54,7 @@
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
+        <license-maven-plugin.version>2.5.0</license-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -102,6 +103,29 @@
                     <url>${itbRepoWriteUrl}</url>
                 </snapshotRepository>
             </distributionManagement>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>license-maven-plugin</artifactId>
+                            <version>${license-maven-plugin.version}</version>
+                            <configuration>
+                                <fileTemplate>${project.basedir}/etc/licence/third-party-licence-template.ftl</fileTemplate>
+                                <thirdPartyFilename>THIRD_PARTY_LICENCES.md</thirdPartyFilename>
+                                <excludedScopes>test</excludedScopes>
+                                <failOnMissing>true</failOnMissing>
+                                <licenseMerges>
+                                    <licenseMerge>Eclipse Distribution License - v1.0|EDL 1.0|Eclipse Distribution License - v 1.0</licenseMerge>
+                                    <licenseMerge>Common Development and Distribution License 1.0|CDDL 1.1</licenseMerge>
+                                    <licenseMerge>GNU General Public License (GPL), Version 2 (with Classpath Exception)|GPL2 w/ CPE</licenseMerge>
+                                    <licenseMerge>Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception)|CDDL/GPLv2+CE|CDDL + GPLv2 with classpath exception|</licenseMerge>
+                                </licenseMerges>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
         </profile>
         <profile>
             <id>release</id>

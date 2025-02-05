@@ -56,6 +56,8 @@ This profile triggers in addition the following:
 
 This software is shared using the [European Union Public Licence (EUPL) version 1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12).
 
+Third-party library licences and attributions are listed in [THIRD_PARTY_LICENCES.md](THIRD_PARTY_LICENCES.md).
+
 # Legal notice
 
 The authors of this library waive any and all liability linked to its usage either directly or as a dependency in other software.
