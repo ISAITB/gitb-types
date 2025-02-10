@@ -42,6 +42,7 @@
 			<xsd:extension base="BasicRequest">
 				<xsd:sequence>
 					<xsd:element name="tcInstanceId" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="configs" type="gitb:ActorConfiguration" maxOccurs="unbounded"/>
 				</xsd:sequence>
 			</xsd:extension>
 		</xsd:complexContent>
