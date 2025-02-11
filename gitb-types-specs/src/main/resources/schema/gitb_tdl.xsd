@@ -551,6 +551,7 @@
 			<xsd:element name="case" type="OutputCase" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="default" type="Expression" minOccurs="0"/>
 		</xsd:sequence>
+		<xsd:attribute name="match" type="OutputMessageMatchApproach"/>
 	</xsd:complexType>
 	<xsd:complexType name="OutputCase">
 		<xsd:sequence>
@@ -558,4 +559,11 @@
 			<xsd:element name="message" type="Expression"/>
 		</xsd:sequence>
 	</xsd:complexType>
+	<xsd:simpleType name="OutputMessageMatchApproach">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="first"/>
+			<xsd:enumeration value="all"/>
+			<xsd:enumeration value="cascade"/>
+		</xsd:restriction>
+	</xsd:simpleType>
 </xsd:schema>
