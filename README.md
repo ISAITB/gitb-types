@@ -1,6 +1,8 @@
-[![Maven Central](https://img.shields.io/maven-central/v/eu.europa.ec.itb/gitb-types.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22eu.europa.ec.itb%22%20AND%20a:%22gitb-types%22)
+![Banner](https://www.itb.ec.europa.eu/files/banners/itb_banner.png)
 
-# Introduction
+# GITB types library (gitb-types)
+
+[![Maven Central](https://img.shields.io/maven-central/v/eu.europa.ec.itb/gitb-types.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22eu.europa.ec.itb%22%20AND%20a:%22gitb-types%22)
 
 The **gitb-types** library is a supporting resource for the GITB test bed software and specifications. It encapsulates the
 WSDLs of the service APIs foreseen by the GITB specifications as well as the XSD type definitions. This library 
