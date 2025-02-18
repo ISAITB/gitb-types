@@ -17,10 +17,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>eu.europa.ec.itb</groupId>
-            <artifactId>gitb-types-specs</artifactId>
-        </dependency>
-        <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
         </dependency>
