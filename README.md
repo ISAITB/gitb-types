@@ -2,6 +2,10 @@
 
 # GITB types library (gitb-types)
 
+[![licence](https://img.shields.io/github/license/ISAITB/gitb-types.svg?color=blue)](https://github.com/ISAITB/csv-validator/blob/master/LICENCE.txt)
+[![docs](https://img.shields.io/static/v1?label=docs&message=GITB%20TDL%20&color=blue)](https://www.itb.ec.europa.eu/docs/tdl/latest/)
+[![docs](https://img.shields.io/static/v1?label=docs&message=GITB%20test%20services&color=blue)](https://www.itb.ec.europa.eu/docs/services/latest/)
+[![Gurubase](https://img.shields.io/badge/Gurubase-Ask%20ITB%20Guru-006BFF?color=blue)](https://gurubase.io/g/itb)
 [![Maven Central](https://img.shields.io/maven-central/v/eu.europa.ec.itb/gitb-types.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22eu.europa.ec.itb%22%20AND%20a:%22gitb-types%22)
 
 The **gitb-types** library is a supporting resource for the GITB test bed software and specifications. It encapsulates the
