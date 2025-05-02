@@ -203,8 +203,8 @@
 					<xsd:element name="config" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
-				<xsd:attribute name="from" type="gitb:StringOrVariable" use="required"/>
-				<xsd:attribute name="to" type="gitb:StringOrVariable" use="required"/>
+				<xsd:attribute name="from" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="to" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="txnId" type="xsd:string"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="reply" type="gitb:BooleanOrVariable" default="false"/>
