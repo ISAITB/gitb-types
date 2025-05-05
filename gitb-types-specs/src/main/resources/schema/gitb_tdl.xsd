@@ -183,6 +183,7 @@
 	<xsd:complexType name="TestConstruct">
 		<xsd:attribute name="id" type="xsd:string"/>
 		<xsd:attribute name="stopOnError" type="xsd:boolean"/>
+		<xsd:attribute name="skipped" type="gitb:BooleanOrVariable"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStep">
 		<xsd:complexContent>
@@ -343,6 +344,7 @@
 				<xsd:attribute name="to" type="xsd:string" use="required"/>
 				<xsd:attribute name="append" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="type" type="xsd:string" />
+				<xsd:attribute name="skipped" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -350,6 +352,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="Expression">
 				<xsd:attribute name="level" type="LogLevelOrVariable" default="INFO"/>
+				<xsd:attribute name="skipped" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
