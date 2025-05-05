@@ -408,6 +408,7 @@
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="admin" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="timeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="blocking" type="gitb:BooleanOrVariable" default="true"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
