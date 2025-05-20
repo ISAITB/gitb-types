@@ -477,6 +477,7 @@
 				<xsd:attribute name="inputType" type="gitb:InputRequestInputType"/>
 				<xsd:attribute name="report" type="xsd:boolean" default="true"/>
 				<xsd:attribute name="fileName" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="required" type="gitb:BooleanOrVariable" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
