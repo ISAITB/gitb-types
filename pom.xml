@@ -6,16 +6,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.europa.ec.itb</groupId>
     <artifactId>gitb-types-parent</artifactId>
-    <version>1.26.0-SNAPSHOT</version>
+    <version>1.26.0</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
-    <url>https://joinup.ec.europa.eu/solution/interoperability-test-bed/about</url>
+    <url>https://interoperable-europe.ec.europa.eu/collection/interoperability-test-bed-repository/solution/interoperability-test-bed</url>
 
     <licenses>
         <license>
             <name>European Union Public Licence (EUPL) Version 1.2</name>
-            <url>https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12</url>
+            <url>https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12</url>
         </license>
     </licenses>
 
@@ -43,6 +43,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <specsRoot>${basedir}/../gitb-types-specs</specsRoot>
         <java.release>8</java.release>
+        <autoPublish>true</autoPublish>
         <!-- API library versions -->
         <jaxb.version>2.3.1</jaxb.version>
         <jaxws.version>2.3.1</jaxws.version>
@@ -53,7 +54,7 @@
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
         <license-maven-plugin.version>2.5.0</license-maven-plugin.version>
     </properties>
 
@@ -194,14 +195,14 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${central-publishing-maven-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>${autoPublish}</autoPublish>
+                            <waitUntil>published</waitUntil>
                         </configuration>
                     </plugin>
                 </plugins>
