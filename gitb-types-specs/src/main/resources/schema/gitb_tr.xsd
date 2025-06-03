@@ -339,7 +339,7 @@
             <xsd:element name="startTime" type="xsd:dateTime"/>
             <xsd:element name="endTime" type="xsd:dateTime" minOccurs="0"/>
             <xsd:element name="result" type="TestResultType"/>
-            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="message" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="steps" type="TestCaseStepsType" minOccurs="0"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:string" use="required"/>

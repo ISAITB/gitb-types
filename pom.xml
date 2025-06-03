@@ -6,16 +6,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eu.europa.ec.itb</groupId>
     <artifactId>gitb-types-parent</artifactId>
-    <version>1.25.2</version>
+    <version>1.26.0</version>
     <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Type definitions, WSDLs and XSDs for GITB types and services.</description>
-    <url>https://joinup.ec.europa.eu/solution/interoperability-test-bed/about</url>
+    <url>https://interoperable-europe.ec.europa.eu/collection/interoperability-test-bed-repository/solution/interoperability-test-bed</url>
 
     <licenses>
         <license>
             <name>European Union Public Licence (EUPL) Version 1.2</name>
-            <url>https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12</url>
+            <url>https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12</url>
         </license>
     </licenses>
 
@@ -43,6 +43,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <specsRoot>${basedir}/../gitb-types-specs</specsRoot>
         <java.release>8</java.release>
+        <autoPublish>true</autoPublish>
         <!-- API library versions -->
         <jaxb.version>2.3.1</jaxb.version>
         <jaxws.version>2.3.1</jaxws.version>
@@ -53,7 +54,8 @@
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.7.0</central-publishing-maven-plugin.version>
+        <license-maven-plugin.version>2.5.0</license-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -102,6 +104,36 @@
                     <url>${itbRepoWriteUrl}</url>
                 </snapshotRepository>
             </distributionManagement>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>license-maven-plugin</artifactId>
+                            <version>${license-maven-plugin.version}</version>
+                            <configuration>
+                                <fileTemplate>${project.basedir}/etc/licence/third-party-licence-template.ftl</fileTemplate>
+                                <thirdPartyFilename>THIRD_PARTY_LICENCES.md</thirdPartyFilename>
+                                <excludedScopes>test</excludedScopes>
+                                <failOnMissing>true</failOnMissing>
+                                <licenseMerges>
+                                    <licenseMerge>Eclipse Distribution License - v1.0|EDL 1.0|Eclipse Distribution License - v 1.0</licenseMerge>
+                                    <licenseMerge>Common Development and Distribution License 1.0|CDDL 1.1</licenseMerge>
+                                    <licenseMerge>GNU General Public License (GPL), Version 2 (with Classpath Exception)|GPL2 w/ CPE</licenseMerge>
+                                    <licenseMerge>Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception)|CDDL/GPLv2+CE|CDDL + GPLv2 with classpath exception|</licenseMerge>
+                                </licenseMerges>
+                            </configuration>
+                            <!--
+                                To generate the complete third party licence file run `mvn license:aggregate-add-third-party`
+                                The resulting licence file is prepared in target/generated-sources/license/THIRD_PARTY_LICENCES.md
+                                In case specific licences and attributions need to be included, these need to be added to etc/licence/third-party-licence-template.ftl
+
+                                In specific validator projects based on the itb-commons, similarly use `mvn license:aggregate-add-third-party`
+                            -->
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
         </profile>
         <profile>
             <id>release</id>
@@ -163,14 +195,14 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${central-publishing-maven-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>${autoPublish}</autoPublish>
+                            <waitUntil>published</waitUntil>
                         </configuration>
                     </plugin>
                 </plugins>

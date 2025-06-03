@@ -83,7 +83,7 @@
 		<xsd:simpleContent>
 			<xsd:extension base="gitb:StringOrVariable">
 				<xsd:attribute name="name" type="xsd:string" use="required"/>
-				<xsd:attribute name="type" type="xsd:string" use="required"/>
+				<xsd:attribute name="type" type="xsd:string" default="binary"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
 				<xsd:attribute name="from" type="xsd:string"/>
 			</xsd:extension>
@@ -183,6 +183,7 @@
 	<xsd:complexType name="TestConstruct">
 		<xsd:attribute name="id" type="xsd:string"/>
 		<xsd:attribute name="stopOnError" type="xsd:boolean"/>
+		<xsd:attribute name="skipped" type="gitb:BooleanOrVariable"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStep">
 		<xsd:complexContent>
@@ -203,8 +204,8 @@
 					<xsd:element name="config" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
 					<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
 				</xsd:sequence>
-				<xsd:attribute name="from" type="gitb:StringOrVariable" use="required"/>
-				<xsd:attribute name="to" type="gitb:StringOrVariable" use="required"/>
+				<xsd:attribute name="from" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="to" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="txnId" type="xsd:string"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="reply" type="gitb:BooleanOrVariable" default="false"/>
@@ -343,6 +344,8 @@
 				<xsd:attribute name="to" type="xsd:string" use="required"/>
 				<xsd:attribute name="append" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="type" type="xsd:string" />
+				<xsd:attribute name="skipped" type="gitb:BooleanOrVariable"/>
+				<xsd:attribute name="byValue" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -350,6 +353,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="Expression">
 				<xsd:attribute name="level" type="LogLevelOrVariable" default="INFO"/>
+				<xsd:attribute name="skipped" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -401,6 +405,7 @@
 						<xsd:element name="instruct" type="Instruction"/>
 						<xsd:element name="request" type="UserRequest"/>
 					</xsd:choice>
+					<xsd:element name="handlerConfig" type="HandlerConfiguration" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="interact"/>
@@ -408,8 +413,17 @@
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="admin" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="timeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="blocking" type="gitb:BooleanOrVariable" default="true"/>
+				<xsd:attribute name="handlerEnabled" type="gitb:BooleanOrVariable" default="false"/>
+				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="HandlerConfiguration">
+		<xsd:sequence>
+			<xsd:element name="property" type="gitb:Configuration" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="input" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="BeginProcessingTransaction">
 		<xsd:complexContent>
@@ -464,6 +478,7 @@
 				<xsd:attribute name="inputType" type="gitb:InputRequestInputType"/>
 				<xsd:attribute name="report" type="xsd:boolean" default="true"/>
 				<xsd:attribute name="fileName" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="required" type="gitb:BooleanOrVariable" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -551,6 +566,7 @@
 			<xsd:element name="case" type="OutputCase" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="default" type="Expression" minOccurs="0"/>
 		</xsd:sequence>
+		<xsd:attribute name="match" type="OutputMessageMatchApproach"/>
 	</xsd:complexType>
 	<xsd:complexType name="OutputCase">
 		<xsd:sequence>
@@ -558,4 +574,11 @@
 			<xsd:element name="message" type="Expression"/>
 		</xsd:sequence>
 	</xsd:complexType>
+	<xsd:simpleType name="OutputMessageMatchApproach">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="first"/>
+			<xsd:enumeration value="all"/>
+			<xsd:enumeration value="cascade"/>
+		</xsd:restriction>
+	</xsd:simpleType>
 </xsd:schema>
