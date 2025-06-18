@@ -1,29 +1,3 @@
-<#-- To render the third-party file.
- Available context :
-
- - dependencyMap a collection of Map.Entry with
-   key are dependencies (as a MavenProject) (from the maven project)
-   values are licenses of each dependency (array of string)
-
- - licenseMap a collection of Map.Entry with
-   key are licenses of each dependency (array of string)
-   values are all dependencies using this license
--->
-<#function licenseFormat licenses>
-    <#assign result = "|"/>
-    <#list licenses as license>
-        <#assign result = result + " " + license + ","/>
-    </#list>
-    <#assign result = result?remove_ending(",")/>
-    <#return result>
-</#function>
-<#function artifactFormat p>
-    <#if p.name?index_of('Unnamed') &gt; -1>
-        <#return p.artifactId + " | " + p.groupId + ":" + p.artifactId + " | " + p.version + " | " + (p.url!"no url defined") + "|">
-    <#else>
-        <#return p.name + " | " + p.groupId + ":" + p.artifactId + " | " + p.version + " | " + (p.url!"no url defined") + " |">
-    </#if>
-</#function>
 # Notice
 
 Copyright (C) 2025 European Union
@@ -45,11 +19,16 @@ This product depends on software developed by third parties as listed in the fol
 
 | Licence type | Name | Dependency | Version | Link |
 | :----------- | :--- | :--------- | :------ | :--- |
-<#list dependencyMap as e><#t>
-    <#assign project = e.getKey()/><#t>
-    <#assign licenses = e.getValue()/><#t>
-    <#lt>${licenseFormat(licenses)} | ${artifactFormat(project)}
-</#list><#t>
+| Eclipse Distribution License - v1.0 | Jakarta Activation API | jakarta.activation:jakarta.activation-api | 2.1.0 | https://github.com/eclipse-ee4j/jaf |
+| Eclipse Distribution License - v1.0 | Jakarta XML Binding API | jakarta.xml.bind:jakarta.xml.bind-api | 4.0.0 | https://github.com/eclipse-ee4j/jaxb-api/jakarta.xml.bind-api |
+| Eclipse Distribution License - v1.0 | Jakarta SOAP with Attachments API | jakarta.xml.soap:jakarta.xml.soap-api | 3.0.0 | https://github.com/eclipse-ee4j/saaj-api |
+| Eclipse Distribution License - v1.0 | Jakarta XML Web Services API | jakarta.xml.ws:jakarta.xml.ws-api | 4.0.0 | https://github.com/eclipse-ee4j/jax-ws-api |
+| Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception) | JavaBeans Activation Framework API jar | javax.activation:javax.activation-api | 1.2.0 | http://java.net/all/javax.activation-api/ |
+| Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception) | javax.annotation API | javax.annotation:javax.annotation-api | 1.3.2 | http://jcp.org/en/jsr/detail?id=250 |
+| Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception) | javax.jws API | javax.jws:javax.jws-api | 1.1 | http://glassfish.java.net |
+| Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception) | jaxb-api | javax.xml.bind:jaxb-api | 2.3.1 | https://github.com/javaee/jaxb-spec/jaxb-api |
+| Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception) | javax.xml.soap API | javax.xml.soap:javax.xml.soap-api | 1.4.0 | https://javaee.github.io/javaee-spec/ |
+| Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception) | JAX-WS API | javax.xml.ws:jaxws-api | 2.3.1 | https://github.com/javaee/jax-ws-spec |
 
 ## Third-party library licences
 
