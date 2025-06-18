@@ -113,7 +113,7 @@
                             <version>${license-maven-plugin.version}</version>
                             <configuration>
                                 <fileTemplate>${project.basedir}/etc/licence/third-party-licence-template.ftl</fileTemplate>
-                                <thirdPartyFilename>THIRD_PARTY_LICENCES.md</thirdPartyFilename>
+                                <thirdPartyFilename>NOTICE.md</thirdPartyFilename>
                                 <excludedScopes>test</excludedScopes>
                                 <failOnMissing>true</failOnMissing>
                                 <licenseMerges>
@@ -125,10 +125,8 @@
                             </configuration>
                             <!--
                                 To generate the complete third party licence file run `mvn license:aggregate-add-third-party`
-                                The resulting licence file is prepared in target/generated-sources/license/THIRD_PARTY_LICENCES.md
+                                The resulting licence file is prepared in target/generated-sources/license/NOTICES.md
                                 In case specific licences and attributions need to be included, these need to be added to etc/licence/third-party-licence-template.ftl
-
-                                In specific validator projects based on the itb-commons, similarly use `mvn license:aggregate-add-third-party`
                             -->
                         </plugin>
                     </plugins>
