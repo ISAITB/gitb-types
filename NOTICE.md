@@ -15,7 +15,7 @@ language governing permissions and limitations under the Licence.
 
 This product depends on software developed by third parties as listed in the following sections.
 
-## Licence overview
+## Third-party library licence overview
 
 | Licence type | Name | Dependency | Version | Link |
 | :----------- | :--- | :--------- | :------ | :--- |
