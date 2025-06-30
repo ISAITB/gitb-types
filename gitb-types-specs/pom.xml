@@ -6,7 +6,7 @@
     <parent>
         <groupId>eu.europa.ec.itb</groupId>
         <artifactId>gitb-types-parent</artifactId>
-        <version>1.27.0</version>
+        <version>1.27.1</version>
     </parent>
     <artifactId>gitb-types-specs</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
