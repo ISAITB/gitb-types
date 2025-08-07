@@ -94,16 +94,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <distributionManagement>
-                <repository>
-                    <id>itbRepoWrite</id>
-                    <url>${itbRepoWriteUrl}</url>
-                </repository>
-                <snapshotRepository>
-                    <id>itbRepoWrite</id>
-                    <url>${itbRepoWriteUrl}</url>
-                </snapshotRepository>
-            </distributionManagement>
             <build>
                 <pluginManagement>
                     <plugins>
