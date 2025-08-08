@@ -326,10 +326,12 @@
 				</xsd:sequence>
 				<xsd:attribute name="counter" type="xsd:string" default="i"/>
 				<xsd:attribute name="start" type="gitb:NumberOrVariable" default="0"/>
-				<xsd:attribute name="end" type="gitb:NumberOrVariable" use="required"/>
+				<xsd:attribute name="end" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="loop"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
+				<xsd:attribute name="item" type="gitb:VariableName"/>
+				<xsd:attribute name="of" type="gitb:VariableReference"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
