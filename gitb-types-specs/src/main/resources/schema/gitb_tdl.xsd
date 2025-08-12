@@ -226,6 +226,8 @@
 				<xsd:attribute name="reply" type="gitb:BooleanOrVariable" default="false"/>
 				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -267,6 +269,8 @@
 				<xsd:attribute name="to" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
+				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -395,6 +399,8 @@
 				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
 				<xsd:attribute name="output" type="xsd:string"/>
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -433,6 +439,8 @@
 				<xsd:attribute name="blocking" type="gitb:BooleanOrVariable" default="true"/>
 				<xsd:attribute name="handlerEnabled" type="gitb:BooleanOrVariable" default="false"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -451,6 +459,8 @@
 				</xsd:sequence>
 				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
+				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -476,6 +486,8 @@
 				<xsd:attribute name="output" type="xsd:string"/>
 				<xsd:attribute name="level" type="ErrorLevelOrVariable" default="ERROR"/>
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
