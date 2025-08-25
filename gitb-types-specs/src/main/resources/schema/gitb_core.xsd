@@ -35,8 +35,36 @@
 			<xsd:element name="update" type="Update" minOccurs="0"/>
 			<xsd:element name="tags" type="Tags" minOccurs="0"/>
 			<xsd:element name="specification" type="SpecificationInfo" minOccurs="0"/>
+            <xsd:element name="scopes" type="Scopes" minOccurs="0"/>
+            <xsd:element name="dependencies" type="Dependencies" minOccurs="0"/>
 		</xsd:all>
 	</xsd:complexType>
+    <xsd:complexType name="Scopes">
+        <xsd:sequence>
+            <xsd:element name="scope" type="Scope" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Dependencies">
+        <xsd:sequence>
+            <xsd:element name="dependency" type="Dependency" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Scope">
+        <xsd:all>
+            <xsd:element name="identifier" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="uri" type="xsd:string" minOccurs="0"/>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="Dependency">
+        <xsd:all>
+            <xsd:element name="identifier" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="description" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="uri" type="xsd:string" minOccurs="0"/>
+        </xsd:all>
+    </xsd:complexType>
 	<xsd:complexType name="Tags">
 		<xsd:sequence>
 			<xsd:element name="tag" type="Tag" maxOccurs="unbounded"/>
