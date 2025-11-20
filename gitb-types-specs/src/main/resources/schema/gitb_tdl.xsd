@@ -343,7 +343,8 @@
 			<xsd:extension base="TestStep">
 				<xsd:attribute name="success" type="gitb:BooleanOrVariable" default="false"/>
 				<xsd:attribute name="undefined" type="gitb:BooleanOrVariable" default="false"/>
-			</xsd:extension>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
+            </xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="FlowStep">
@@ -400,6 +401,7 @@
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -440,6 +442,7 @@
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -486,6 +489,7 @@
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

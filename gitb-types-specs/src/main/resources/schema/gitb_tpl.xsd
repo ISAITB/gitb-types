@@ -71,9 +71,11 @@
 	</xsd:complexType>
 	<xsd:complexType name="ExitStep">
 		<xsd:complexContent>
-			<xsd:extension base="TestStep">
-				<xsd:sequence/>
-			</xsd:extension>
+            <xsd:extension base="TestStep">
+                <xsd:sequence>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="FlowStep">
@@ -95,6 +97,7 @@
 						<xsd:element name="instruct" type="Instruction"/>
 						<xsd:element name="request" type="UserRequest"/>
 					</xsd:choice>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="title" type="xsd:string"/>
@@ -155,13 +158,21 @@
 	</xsd:complexType>
 	<xsd:complexType name="VerifyStep">
 		<xsd:complexContent>
-			<xsd:extension base="TestStep"/>
+            <xsd:extension base="TestStep">
+                <xsd:sequence>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="ProcessStep">
-		<xsd:complexContent>
-			<xsd:extension base="TestStep"/>
-		</xsd:complexContent>
+        <xsd:complexContent>
+            <xsd:extension base="TestStep">
+                <xsd:sequence>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
 	</xsd:complexType>
 
 </xsd:schema>
