@@ -123,6 +123,12 @@
 		<xsd:sequence>
 			<xsd:element name="actor" type="TestRole" maxOccurs="unbounded"/>
 		</xsd:sequence>
+        <xsd:attribute name="engineDisplayOrder" type="xsd:short"/>
+        <xsd:attribute name="userDisplayOrder" type="xsd:short"/>
+        <xsd:attribute name="adminDisplayOrder" type="xsd:short"/>
+        <xsd:attribute name="engineName" type="xsd:string"/>
+        <xsd:attribute name="userName" type="xsd:string"/>
+        <xsd:attribute name="adminName" type="xsd:string"/>
 	</xsd:complexType>
 	<!--List of Testcase Role definition-->
 	<xsd:complexType name="TestRole">
