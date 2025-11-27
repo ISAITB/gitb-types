@@ -498,6 +498,7 @@
 			<xsd:extension base="InstructionOrRequest">
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
                 <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
+                <xsd:attribute name="level" type="InstructionLevelOrVariable" />
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -587,6 +588,11 @@
 			<xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING|INFO|DEBUG"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+    <xsd:simpleType name="InstructionLevelOrVariable">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING|INFO|SUCCESS|NONE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 	<xsd:complexType name="Output">
 		<xsd:sequence>
 			<xsd:element name="success" type="OutputCaseSet" minOccurs="0"/>

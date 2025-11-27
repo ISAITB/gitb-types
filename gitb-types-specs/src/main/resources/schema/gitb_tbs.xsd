@@ -160,6 +160,7 @@
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
                 <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
+                <xsd:attribute name="level" type="gitb:InstructionLevel"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

@@ -390,4 +390,13 @@
 			<xsd:enumeration value="DEBUG"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+    <xsd:simpleType name="InstructionLevel">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ERROR"/>
+            <xsd:enumeration value="WARNING"/>
+            <xsd:enumeration value="INFO"/>
+            <xsd:enumeration value="SUCCESS"/>
+            <xsd:enumeration value="NONE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 </xsd:schema>
