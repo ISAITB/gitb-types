@@ -497,6 +497,7 @@
 		<xsd:complexContent>
 			<xsd:extension base="InstructionOrRequest">
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
+                <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
