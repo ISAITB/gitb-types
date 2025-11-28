@@ -512,7 +512,8 @@
 				<xsd:attribute name="report" type="xsd:boolean" default="true"/>
 				<xsd:attribute name="fileName" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="required" type="gitb:BooleanOrVariable" default="false"/>
-                <xsd:attribute name="rows" type="gitb:NumberOrVariable"/>
+                <xsd:attribute name="size" type="gitb:NumberOrVariable"/>
+                <xsd:attribute name="default" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

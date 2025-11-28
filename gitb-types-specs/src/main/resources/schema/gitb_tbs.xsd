@@ -178,7 +178,8 @@
 		<xsd:attribute name="inputType" type="gitb:InputRequestInputType"/>
 		<xsd:attribute name="mimeType" type="xsd:string"/>
 		<xsd:attribute name="required" type="xsd:boolean" default="false"/>
-        <xsd:attribute name="rows" type="xsd:positiveInteger"/>
+        <xsd:attribute name="size" type="xsd:positiveInteger"/>
+        <xsd:attribute name="default" type="xsd:string"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStepStatus">
 		<xsd:sequence>
