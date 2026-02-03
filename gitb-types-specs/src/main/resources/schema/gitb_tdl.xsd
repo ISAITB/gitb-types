@@ -36,6 +36,7 @@
 			<xsd:element name="testcase" type="TestCaseEntry" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
+		<xsd:attribute name="order" type="xsd:short"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestCaseEntry">
 		<xsd:sequence>
