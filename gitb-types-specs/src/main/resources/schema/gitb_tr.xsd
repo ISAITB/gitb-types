@@ -351,6 +351,7 @@
     <xsd:complexType name="TestCaseOverviewReportType">
         <xsd:sequence>
             <xsd:element name="metadata" type="gitb:Metadata" minOccurs="0"/>
+            <xsd:element name="sessionId" type="xsd:string"/>
             <xsd:element name="startTime" type="xsd:dateTime"/>
             <xsd:element name="endTime" type="xsd:dateTime" minOccurs="0"/>
             <xsd:element name="result" type="TestResultType"/>
