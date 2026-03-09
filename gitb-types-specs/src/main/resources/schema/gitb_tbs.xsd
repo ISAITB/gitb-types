@@ -180,6 +180,7 @@
 		<xsd:attribute name="required" type="xsd:boolean" default="false"/>
         <xsd:attribute name="size" type="xsd:positiveInteger"/>
         <xsd:attribute name="default" type="xsd:string"/>
+		<xsd:attribute name="accept" type="xsd:string"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStepStatus">
 		<xsd:sequence>

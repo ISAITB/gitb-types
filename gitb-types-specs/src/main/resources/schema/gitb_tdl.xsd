@@ -516,6 +516,7 @@
 				<xsd:attribute name="required" type="gitb:BooleanOrVariable" default="false"/>
                 <xsd:attribute name="size" type="gitb:NumberOrVariable"/>
                 <xsd:attribute name="default" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="accept" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
