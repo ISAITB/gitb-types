@@ -500,6 +500,7 @@
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
                 <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
                 <xsd:attribute name="level" type="InstructionLevelOrVariable" />
+				<xsd:attribute name="report" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
