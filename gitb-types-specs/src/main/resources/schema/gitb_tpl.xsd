@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
-  ~ Copyright (C) 2025 European Union
+  ~ Copyright (C) 2026 European Union
   ~
   ~ Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent
   ~ versions of the EUPL (the "Licence"); You may not use this work except in compliance with the Licence.
@@ -71,9 +71,11 @@
 	</xsd:complexType>
 	<xsd:complexType name="ExitStep">
 		<xsd:complexContent>
-			<xsd:extension base="TestStep">
-				<xsd:sequence/>
-			</xsd:extension>
+            <xsd:extension base="TestStep">
+                <xsd:sequence>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="FlowStep">
@@ -95,6 +97,7 @@
 						<xsd:element name="instruct" type="Instruction"/>
 						<xsd:element name="request" type="UserRequest"/>
 					</xsd:choice>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="title" type="xsd:string"/>
@@ -155,13 +158,21 @@
 	</xsd:complexType>
 	<xsd:complexType name="VerifyStep">
 		<xsd:complexContent>
-			<xsd:extension base="TestStep"/>
+            <xsd:extension base="TestStep">
+                <xsd:sequence>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="ProcessStep">
-		<xsd:complexContent>
-			<xsd:extension base="TestStep"/>
-		</xsd:complexContent>
+        <xsd:complexContent>
+            <xsd:extension base="TestStep">
+                <xsd:sequence>
+                    <xsd:element name="actor" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
 	</xsd:complexType>
 
 </xsd:schema>

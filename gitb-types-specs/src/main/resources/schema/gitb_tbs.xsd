@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
-  ~ Copyright (C) 2025 European Union
+  ~ Copyright (C) 2026 European Union
   ~
   ~ Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent
   ~ versions of the EUPL (the "Licence"); You may not use this work except in compliance with the Licence.
@@ -159,6 +159,8 @@
 				<xsd:attribute name="desc" type="xsd:string"/>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
+                <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
+                <xsd:attribute name="level" type="gitb:InstructionLevel"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -176,6 +178,9 @@
 		<xsd:attribute name="inputType" type="gitb:InputRequestInputType"/>
 		<xsd:attribute name="mimeType" type="xsd:string"/>
 		<xsd:attribute name="required" type="xsd:boolean" default="false"/>
+        <xsd:attribute name="size" type="xsd:positiveInteger"/>
+        <xsd:attribute name="default" type="xsd:string"/>
+		<xsd:attribute name="accept" type="xsd:string"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStepStatus">
 		<xsd:sequence>

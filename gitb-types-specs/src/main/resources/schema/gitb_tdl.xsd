@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!--
-  ~ Copyright (C) 2025 European Union
+  ~ Copyright (C) 2026 European Union
   ~
   ~ Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission - subsequent
   ~ versions of the EUPL (the "Licence"); You may not use this work except in compliance with the Licence.
@@ -36,6 +36,7 @@
 			<xsd:element name="testcase" type="TestCaseEntry" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
 		<xsd:attribute name="id" type="xsd:string" use="required"/>
+		<xsd:attribute name="order" type="xsd:short"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestCaseEntry">
 		<xsd:sequence>
@@ -343,7 +344,8 @@
 			<xsd:extension base="TestStep">
 				<xsd:attribute name="success" type="gitb:BooleanOrVariable" default="false"/>
 				<xsd:attribute name="undefined" type="gitb:BooleanOrVariable" default="false"/>
-			</xsd:extension>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
+            </xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
 	<xsd:complexType name="FlowStep">
@@ -400,6 +402,7 @@
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -440,6 +443,7 @@
 				<xsd:attribute name="handler" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -486,6 +490,7 @@
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
+                <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -493,6 +498,9 @@
 		<xsd:complexContent>
 			<xsd:extension base="InstructionOrRequest">
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
+                <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
+                <xsd:attribute name="level" type="InstructionLevelOrVariable" />
+				<xsd:attribute name="report" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -506,6 +514,9 @@
 				<xsd:attribute name="report" type="xsd:boolean" default="true"/>
 				<xsd:attribute name="fileName" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="required" type="gitb:BooleanOrVariable" default="false"/>
+                <xsd:attribute name="size" type="gitb:NumberOrVariable"/>
+                <xsd:attribute name="default" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="accept" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -581,6 +592,11 @@
 			<xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING|INFO|DEBUG"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+    <xsd:simpleType name="InstructionLevelOrVariable">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="($[a-zA-Z][a-zA-Z\-_0-9]*(\{[${}a-zA-Z\-._0-9]*\})?)|ERROR|WARNING|INFO|SUCCESS|NONE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
 	<xsd:complexType name="Output">
 		<xsd:sequence>
 			<xsd:element name="success" type="OutputCaseSet" minOccurs="0"/>
