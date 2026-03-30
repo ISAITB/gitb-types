@@ -6,35 +6,31 @@
     <parent>
         <groupId>eu.europa.ec.itb</groupId>
         <artifactId>gitb-types-parent</artifactId>
-        <version>1.29.1</version>
+        <version>1.29.0</version>
     </parent>
-    <artifactId>gitb-types</artifactId>
+    <artifactId>gitb-types-jakarta</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>Type definitions for GITB types and services. This library includes classes annotated using javax APIs (JAXB, JAX-WS) for use in Java EE (pre-Jakarta) projects.</description>
+    <description>Type definitions for GITB types and services. This library includes classes annotated using Jakarta APIs (JAXB, JAX-WS) for use in Jakarta EE projects.</description>
 
     <properties>
-        <jaxws-maven-plugin.version>2.6.2</jaxws-maven-plugin.version>
+        <jaxws-maven-plugin.version>4.0.1</jaxws-maven-plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.xml.ws</groupId>
-            <artifactId>jaxws-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.jws</groupId>
-            <artifactId>javax.jws-api</artifactId>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.helger.maven</groupId>
+                <groupId>com.sun.xml.ws</groupId>
                 <artifactId>jaxws-maven-plugin</artifactId>
                 <version>${jaxws-maven-plugin.version}</version>
                 <executions>
@@ -53,9 +49,6 @@
                             <wsdlFiles>
                                 <wsdlFile>gitb_tbs.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
                             <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
                         </configuration>
                     </execution>
@@ -74,9 +67,6 @@
                             <wsdlFiles>
                                 <wsdlFile>gitb_vs.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
                             <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
                         </configuration>
                     </execution>
@@ -95,9 +85,6 @@
                             <wsdlFiles>
                                 <wsdlFile>gitb_ms.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
                             <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
                         </configuration>
                     </execution>
@@ -116,9 +103,6 @@
                             <wsdlFiles>
                                 <wsdlFile>gitb_ps.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <vmArgs>
-                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
-                            </vmArgs>
                             <sourceDestDir>${project.build.directory}/generated-sources/model</sourceDestDir>
                         </configuration>
                     </execution>
@@ -134,5 +118,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
