@@ -31,6 +31,7 @@
         <module>gitb-types-javax</module>
         <module>gitb-types-jakarta</module>
         <module>gitb-types-specs</module>
+        <module>gitb-types-model</module>
     </modules>
 
     <scm>
@@ -87,6 +88,19 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <profiles>
         <profile>
