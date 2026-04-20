@@ -1,0 +1,736 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GITB Messaging Service REST API",
+    "description": "REST-oriented OpenAPI documentation for GITB messaging service operations.",
+    "version": "1.30.0-SNAPSHOT"
+  },
+  "tags": [
+    {
+      "name": "Messaging",
+      "description": "Operations exposed by a messaging service."
+    }
+  ],
+  "paths": {
+    "/beginTransaction": {
+      "post": {
+        "operationId": "beginTransaction",
+        "summary": "Open a messaging transaction within the current test session.",
+        "tags": [
+          "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BeginTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully."
+          }
+        }
+      }
+    },
+    "/endTransaction": {
+      "post": {
+        "operationId": "endTransaction",
+        "summary": "Close an existing messaging transaction.",
+        "tags": [
+          "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasicRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully."
+          }
+        }
+      }
+    },
+    "/finalize": {
+      "post": {
+        "operationId": "finalize",
+        "summary": "Handle test session completion (normal and unexpected) and release related resources.",
+        "tags": [
+          "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinalizeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully."
+          }
+        }
+      }
+    },
+    "/getModuleDefinition": {
+      "get": {
+        "operationId": "getModuleDefinition",
+        "summary": "Retrieve the definition of the messaging module together with its supported inputs and configuration properties.",
+        "tags": [
+          "Messaging"
+        ],
+        "responses": {
+          "200": {
+            "description": "Module definition returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetModuleDefinitionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/initiate": {
+      "post": {
+        "operationId": "initiate",
+        "summary": "Handle the initialisation of a new test session.",
+        "tags": [
+          "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InitiateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation result returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitiateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/receive": {
+      "post": {
+        "operationId": "receive",
+        "summary": "Prepare to receive a message from an external system.",
+        "tags": [
+          "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReceiveRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully."
+          }
+        }
+      }
+    },
+    "/send": {
+      "post": {
+        "operationId": "send",
+        "summary": "Send a message to an external system.",
+        "tags": [
+          "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation result returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActorConfiguration": {
+        "description": "Configuration values for a specific actor and, optionally, one of its endpoints.",
+        "type": "object",
+        "properties": {
+          "config": {
+            "description": "Configuration items.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Configuration"
+            }
+          },
+          "actor": {
+            "description": "The relevant actor identifier.",
+            "type": "string"
+          },
+          "endpoint": {
+            "description": "The relevant endpoint name.",
+            "type": "string"
+          }
+        }
+      },
+      "AnyContent": {
+        "description": "Recursively defined content wrapper used to transport text, binary or referenced values.",
+        "type": "object",
+        "properties": {
+          "item": {
+            "description": "Child content items (when parent is a list or a map).",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyContent"
+            }
+          },
+          "value": {
+            "description": "The item's value, represented as a string.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The item's name.",
+            "type": "string"
+          },
+          "embeddingMethod": {
+            "$ref": "#/components/schemas/ValueEmbeddingEnumeration"
+          },
+          "type": {
+            "description": "The type of content (default is string).",
+            "type": "string"
+          },
+          "encoding": {
+            "description": "The text encoding of the content.",
+            "type": "string"
+          },
+          "mimeType": {
+            "description": "The content's content type (or mime type).",
+            "type": "string"
+          },
+          "forContext": {
+            "description": "Whether the value should be included in the test session context (default is true).",
+            "type": "boolean"
+          },
+          "forDisplay": {
+            "description": "Whether the value should be included in the displayed report for the step in question (default is true).",
+            "type": "boolean"
+          }
+        }
+      },
+      "BasicRequest": {
+        "description": "Base request carrying the session identifier of an ongoing test session.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The related test session identifier.",
+            "type": "string"
+          }
+        }
+      },
+      "BeginTransactionRequest": {
+        "description": "Request used to begin a transaction together with its configuration values.",
+        "type": "object",
+        "properties": {
+          "config": {
+            "description": "The configuration properties to consider when creating the transaction.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Configuration"
+            }
+          }
+        }
+      },
+      "Configuration": {
+        "description": "Named configuration value.",
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The configuration item's value.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The configuration item's name.",
+            "type": "string"
+          }
+        }
+      },
+      "ConfigurationType": {
+        "description": "Kinds of configuration and parameter values supported by the model.",
+        "type": "string",
+        "enum": [
+          "SIMPLE",
+          "BINARY",
+          "SECRET"
+        ]
+      },
+      "Metadata": {
+        "description": "Descriptive metadata for a module definition.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the service.",
+            "type": "string"
+          },
+          "version": {
+            "description": "The version of the service.",
+            "type": "string"
+          },
+          "authors": {
+            "description": "The authors of the service.",
+            "type": "string"
+          },
+          "description": {
+            "description": "A description for the service.",
+            "type": "string"
+          },
+          "published": {
+            "description": "The date when the service was published.",
+            "type": "string"
+          },
+          "lastModified": {
+            "description": "The date when the service was last modified.",
+            "type": "string"
+          }
+        }
+      },
+      "Parameter": {
+        "description": "Definition of a configuration parameter.",
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The parameter's value.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The parameter's name value.",
+            "type": "string"
+          },
+          "label": {
+            "description": "The parameter's label.",
+            "type": "string"
+          },
+          "use": {
+            "$ref": "#/components/schemas/UsageEnumeration"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ConfigurationType"
+          },
+          "desc": {
+            "description": "The parameter's description.",
+            "type": "string"
+          }
+        }
+      },
+      "TypedParameter": {
+        "description": "Parameter definition enriched with a value type and optional encoding.",
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The parameter's value.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The parameter's name.",
+            "type": "string"
+          },
+          "label": {
+            "description": "The parameter's label.",
+            "type": "string"
+          },
+          "use": {
+            "$ref": "#/components/schemas/UsageEnumeration"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ConfigurationType"
+          },
+          "desc": {
+            "description": "The parameter's description.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The parameter's type.",
+            "type": "string"
+          },
+          "encoding": {
+            "description": "The parameter's encoding.",
+            "type": "string"
+          }
+        }
+      },
+      "UsageEnumeration": {
+        "description": "Flags indicating whether a parameter is required or optional.",
+        "type": "string",
+        "enum": [
+          "R",
+          "O"
+        ]
+      },
+      "ValueEmbeddingEnumeration": {
+        "description": "Supported ways of embedding an AnyContent value.",
+        "type": "string",
+        "enum": [
+          "STRING",
+          "BASE_64",
+          "URI"
+        ]
+      },
+      "FinalizeRequest": {
+        "description": "Notification when a test session is being completed.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant test session's identifier.",
+            "type": "string"
+          }
+        }
+      },
+      "GetModuleDefinitionResponse": {
+        "description": "Response containing the advertised messaging module definition.",
+        "type": "object",
+        "properties": {
+          "module": {
+            "$ref": "#/components/schemas/MessagingModule"
+          }
+        }
+      },
+      "InitiateRequest": {
+        "description": "Request made when a new test session is being initialised.",
+        "type": "object",
+        "properties": {
+          "actorConfiguration": {
+            "description": "The test session actors' configuration.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActorConfiguration"
+            }
+          }
+        }
+      },
+      "InitiateResponse": {
+        "description": "Response returned after a messaging session has been initialised.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant test session's identifier.",
+            "type": "string"
+          },
+          "actorConfiguration": {
+            "description": "The test session actors' configuration.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActorConfiguration"
+            }
+          }
+        }
+      },
+      "MessagingModule": {
+        "description": "Definition of a messaging service module and its configuration points.",
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "inputs": {
+            "description": "The service's supported inputs.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TypedParameter"
+            }
+          },
+          "outputs": {
+            "description": "The service's produced inputs.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TypedParameter"
+            }
+          },
+          "id": {
+            "description": "The service's identifier.",
+            "type": "string"
+          },
+          "uri": {
+            "description": "The service's URI.",
+            "type": "string"
+          },
+          "serviceLocation": {
+            "description": "The service's location address.",
+            "type": "string"
+          },
+          "actorConfigs": {
+            "description": "The service's supported actor configuration values.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          },
+          "transactionConfigs": {
+            "description": "The service's supported transaction configuration values.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          },
+          "listenConfigs": {
+            "description": "The service's supported listen configuration values.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          },
+          "receiveConfigs": {
+            "description": "The service's supported receive configuration values.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          },
+          "sendConfigs": {
+            "description": "The service's supported send configuration values.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          }
+        }
+      },
+      "ReceiveRequest": {
+        "description": "Request used to signal that a message is to be expected.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant test session's identifier.",
+            "type": "string"
+          },
+          "callId": {
+            "description": "An identifier to uniquely determine the test step that caused this request.",
+            "type": "string"
+          },
+          "from": {
+            "description": "The from actor identifier.",
+            "type": "string"
+          },
+          "input": {
+            "description": "The inputs to consider",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyContent"
+            }
+          }
+        }
+      },
+      "SendRequest": {
+        "description": "Request asking a messaging service to send content to a target actor or endpoint.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant test session's identifier.",
+            "type": "string"
+          },
+          "to": {
+            "description": "The to actor identifier.",
+            "type": "string"
+          },
+          "input": {
+            "description": "The inputs to consider",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyContent"
+            }
+          }
+        }
+      },
+      "SendResponse": {
+        "description": "Response containing the report produced after sending a message.",
+        "type": "object",
+        "properties": {
+          "report": {
+            "$ref": "#/components/schemas/TAR"
+          }
+        }
+      },
+      "ReportItem": {
+        "description": "Report item entry included in a validation, messaging or processing step report.",
+        "type": "object",
+        "properties": {
+          "assertionID": {
+            "description": "The item's assertion ID.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The item's description.",
+            "type": "string"
+          },
+          "location": {
+            "description": "The item's relevant location in provided content.",
+            "type": "string"
+          },
+          "test": {
+            "description": "The item's test expression.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The item's type.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The item's considered value for the relevant assertion.",
+            "type": "string"
+          },
+          "level": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          }
+        }
+      },
+      "SeverityLevel": {
+        "description": "Severity assigned to a report item.",
+        "type": "string",
+        "enum": [
+          "ERROR",
+          "WARNING",
+          "INFO"
+        ]
+      },
+      "TAR": {
+        "description": "Test assertion report produced by messaging, processing or validation operations.",
+        "type": "object",
+        "properties": {
+          "date": {
+            "description": "The date when the report was produced.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "result": {
+            "$ref": "#/components/schemas/TestResultType"
+          },
+          "id": {
+            "description": "The report ID.",
+            "type": "string"
+          },
+          "overview": {
+            "$ref": "#/components/schemas/ValidationOverview"
+          },
+          "counters": {
+            "$ref": "#/components/schemas/ValidationCounters"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AnyContent"
+          },
+          "name": {
+            "description": "The name of the report.",
+            "type": "string"
+          },
+          "items": {
+            "description": "The report's included items.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportItem"
+            }
+          }
+        }
+      },
+      "TestResultType": {
+        "description": "Overall result values used in reports.",
+        "type": "string",
+        "enum": [
+          "SUCCESS",
+          "FAILURE",
+          "WARNING",
+          "UNDEFINED"
+        ]
+      },
+      "ValidationCounters": {
+        "description": "Counters summarising assertion, error and warning totals.",
+        "type": "object",
+        "properties": {
+          "nrOfAssertions": {
+            "description": "The number of information messages in the report.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrOfErrors": {
+            "description": "The number of errors in the report.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrOfWarnings": {
+            "description": "The number of warnings in the report.",
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ValidationOverview": {
+        "description": "High-level metadata describing a validation execution.",
+        "type": "object",
+        "properties": {
+          "profileID": {
+            "description": "The relevant specification profile ID.",
+            "type": "string"
+          },
+          "customizationID": {
+            "description": "The relevant specification customization ID.",
+            "type": "string"
+          },
+          "transactionID": {
+            "description": "The relevant specification transaction ID.",
+            "type": "string"
+          },
+          "validationServiceName": {
+            "description": "The service name.",
+            "type": "string"
+          },
+          "validationServiceVersion": {
+            "description": "The service version.",
+            "type": "string"
+          },
+          "note": {
+            "description": "A note for the report.",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

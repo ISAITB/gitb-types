@@ -1,0 +1,477 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GITB Validation Service REST API",
+    "description": "REST-oriented OpenAPI documentation for GITB validation service operations.",
+    "version": "1.30.0-SNAPSHOT"
+  },
+  "tags": [
+    {
+      "name": "Validation",
+      "description": "Operations exposed by a validation service."
+    }
+  ],
+  "paths": {
+    "/getModuleDefinition": {
+      "get": {
+        "operationId": "getModuleDefinition",
+        "summary": "Retrieve the definition of the validation module and its supported configuration.",
+        "tags": [
+          "Validation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Module definition returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetModuleDefinitionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/validate": {
+      "post": {
+        "operationId": "validate",
+        "summary": "Validate the provided content and return the resulting report.",
+        "tags": [
+          "Validation"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation result returned successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnyContent": {
+        "description": "Recursively defined content wrapper used to transport text, binary or referenced values.",
+        "type": "object",
+        "properties": {
+          "item": {
+            "description": "Child content items (when parent is a list or a map).",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyContent"
+            }
+          },
+          "value": {
+            "description": "The item's value, represented as a string.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The item's name.",
+            "type": "string"
+          },
+          "embeddingMethod": {
+            "$ref": "#/components/schemas/ValueEmbeddingEnumeration"
+          },
+          "type": {
+            "description": "The type of content (default is string).",
+            "type": "string"
+          },
+          "encoding": {
+            "description": "The text encoding of the content.",
+            "type": "string"
+          },
+          "mimeType": {
+            "description": "The content's content type (or mime type).",
+            "type": "string"
+          },
+          "forContext": {
+            "description": "Whether the value should be included in the test session context (default is true).",
+            "type": "boolean"
+          },
+          "forDisplay": {
+            "description": "Whether the value should be included in the displayed report for the step in question (default is true).",
+            "type": "boolean"
+          }
+        }
+      },
+      "Configuration": {
+        "description": "Named configuration value.",
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ConfigurationType": {
+        "description": "Kinds of configuration and parameter values supported by the model.",
+        "type": "string",
+        "enum": [
+          "SIMPLE",
+          "BINARY",
+          "SECRET"
+        ]
+      },
+      "Metadata": {
+        "description": "Descriptive metadata for a module definition.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the service.",
+            "type": "string"
+          },
+          "version": {
+            "description": "The version of the service.",
+            "type": "string"
+          },
+          "authors": {
+            "description": "The authors of the service.",
+            "type": "string"
+          },
+          "description": {
+            "description": "A description for the service.",
+            "type": "string"
+          },
+          "published": {
+            "description": "The date when the service was published.",
+            "type": "string"
+          },
+          "lastModified": {
+            "description": "The date when the service was last modified.",
+            "type": "string"
+          }
+        }
+      },
+      "Parameter": {
+        "description": "Definition of a configuration parameter.",
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The parameter's value.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The parameter's name value.",
+            "type": "string"
+          },
+          "label": {
+            "description": "The parameter's label.",
+            "type": "string"
+          },
+          "use": {
+            "$ref": "#/components/schemas/UsageEnumeration"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ConfigurationType"
+          },
+          "desc": {
+            "description": "The parameter's description.",
+            "type": "string"
+          }
+        }
+      },
+      "TypedParameter": {
+        "description": "Parameter definition enriched with a value type and optional encoding.",
+        "type": "object",
+        "properties": {
+          "value": {
+            "description": "The parameter's value.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The parameter's name.",
+            "type": "string"
+          },
+          "label": {
+            "description": "The parameter's label.",
+            "type": "string"
+          },
+          "use": {
+            "$ref": "#/components/schemas/UsageEnumeration"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ConfigurationType"
+          },
+          "desc": {
+            "description": "The parameter's description.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The parameter's type.",
+            "type": "string"
+          },
+          "encoding": {
+            "description": "The parameter's encoding.",
+            "type": "string"
+          }
+        }
+      },
+      "UsageEnumeration": {
+        "description": "Flags indicating whether a parameter is required or optional.",
+        "type": "string",
+        "enum": [
+          "R",
+          "O"
+        ]
+      },
+      "ValueEmbeddingEnumeration": {
+        "description": "Supported ways of embedding an AnyContent value.",
+        "type": "string",
+        "enum": [
+          "STRING",
+          "BASE_64",
+          "URI"
+        ]
+      },
+      "ReportItem": {
+        "description": "Report item entry included in a validation, messaging or processing step report.",
+        "type": "object",
+        "properties": {
+          "assertionID": {
+            "description": "The item's assertion ID.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The item's description.",
+            "type": "string"
+          },
+          "location": {
+            "description": "The item's relevant location in provided content.",
+            "type": "string"
+          },
+          "test": {
+            "description": "The item's test expression.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The item's type.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The item's considered value for the relevant assertion.",
+            "type": "string"
+          },
+          "level": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          }
+        }
+      },
+      "SeverityLevel": {
+        "description": "Severity assigned to a report item.",
+        "type": "string",
+        "enum": [
+          "ERROR",
+          "WARNING",
+          "INFO"
+        ]
+      },
+      "TAR": {
+        "description": "Test assertion report produced by messaging, processing or validation operations.",
+        "type": "object",
+        "properties": {
+          "date": {
+            "description": "The date when the report was produced.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "result": {
+            "$ref": "#/components/schemas/TestResultType"
+          },
+          "id": {
+            "description": "The report ID.",
+            "type": "string"
+          },
+          "overview": {
+            "$ref": "#/components/schemas/ValidationOverview"
+          },
+          "counters": {
+            "$ref": "#/components/schemas/ValidationCounters"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AnyContent"
+          },
+          "name": {
+            "description": "The name of the report.",
+            "type": "string"
+          },
+          "items": {
+            "description": "The report's included items.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportItem"
+            }
+          }
+        }
+      },
+      "TestResultType": {
+        "description": "Overall result values used in reports.",
+        "type": "string",
+        "enum": [
+          "SUCCESS",
+          "FAILURE",
+          "WARNING",
+          "UNDEFINED"
+        ]
+      },
+      "ValidationCounters": {
+        "description": "Counters summarising assertion, error and warning totals.",
+        "type": "object",
+        "properties": {
+          "nrOfAssertions": {
+            "description": "The number of information messages in the report.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrOfErrors": {
+            "description": "The number of errors in the report.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrOfWarnings": {
+            "description": "The number of warnings in the report.",
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ValidationOverview": {
+        "description": "High-level metadata describing a validation execution.",
+        "type": "object",
+        "properties": {
+          "profileID": {
+            "description": "The relevant specification profile ID.",
+            "type": "string"
+          },
+          "customizationID": {
+            "description": "The relevant specification customization ID.",
+            "type": "string"
+          },
+          "transactionID": {
+            "description": "The relevant specification transaction ID.",
+            "type": "string"
+          },
+          "validationServiceName": {
+            "description": "The service name.",
+            "type": "string"
+          },
+          "validationServiceVersion": {
+            "description": "The service version.",
+            "type": "string"
+          },
+          "note": {
+            "description": "A note for the report.",
+            "type": "string"
+          }
+        }
+      },
+      "GetModuleDefinitionResponse": {
+        "description": "Response containing the advertised validation module definition.",
+        "type": "object",
+        "properties": {
+          "module": {
+            "$ref": "#/components/schemas/ValidationModule"
+          }
+        }
+      },
+      "ValidateRequest": {
+        "description": "Request used to validate one or more input contents.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant test session's identifier.",
+            "type": "string"
+          },
+          "config": {
+            "description": "The configuration items to consider for the validation.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Configuration"
+            }
+          },
+          "input": {
+            "description": "The inputs to consider for the validation.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyContent"
+            }
+          }
+        }
+      },
+      "ValidationModule": {
+        "description": "Definition of a validation service module.",
+        "type": "object",
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/Metadata"
+          },
+          "inputs": {
+            "description": "The inputs accepted by this service.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TypedParameter"
+            }
+          },
+          "outputs": {
+            "description": "The outputs produced by this service.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TypedParameter"
+            }
+          },
+          "id": {
+            "description": "The service's identifier.",
+            "type": "string"
+          },
+          "uri": {
+            "description": "The service's URI.",
+            "type": "string"
+          },
+          "serviceLocation": {
+            "description": "The service's location address.",
+            "type": "string"
+          },
+          "configs": {
+            "description": "The service's supported configuration values.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            }
+          },
+          "operation": {
+            "description": "The service's operation.",
+            "type": "string"
+          }
+        }
+      },
+      "ValidationResponse": {
+        "description": "Response containing the validation report.",
+        "type": "object",
+        "properties": {
+          "report": {
+            "$ref": "#/components/schemas/TAR"
+          }
+        }
+      }
+    }
+  }
+}
