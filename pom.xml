@@ -57,6 +57,7 @@
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <license-maven-plugin.version>2.5.0</license-maven-plugin.version>
+        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -90,6 +91,62 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven-gpg-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>${central-publishing-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>${license-maven-plugin.version}</version>
+                    <configuration>
+                        <fileTemplate>${project.basedir}/etc/licence/third-party-licence-template.ftl</fileTemplate>
+                        <thirdPartyFilename>NOTICE.md</thirdPartyFilename>
+                        <excludedScopes>test</excludedScopes>
+                        <failOnMissing>true</failOnMissing>
+                        <licenseMerges>
+                            <licenseMerge>Eclipse Distribution License - v1.0|EDL 1.0|Eclipse Distribution License - v 1.0</licenseMerge>
+                            <licenseMerge>Common Development and Distribution License 1.0|CDDL 1.1</licenseMerge>
+                            <licenseMerge>GNU General Public License (GPL), Version 2 (with Classpath Exception)|GPL2 w/ CPE</licenseMerge>
+                            <licenseMerge>Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception)|CDDL/GPLv2+CE|CDDL + GPLv2 with classpath exception|</licenseMerge>
+                        </licenseMerges>
+                    </configuration>
+                    <!--
+                        To generate the complete third party licence file run `mvn license:aggregate-add-third-party`
+                        The resulting licence file is prepared in target/generated-sources/license/NOTICES.md
+                        In case specific licences and attributions need to be included, these need to be added to etc/licence/third-party-licence-template.ftl
+                    -->
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -104,40 +161,6 @@
 
     <profiles>
         <profile>
-            <id>development</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>license-maven-plugin</artifactId>
-                            <version>${license-maven-plugin.version}</version>
-                            <configuration>
-                                <fileTemplate>${project.basedir}/etc/licence/third-party-licence-template.ftl</fileTemplate>
-                                <thirdPartyFilename>NOTICE.md</thirdPartyFilename>
-                                <excludedScopes>test</excludedScopes>
-                                <failOnMissing>true</failOnMissing>
-                                <licenseMerges>
-                                    <licenseMerge>Eclipse Distribution License - v1.0|EDL 1.0|Eclipse Distribution License - v 1.0</licenseMerge>
-                                    <licenseMerge>Common Development and Distribution License 1.0|CDDL 1.1</licenseMerge>
-                                    <licenseMerge>GNU General Public License (GPL), Version 2 (with Classpath Exception)|GPL2 w/ CPE</licenseMerge>
-                                    <licenseMerge>Common Development and Distribution License 1.0, GNU General Public License (GPL), Version 2 (with Classpath Exception)|CDDL/GPLv2+CE|CDDL + GPLv2 with classpath exception|</licenseMerge>
-                                </licenseMerges>
-                            </configuration>
-                            <!--
-                                To generate the complete third party licence file run `mvn license:aggregate-add-third-party`
-                                The resulting licence file is prepared in target/generated-sources/license/NOTICES.md
-                                In case specific licences and attributions need to be included, these need to be added to etc/licence/third-party-licence-template.ftl
-                            -->
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
             <id>release</id>
             <distributionManagement>
                 <snapshotRepository>
@@ -150,7 +173,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -163,7 +185,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -179,7 +200,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -199,7 +219,6 @@
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>${central-publishing-maven-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
