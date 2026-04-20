@@ -1,0 +1,328 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GITB Client Callback REST API",
+    "description": "REST-oriented OpenAPI documentation for service callbacks to a GITB Test Engine.",
+    "version": "1.30.0-SNAPSHOT"
+  },
+  "tags": [
+    {
+      "name": "Common",
+      "description": "Common callback operations shared by service clients."
+    },
+    {
+      "name": "Messaging",
+      "description": "Client-side callback operations used by messaging services."
+    }
+  ],
+  "paths": {
+    "/log": {
+      "post": {
+        "operationId": "log",
+        "summary": "Add a log entry for an active session.",
+        "tags": [
+          "Common", "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully."
+          }
+        }
+      }
+    },
+    "/notifyForMessage": {
+      "post": {
+        "operationId": "notifyForMessage",
+        "summary": "Notify the test engine for a received message and its relevant report.",
+        "tags": [
+          "Messaging"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotifyForMessageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Operation completed successfully."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnyContent": {
+        "description": "Recursively defined content wrapper used to transport text, binary or referenced values.",
+        "type": "object",
+        "properties": {
+          "item": {
+            "description": "Child content items (when parent is a list or a map).",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnyContent"
+            }
+          },
+          "value": {
+            "description": "The item's value, represented as a string.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The item's name.",
+            "type": "string"
+          },
+          "embeddingMethod": {
+            "$ref": "#/components/schemas/ValueEmbeddingEnumeration"
+          },
+          "type": {
+            "description": "The type of content (default is string).",
+            "type": "string"
+          },
+          "encoding": {
+            "description": "The text encoding of the content.",
+            "type": "string"
+          },
+          "mimeType": {
+            "description": "The content's content type (or mime type).",
+            "type": "string"
+          },
+          "forContext": {
+            "description": "Whether the value should be included in the test session context (default is true).",
+            "type": "boolean"
+          },
+          "forDisplay": {
+            "description": "Whether the value should be included in the displayed report for the step in question (default is true).",
+            "type": "boolean"
+          }
+        }
+      },
+      "BasicRequest": {
+        "description": "Base request carrying the session identifier of an ongoing test session.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant session's identifier.",
+            "type": "string"
+          }
+        }
+      },
+      "LogLevel": {
+        "description": "Severity levels used when reporting log entries.",
+        "type": "string",
+        "enum": [
+          "ERROR",
+          "WARNING",
+          "INFO",
+          "DEBUG"
+        ]
+      },
+      "LogRequest": {
+        "description": "Log entry reported for a specific session.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant session's identifier.",
+            "type": "string"
+          },
+          "message": {
+            "description": "The log message.",
+            "type": "string"
+          },
+          "level": {
+            "$ref": "#/components/schemas/LogLevel"
+          }
+        }
+      },
+      "ValueEmbeddingEnumeration": {
+        "description": "How the value of a content item should be interpreted (as a string, a Base64 encoded byte array, or a URI).",
+        "type": "string",
+        "enum": [
+          "STRING",
+          "BASE_64",
+          "URI"
+        ]
+      },
+      "NotifyForMessageRequest": {
+        "description": "Callback request notifying about a received message.",
+        "type": "object",
+        "properties": {
+          "sessionId": {
+            "description": "The relevant session's identifier.",
+            "type": "string"
+          },
+          "callId": {
+            "description": "The identifier of the specific receive step that this refers to.",
+            "type": "string"
+          },
+          "from": {
+            "description": "The from actor identifier.",
+            "type": "string"
+          },
+          "to": {
+            "description": "The to actor identifier.",
+            "type": "string"
+          },
+          "report": {
+            "$ref": "#/components/schemas/TAR"
+          }
+        }
+      },
+      "ReportItem": {
+        "description": "Report item entry included in a validation, messaging or processing step report.",
+        "type": "object",
+        "properties": {
+          "assertionID": {
+            "description": "The item's assertion ID.",
+            "type": "string"
+          },
+          "description": {
+            "description": "The item's description.",
+            "type": "string"
+          },
+          "location": {
+            "description": "The item's relevant location in provided content.",
+            "type": "string"
+          },
+          "test": {
+            "description": "The item's test expression.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The item's type.",
+            "type": "string"
+          },
+          "value": {
+            "description": "The item's considered value for the relevant assertion.",
+            "type": "string"
+          },
+          "level": {
+            "$ref": "#/components/schemas/SeverityLevel"
+          }
+        }
+      },
+      "SeverityLevel": {
+        "description": "Severity assigned to a report item.",
+        "type": "string",
+        "enum": [
+          "ERROR",
+          "WARNING",
+          "INFO"
+        ]
+      },
+      "TAR": {
+        "description": "Test assertion report produced by messaging, processing or validation operations.",
+        "type": "object",
+        "properties": {
+          "date": {
+            "description": "The date and time when the report was produced.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "result": {
+            "$ref": "#/components/schemas/TestResultType"
+          },
+          "id": {
+            "description": "The report ID.",
+            "type": "string"
+          },
+          "overview": {
+            "$ref": "#/components/schemas/ValidationOverview"
+          },
+          "counters": {
+            "$ref": "#/components/schemas/ValidationCounters"
+          },
+          "context": {
+            "$ref": "#/components/schemas/AnyContent"
+          },
+          "name": {
+            "description": "The name of the report.",
+            "type": "string"
+          },
+          "items": {
+            "description": "The report's included items.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReportItem"
+            }
+          }
+        }
+      },
+      "TestResultType": {
+        "description": "Overall result values used in reports.",
+        "type": "string",
+        "enum": [
+          "SUCCESS",
+          "FAILURE",
+          "WARNING",
+          "UNDEFINED"
+        ]
+      },
+      "ValidationCounters": {
+        "description": "Counters summarising assertion, error and warning totals.",
+        "type": "object",
+        "properties": {
+          "nrOfAssertions": {
+            "description": "The number of information messages in the report.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrOfErrors": {
+            "description": "The number of errors in the report.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "nrOfWarnings": {
+            "description": "The number of warnings in the report.",
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ValidationOverview": {
+        "description": "High-level metadata describing a validation execution.",
+        "type": "object",
+        "properties": {
+          "profileID": {
+            "description": "The relevant specification profile ID.",
+            "type": "string"
+          },
+          "customizationID": {
+            "description": "The relevant specification customization ID.",
+            "type": "string"
+          },
+          "transactionID": {
+            "description": "The relevant specification transaction ID.",
+            "type": "string"
+          },
+          "validationServiceName": {
+            "description": "The service name.",
+            "type": "string"
+          },
+          "validationServiceVersion": {
+            "description": "The service version.",
+            "type": "string"
+          },
+          "note": {
+            "description": "A note for the report.",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
