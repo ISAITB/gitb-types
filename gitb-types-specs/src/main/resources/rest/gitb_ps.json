@@ -3,7 +3,7 @@
   "info": {
     "title": "GITB Processing Service REST API",
     "description": "REST-oriented OpenAPI documentation for GITB processing service operations.",
-    "version": "1.30.0-SNAPSHOT"
+    "version": "@project.version@"
   },
   "tags": [
     {

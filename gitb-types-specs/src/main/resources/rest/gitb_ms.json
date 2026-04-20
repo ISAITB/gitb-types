@@ -3,7 +3,7 @@
   "info": {
     "title": "GITB Messaging Service REST API",
     "description": "REST-oriented OpenAPI documentation for GITB messaging service operations.",
-    "version": "1.30.0-SNAPSHOT"
+    "version": "@project.version@"
   },
   "tags": [
     {
