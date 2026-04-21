@@ -304,8 +304,10 @@ public class AnyContent {
          * @return This builder.
          */
         public Builder withItem(AnyContent... items) {
-            for (AnyContent item : items) {
-                wrapped.getItem().add(item);
+            if (items != null) {
+                for (AnyContent item : items) {
+                    wrapped.getItem().add(item);
+                }
             }
             return this;
         }

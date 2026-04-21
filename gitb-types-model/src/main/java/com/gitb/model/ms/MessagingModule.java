@@ -164,8 +164,10 @@ public class MessagingModule extends TestModule {
          * @return This builder.
          */
         public Builder withActorConfig(Parameter... configs) {
-            for (Parameter config : configs) {
-                wrapped.getActorConfigs().add(config);
+            if (configs != null) {
+                for (Parameter config : configs) {
+                    wrapped.getActorConfigs().add(config);
+                }
             }
             return this;
         }
@@ -177,8 +179,10 @@ public class MessagingModule extends TestModule {
          * @return This builder.
          */
         public Builder withTransactionConfigs(Parameter... configs) {
-            for (Parameter config : configs) {
-                wrapped.getTransactionConfigs().add(config);
+            if (configs != null) {
+                for (Parameter config : configs) {
+                    wrapped.getTransactionConfigs().add(config);
+                }
             }
             return this;
         }
@@ -190,8 +194,10 @@ public class MessagingModule extends TestModule {
          * @return This builder.
          */
         public Builder withListenConfigs(Parameter... configs) {
-            for (Parameter config : configs) {
-                wrapped.getListenConfigs().add(config);
+            if (configs != null) {
+                for (Parameter config : configs) {
+                    wrapped.getListenConfigs().add(config);
+                }
             }
             return this;
         }
@@ -203,8 +209,10 @@ public class MessagingModule extends TestModule {
          * @return This builder.
          */
         public Builder withReceiveConfigs(Parameter... configs) {
-            for (Parameter config : configs) {
-                wrapped.getReceiveConfigs().add(config);
+            if (configs != null) {
+                for (Parameter config : configs) {
+                    wrapped.getReceiveConfigs().add(config);
+                }
             }
             return this;
         }
@@ -216,8 +224,10 @@ public class MessagingModule extends TestModule {
          * @return This builder.
          */
         public Builder withSendConfigs(Parameter... configs) {
-            for (Parameter config : configs) {
-                wrapped.getSendConfigs().add(config);
+            if (configs != null) {
+                for (Parameter config : configs) {
+                    wrapped.getSendConfigs().add(config);
+                }
             }
             return this;
         }

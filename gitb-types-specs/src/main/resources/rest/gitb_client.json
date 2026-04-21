@@ -1,28 +1,21 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "GITB Client Callback REST API",
+    "title": "GITB Test Engine Callback REST API",
     "description": "REST-oriented OpenAPI documentation for service callbacks to a GITB Test Engine.",
     "version": "@project.version@"
   },
   "tags": [
-    {
-      "name": "Common",
-      "description": "Common callback operations shared by service clients."
-    },
-    {
-      "name": "Messaging",
-      "description": "Client-side callback operations used by messaging services."
-    }
+    { "name": "Messaging",   "description": "Callbacks for messaging service implementations." },
+    { "name": "Processing",  "description": "Callbacks for processing service implementations." },
+    { "name": "Validation",  "description": "Callbacks for validation service implementations." }
   ],
   "paths": {
     "/log": {
       "post": {
         "operationId": "log",
         "summary": "Add a log entry for an active session.",
-        "tags": [
-          "Common", "Messaging"
-        ],
+        "tags": ["Messaging", "Processing", "Validation"],
         "requestBody": {
           "required": true,
           "content": {

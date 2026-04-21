@@ -105,8 +105,10 @@ public class ReceiveRequest extends BasicRequest {
          * @return This builder.
          */
         public Builder withInput(AnyContent... inputs) {
-            for (AnyContent input : inputs) {
-                wrapped.getInput().add(input);
+            if (inputs != null) {
+                for (AnyContent input : inputs) {
+                    wrapped.getInput().add(input);
+                }
             }
             return this;
         }

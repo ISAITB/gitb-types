@@ -22,7 +22,7 @@
  *   <li>Operation invocation: {@link com.gitb.model.ps.ProcessRequest},
  *       {@link com.gitb.model.ps.ProcessResponse}.</li>
  *   <li>Transaction lifecycle: driven via
- *       {@link com.gitb.model.core.BeginTransactionRequest} and
+ *       {@link com.gitb.model.ps.BeginTransactionRequest}, {@link com.gitb.model.ps.BeginTransactionResponse} and
  *       {@link com.gitb.model.core.BasicRequest}.</li>
  *   <li>Module definition: {@link com.gitb.model.ps.ProcessingModule},
  *       {@link com.gitb.model.ps.ProcessingOperation},

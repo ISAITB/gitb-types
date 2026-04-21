@@ -229,6 +229,7 @@
 				<xsd:attribute name="invert" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
+				<xsd:attribute name="handlerApiType" type="HandlerApiType"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -271,6 +272,7 @@
 				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerApiType" type="HandlerApiType"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -403,6 +405,7 @@
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
                 <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="handlerApiType" type="HandlerApiType"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -444,6 +447,7 @@
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
                 <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="handlerApiType" type="HandlerApiType"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -463,6 +467,7 @@
 				<xsd:attribute name="txnId" type="xsd:string" use="required"/>
 				<xsd:attribute name="handler" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
+				<xsd:attribute name="handlerApiType" type="HandlerApiType"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -491,6 +496,7 @@
 				<xsd:attribute name="handlerTimeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="handlerTimeoutFlag" type="gitb:VariableName"/>
                 <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="handlerApiType" type="HandlerApiType"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -622,6 +628,12 @@
 			<xsd:enumeration value="first"/>
 			<xsd:enumeration value="all"/>
 			<xsd:enumeration value="cascade"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="HandlerApiType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="REST"/>
+			<xsd:enumeration value="SOAP"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 </xsd:schema>

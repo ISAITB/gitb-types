@@ -13,7 +13,7 @@
  * the specific language governing permissions and limitations under the Licence.
  */
 
-package com.gitb.model.core;
+package com.gitb.model.ps;
 
 /**
  * Response returned when a transaction is opened and a session identifier is assigned.

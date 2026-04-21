@@ -16,7 +16,6 @@
 package com.gitb.model.ms;
 
 import com.gitb.model.core.BasicRequest;
-import com.gitb.model.core.BeginTransactionRequest;
 
 /**
  * Operations exposed by a messaging service.

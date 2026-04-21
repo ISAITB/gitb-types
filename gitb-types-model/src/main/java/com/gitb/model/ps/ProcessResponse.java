@@ -87,8 +87,10 @@ public class ProcessResponse {
          * @return This builder.
          */
         public Builder withOutput(AnyContent... outputs) {
-            for (AnyContent output : outputs) {
-                wrapped.getOutput().add(output);
+            if (outputs != null) {
+                for (AnyContent output : outputs) {
+                    wrapped.getOutput().add(output);
+                }
             }
             return this;
         }
