@@ -42,10 +42,18 @@ public class SendResponse {
         this.report = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link SendResponse} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link SendResponse} instances using a fluent API.
+     */
     public static class Builder {
 
         private final SendResponse wrapped;
@@ -54,11 +62,22 @@ public class SendResponse {
             this.wrapped = new SendResponse();
         }
 
+        /**
+         * Sets the test assertion report produced for the send operation.
+         *
+         * @param report The report to set.
+         * @return This builder.
+         */
         public Builder withReport(TAR report) {
             wrapped.setReport(report);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link SendResponse} instance.
+         *
+         * @return The configured instance.
+         */
         public SendResponse build() {
             return wrapped;
         }

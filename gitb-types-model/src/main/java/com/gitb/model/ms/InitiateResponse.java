@@ -58,10 +58,18 @@ public class InitiateResponse {
         return this.actorConfiguration;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct an {@link InitiateResponse} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link InitiateResponse} instances using a fluent API.
+     */
     public static class Builder {
 
         private final InitiateResponse wrapped;
@@ -70,6 +78,12 @@ public class InitiateResponse {
             this.wrapped = new InitiateResponse();
         }
 
+        /**
+         * Adds one or more actor configuration entries to the response.
+         *
+         * @param configs The actor configurations to add.
+         * @return This builder.
+         */
         public Builder withActorConfiguration(ActorConfiguration... configs) {
             for (ActorConfiguration config : configs) {
                 wrapped.getActorConfiguration().add(config);
@@ -77,11 +91,22 @@ public class InitiateResponse {
             return this;
         }
 
+        /**
+         * Sets the session identifier for the newly initiated messaging session.
+         *
+         * @param sessionId The session identifier to set.
+         * @return This builder.
+         */
         public Builder withSessionId(String sessionId) {
             wrapped.setSessionId(sessionId);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link InitiateResponse} instance.
+         *
+         * @return The configured instance.
+         */
         public InitiateResponse build() {
             return wrapped;
         }

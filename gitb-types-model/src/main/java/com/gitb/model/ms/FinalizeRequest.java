@@ -40,10 +40,18 @@ public class FinalizeRequest {
         this.sessionId = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link FinalizeRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link FinalizeRequest} instances using a fluent API.
+     */
     public static class Builder {
 
         private final FinalizeRequest wrapped;
@@ -52,11 +60,22 @@ public class FinalizeRequest {
             this.wrapped = new FinalizeRequest();
         }
 
+        /**
+         * Sets the session identifier of the session to finalise.
+         *
+         * @param sessionId The session identifier to set.
+         * @return This builder.
+         */
         public Builder withSessionId(String sessionId) {
             wrapped.setSessionId(sessionId);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link FinalizeRequest} instance.
+         *
+         * @return The configured instance.
+         */
         public FinalizeRequest build() {
             return wrapped;
         }

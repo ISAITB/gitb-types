@@ -39,10 +39,18 @@ public class InitiateRequest {
         return this.actorConfiguration;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct an {@link InitiateRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link InitiateRequest} instances using a fluent API.
+     */
     public static class Builder {
 
         private final InitiateRequest wrapped;
@@ -51,6 +59,12 @@ public class InitiateRequest {
             this.wrapped = new InitiateRequest();
         }
 
+        /**
+         * Adds one or more actor configuration entries to the request.
+         *
+         * @param configs The actor configurations to add.
+         * @return This builder.
+         */
         public Builder withActorConfiguration(ActorConfiguration... configs) {
             for (ActorConfiguration config : configs) {
                 wrapped.getActorConfiguration().add(config);
@@ -58,6 +72,11 @@ public class InitiateRequest {
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link InitiateRequest} instance.
+         *
+         * @return The configured instance.
+         */
         public InitiateRequest build() {
             return wrapped;
         }

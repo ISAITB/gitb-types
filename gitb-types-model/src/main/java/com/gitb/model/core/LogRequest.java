@@ -78,10 +78,18 @@ public class LogRequest {
         this.level = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link LogRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link LogRequest} instances using a fluent API.
+     */
     public static class Builder {
 
         private final LogRequest wrapped;
@@ -90,21 +98,44 @@ public class LogRequest {
             this.wrapped = new LogRequest();
         }
 
+        /**
+         * Sets the session identifier to which the log entry belongs.
+         *
+         * @param sessionId The session identifier to set.
+         * @return This builder.
+         */
         public Builder withSessionId(String sessionId) {
             wrapped.setSessionId(sessionId);
             return this;
         }
 
+        /**
+         * Sets the log message text.
+         *
+         * @param message The message to set.
+         * @return This builder.
+         */
         public Builder withMessage(String message) {
             wrapped.setMessage(message);
             return this;
         }
 
+        /**
+         * Sets the severity level of the log entry.
+         *
+         * @param level The log level to set.
+         * @return This builder.
+         */
         public Builder withLevel(LogLevel level) {
             wrapped.setLevel(level);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link LogRequest} instance.
+         *
+         * @return The configured instance.
+         */
         public LogRequest build() {
             return wrapped;
         }

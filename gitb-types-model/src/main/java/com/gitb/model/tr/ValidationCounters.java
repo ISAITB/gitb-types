@@ -78,10 +78,18 @@ public class ValidationCounters {
         this.nrOfWarnings = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ValidationCounters} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ValidationCounters} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ValidationCounters wrapped;
@@ -90,21 +98,44 @@ public class ValidationCounters {
             this.wrapped = new ValidationCounters();
         }
 
+        /**
+         * Sets the number of errors found.
+         *
+         * @param errors The error count to set.
+         * @return This builder.
+         */
         public Builder withNrOfErrors(int errors) {
             wrapped.setNrOfErrors(errors);
             return this;
         }
 
+        /**
+         * Sets the number of warnings found.
+         *
+         * @param warnings The warning count to set.
+         * @return This builder.
+         */
         public Builder withNrOfWarnings(int warnings) {
             wrapped.setNrOfWarnings(warnings);
             return this;
         }
 
+        /**
+         * Sets the total number of assertions evaluated.
+         *
+         * @param assertions The assertion count to set.
+         * @return This builder.
+         */
         public Builder withNrOfAssertions(int assertions) {
             wrapped.setNrOfAssertions(assertions);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ValidationCounters} instance.
+         *
+         * @return The configured instance.
+         */
         public ValidationCounters build() {
             return wrapped;
         }

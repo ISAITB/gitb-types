@@ -60,10 +60,18 @@ public class ProcessResponse {
         return this.output;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ProcessResponse} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ProcessResponse} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ProcessResponse wrapped;
@@ -72,6 +80,12 @@ public class ProcessResponse {
             this.wrapped = new ProcessResponse();
         }
 
+        /**
+         * Adds one or more output content items to the processing response.
+         *
+         * @param outputs The content items to add.
+         * @return This builder.
+         */
         public Builder withOutput(AnyContent... outputs) {
             for (AnyContent output : outputs) {
                 wrapped.getOutput().add(output);
@@ -79,11 +93,22 @@ public class ProcessResponse {
             return this;
         }
 
+        /**
+         * Sets the test assertion report produced by the processing operation.
+         *
+         * @param report The report to set.
+         * @return This builder.
+         */
         public Builder withReport(TAR report) {
             wrapped.setReport(report);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ProcessResponse} instance.
+         *
+         * @return The configured instance.
+         */
         public ProcessResponse build() {
             return wrapped;
         }

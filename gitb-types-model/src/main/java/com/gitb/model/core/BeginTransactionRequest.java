@@ -37,10 +37,18 @@ public class BeginTransactionRequest {
         return this.config;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link BeginTransactionRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link BeginTransactionRequest} instances using a fluent API.
+     */
     public static class Builder {
 
         private final BeginTransactionRequest wrapped;
@@ -49,6 +57,12 @@ public class BeginTransactionRequest {
             this.wrapped = new BeginTransactionRequest();
         }
 
+        /**
+         * Adds one or more configuration entries to the transaction request.
+         *
+         * @param configs The configuration entries to add.
+         * @return This builder.
+         */
         public Builder withConfig(Configuration... configs) {
             for (Configuration config : configs) {
                 wrapped.getConfig().add(config);
@@ -56,6 +70,11 @@ public class BeginTransactionRequest {
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link BeginTransactionRequest} instance.
+         *
+         * @return The configured instance.
+         */
         public BeginTransactionRequest build() {
             return wrapped;
         }

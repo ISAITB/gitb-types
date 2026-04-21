@@ -59,10 +59,18 @@ public class Configuration {
         this.name = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link Configuration} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link Configuration} instances using a fluent API.
+     */
     public static class Builder {
 
         private final Configuration wrapped;
@@ -71,16 +79,33 @@ public class Configuration {
             this.wrapped = new Configuration();
         }
 
+        /**
+         * Sets the configuration parameter name.
+         *
+         * @param name The name to set.
+         * @return This builder.
+         */
         public Builder withName(String name) {
             wrapped.setName(name);
             return this;
         }
 
+        /**
+         * Sets the configuration parameter value.
+         *
+         * @param value The value to set.
+         * @return This builder.
+         */
         public Builder withValue(String value) {
             wrapped.setValue(value);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link Configuration} instance.
+         *
+         * @return The configured instance.
+         */
         public Configuration build() {
             return wrapped;
         }

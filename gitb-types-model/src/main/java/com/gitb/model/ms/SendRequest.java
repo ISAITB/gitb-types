@@ -59,16 +59,32 @@ public class SendRequest extends BasicRequest {
         return this.input;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link SendRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link SendRequest} instances using a fluent API.
+     *
+     * <p>Inherits {@code withSessionId} from {@link com.gitb.model.core.BasicRequest.Builder}.
+     */
     public static class Builder extends BasicRequest.Builder<SendRequest, Builder> {
 
         private Builder() {
             super(new SendRequest());
         }
 
+        /**
+         * Adds one or more input content items to be sent.
+         *
+         * @param inputs The content items to add.
+         * @return This builder.
+         */
         public Builder withInput(AnyContent... inputs) {
             for (AnyContent input : inputs) {
                 wrapped.getInput().add(input);
@@ -76,6 +92,12 @@ public class SendRequest extends BasicRequest {
             return this;
         }
 
+        /**
+         * Sets the identifier of the target actor or endpoint to send the content to.
+         *
+         * @param to The recipient identifier to set.
+         * @return This builder.
+         */
         public Builder withTo(String to) {
             wrapped.setTo(to);
             return this;

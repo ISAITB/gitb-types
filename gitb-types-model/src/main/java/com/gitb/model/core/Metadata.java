@@ -135,10 +135,18 @@ public class Metadata {
         this.lastModified = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link Metadata} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link Metadata} instances using a fluent API.
+     */
     public static class Builder {
 
         private final Metadata wrapped;
@@ -147,36 +155,77 @@ public class Metadata {
             this.wrapped = new Metadata();
         }
 
+        /**
+         * Sets the module name.
+         *
+         * @param name The name to set.
+         * @return This builder.
+         */
         public Builder withName(String name) {
             wrapped.setName(name);
             return this;
         }
 
+        /**
+         * Sets the module version.
+         *
+         * @param version The version to set.
+         * @return This builder.
+         */
         public Builder withVersion(String version) {
             wrapped.setVersion(version);
             return this;
         }
 
+        /**
+         * Sets the author(s) of the module.
+         *
+         * @param authors The authors to set.
+         * @return This builder.
+         */
         public Builder withAuthors(String authors) {
             wrapped.setAuthors(authors);
             return this;
         }
 
+        /**
+         * Sets the module description.
+         *
+         * @param description The description to set.
+         * @return This builder.
+         */
         public Builder withDescription(String description) {
             wrapped.setDescription(description);
             return this;
         }
 
+        /**
+         * Sets the publication date of the module.
+         *
+         * @param published The publication date to set.
+         * @return This builder.
+         */
         public Builder withPublished(String published) {
             wrapped.setPublished(published);
             return this;
         }
 
+        /**
+         * Sets the last modification date of the module.
+         *
+         * @param lastModified The last modification date to set.
+         * @return This builder.
+         */
         public Builder withLastModified(String lastModified) {
             wrapped.setLastModified(lastModified);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link Metadata} instance.
+         *
+         * @return The configured instance.
+         */
         public Metadata build() {
             return wrapped;
         }

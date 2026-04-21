@@ -40,10 +40,18 @@ public class BasicRequest {
         this.sessionId = value;
     }
 
+    /**
+     * Creates a new {@link BuilderForBasicRequest} to construct a {@link BasicRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static BuilderForBasicRequest builderForBasicRequest() {
         return new BuilderForBasicRequest();
     }
 
+    /**
+     * Concrete builder for {@link BasicRequest} instances.
+     */
     public static class BuilderForBasicRequest extends Builder<BasicRequest, BuilderForBasicRequest> {
 
         private BuilderForBasicRequest() {
@@ -52,6 +60,12 @@ public class BasicRequest {
 
     }
 
+    /**
+     * Generic builder base providing fluent setter methods for {@link BasicRequest} and its sub-types.
+     *
+     * @param <T> The concrete type being built.
+     * @param <B> The concrete builder type (for method chaining).
+     */
     public static class Builder<T extends BasicRequest, B extends Builder<T, B>> {
 
         protected final T wrapped;
@@ -60,12 +74,23 @@ public class BasicRequest {
             this.wrapped = wrapped;
         }
 
+        /**
+         * Sets the session identifier.
+         *
+         * @param sessionId The session identifier to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withSessionId(String sessionId) {
             wrapped.setSessionId(sessionId);
             return (B) this;
         }
 
+        /**
+         * Builds and returns the configured instance.
+         *
+         * @return The configured instance.
+         */
         public T build() {
             return wrapped;
         }

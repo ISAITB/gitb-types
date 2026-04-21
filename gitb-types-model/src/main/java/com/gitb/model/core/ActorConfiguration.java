@@ -75,10 +75,18 @@ public class ActorConfiguration {
         this.endpoint = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct an {@link ActorConfiguration} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ActorConfiguration} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ActorConfiguration wrapped;
@@ -87,16 +95,34 @@ public class ActorConfiguration {
             this.wrapped = new ActorConfiguration();
         }
 
+        /**
+         * Sets the actor identifier.
+         *
+         * @param actor The actor identifier to set.
+         * @return This builder.
+         */
         public Builder withActor(String actor) {
             wrapped.setActor(actor);
             return this;
         }
 
+        /**
+         * Sets the endpoint identifier.
+         *
+         * @param endpoint The endpoint identifier to set.
+         * @return This builder.
+         */
         public Builder withEndpoint(String endpoint) {
             wrapped.setActor(endpoint);
             return this;
         }
 
+        /**
+         * Adds one or more configuration entries to the actor configuration.
+         *
+         * @param configs The configuration entries to add.
+         * @return This builder.
+         */
         public Builder withConfig(Configuration... configs) {
             for (Configuration config : configs) {
                 wrapped.getConfig().add(config);
@@ -104,6 +130,11 @@ public class ActorConfiguration {
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ActorConfiguration} instance.
+         *
+         * @return The configured instance.
+         */
         public ActorConfiguration build() {
             return wrapped;
         }

@@ -78,16 +78,32 @@ public class ReceiveRequest extends BasicRequest {
         return this.input;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ReceiveRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ReceiveRequest} instances using a fluent API.
+     *
+     * <p>Inherits {@code withSessionId} from {@link com.gitb.model.core.BasicRequest.Builder}.
+     */
     public static class Builder extends BasicRequest.Builder<ReceiveRequest, Builder> {
 
         private Builder() {
             super(new ReceiveRequest());
         }
 
+        /**
+         * Adds one or more input content items to the receive request.
+         *
+         * @param inputs The content items to add.
+         * @return This builder.
+         */
         public Builder withInput(AnyContent... inputs) {
             for (AnyContent input : inputs) {
                 wrapped.getInput().add(input);
@@ -95,11 +111,23 @@ public class ReceiveRequest extends BasicRequest {
             return this;
         }
 
+        /**
+         * Sets the call identifier correlating this receive operation.
+         *
+         * @param callId The call identifier to set.
+         * @return This builder.
+         */
         public Builder withCallId(String callId) {
             wrapped.setCallId(callId);
             return this;
         }
 
+        /**
+         * Sets the identifier of the actor that sent the message.
+         *
+         * @param from The sender identifier to set.
+         * @return This builder.
+         */
         public Builder withFrom(String from) {
             wrapped.setFrom(from);
             return this;

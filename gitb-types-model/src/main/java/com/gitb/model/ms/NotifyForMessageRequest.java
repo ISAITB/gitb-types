@@ -100,31 +100,65 @@ public class NotifyForMessageRequest extends BasicRequest {
         this.report = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link NotifyForMessageRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link NotifyForMessageRequest} instances using a fluent API.
+     *
+     * <p>Inherits {@code withSessionId} from {@link com.gitb.model.core.BasicRequest.Builder}.
+     */
     public static class Builder extends BasicRequest.Builder<NotifyForMessageRequest, Builder> {
 
         private Builder() {
             super(new NotifyForMessageRequest());
         }
 
+        /**
+         * Sets the call identifier correlating this notification to the original receive call.
+         *
+         * @param callId The call identifier to set.
+         * @return This builder.
+         */
         public Builder withCallId(String callId) {
             wrapped.setCallId(callId);
             return this;
         }
 
+        /**
+         * Sets the identifier of the actor that sent the message.
+         *
+         * @param from The sender identifier to set.
+         * @return This builder.
+         */
         public Builder withFrom(String from) {
             wrapped.setFrom(from);
             return this;
         }
 
+        /**
+         * Sets the identifier of the actor to which the message was addressed.
+         *
+         * @param to The recipient identifier to set.
+         * @return This builder.
+         */
         public Builder withTo(String to) {
             wrapped.setTo(to);
             return this;
         }
 
+        /**
+         * Sets the test assertion report produced for the received message.
+         *
+         * @param report The report to set.
+         * @return This builder.
+         */
         public Builder withReport(TAR report) {
             wrapped.setReport(report);
             return this;

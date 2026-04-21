@@ -189,10 +189,18 @@ public class AnyContent {
         this.forDisplay = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct an {@link AnyContent} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link AnyContent} instances using a fluent API.
+     */
     public static class Builder {
 
         private final AnyContent wrapped;
@@ -201,46 +209,100 @@ public class AnyContent {
             this.wrapped = new AnyContent();
         }
 
+        /**
+         * Sets the string, binary or URI value.
+         *
+         * @param value The value to set.
+         * @return This builder.
+         */
         public Builder withValue(String value) {
             wrapped.setValue(value);
             return this;
         }
 
+        /**
+         * Sets the content type.
+         *
+         * @param type The type to set.
+         * @return This builder.
+         */
         public Builder withType(String type) {
             wrapped.setType(type);
             return this;
         }
 
+        /**
+         * Sets the name used to identify this content item.
+         *
+         * @param name The name to set.
+         * @return This builder.
+         */
         public Builder withName(String name) {
             wrapped.setName(name);
             return this;
         }
 
+        /**
+         * Sets the character encoding of the content.
+         *
+         * @param encoding The encoding to set.
+         * @return This builder.
+         */
         public Builder withEncoding(String encoding) {
             wrapped.setEncoding(encoding);
             return this;
         }
 
+        /**
+         * Sets the MIME type of the content.
+         *
+         * @param mimeType The MIME type to set.
+         * @return This builder.
+         */
         public Builder withMimeType(String mimeType) {
             wrapped.setMimeType(mimeType);
             return this;
         }
 
+        /**
+         * Sets whether this item should be added to the test session context.
+         *
+         * @param forContext {@code true} to add to context.
+         * @return This builder.
+         */
         public Builder withForContext(Boolean forContext) {
             wrapped.setForContext(forContext);
             return this;
         }
 
+        /**
+         * Sets whether this item should be included in the display output.
+         *
+         * @param forDisplay {@code true} to include in display output.
+         * @return This builder.
+         */
         public Builder withForDisplay(Boolean forDisplay) {
             wrapped.setForDisplay(forDisplay);
             return this;
         }
 
+        /**
+         * Sets the embedding method used to carry the value.
+         *
+         * @param embeddingMethod The embedding method to set.
+         * @return This builder.
+         */
         public Builder withEmbeddingMethod(ValueEmbeddingEnumeration embeddingMethod) {
             wrapped.setEmbeddingMethod(embeddingMethod);
             return this;
         }
 
+        /**
+         * Adds one or more nested content items.
+         *
+         * @param items The items to add.
+         * @return This builder.
+         */
         public Builder withItem(AnyContent... items) {
             for (AnyContent item : items) {
                 wrapped.getItem().add(item);
@@ -248,6 +310,11 @@ public class AnyContent {
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link AnyContent} instance.
+         *
+         * @return The configured instance.
+         */
         public AnyContent build() {
             return wrapped;
         }
