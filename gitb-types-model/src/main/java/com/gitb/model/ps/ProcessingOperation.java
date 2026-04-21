@@ -88,10 +88,18 @@ public class ProcessingOperation {
         this.name = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ProcessingOperation} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ProcessingOperation} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ProcessingOperation wrapped;
@@ -100,6 +108,12 @@ public class ProcessingOperation {
             this.wrapped = new ProcessingOperation();
         }
 
+        /**
+         * Adds one or more typed input parameter definitions to the operation.
+         *
+         * @param inputs The input parameters to add.
+         * @return This builder.
+         */
         public Builder withInput(TypedParameter... inputs) {
             for (TypedParameter input : inputs) {
                 wrapped.getInputs().add(input);
@@ -107,6 +121,12 @@ public class ProcessingOperation {
             return this;
         }
 
+        /**
+         * Adds one or more typed output parameter definitions to the operation.
+         *
+         * @param outputs The output parameters to add.
+         * @return This builder.
+         */
         public Builder withOutput(TypedParameter... outputs) {
             for (TypedParameter output : outputs) {
                 wrapped.getOutputs().add(output);
@@ -114,11 +134,22 @@ public class ProcessingOperation {
             return this;
         }
 
+        /**
+         * Sets the name of the processing operation.
+         *
+         * @param name The name to set.
+         * @return This builder.
+         */
         public Builder withName(String name) {
             wrapped.setName(name);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ProcessingOperation} instance.
+         *
+         * @return The configured instance.
+         */
         public ProcessingOperation build() {
             return wrapped;
         }

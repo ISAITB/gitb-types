@@ -115,16 +115,33 @@ public class TAR extends TestStepReportType {
         return this.items;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link TAR} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link TAR} instances using a fluent API.
+     *
+     * <p>Inherits {@code withDate}, {@code withResult} and {@code withId} from
+     * {@link TestStepReportType.Builder}.
+     */
     public static class Builder extends TestStepReportType.Builder<TAR, Builder> {
 
         public Builder() {
             super(new TAR());
         }
 
+        /**
+         * Adds one or more report items to the TAR.
+         *
+         * @param items The report items to add.
+         * @return This builder.
+         */
         public Builder withItem(ReportItem... items) {
             for (ReportItem item : items) {
                 wrapped.getItems().add(item);
@@ -132,26 +149,55 @@ public class TAR extends TestStepReportType {
             return this;
         }
 
+        /**
+         * Sets the validation overview information for the report.
+         *
+         * @param overview The overview to set.
+         * @return This builder.
+         */
         public Builder withOverview(ValidationOverview overview) {
             wrapped.setOverview(overview);
             return this;
         }
 
+        /**
+         * Sets the validation counters (errors, warnings, assertions) for the report.
+         *
+         * @param counters The counters to set.
+         * @return This builder.
+         */
         public Builder withOverview(ValidationCounters counters) {
             wrapped.setCounters(counters);
             return this;
         }
 
+        /**
+         * Sets the name of the report.
+         *
+         * @param name The name to set.
+         * @return This builder.
+         */
         public Builder withName(String name) {
             wrapped.setName(name);
             return this;
         }
 
+        /**
+         * Sets the context content associated with the report.
+         *
+         * @param context The context content to set.
+         * @return This builder.
+         */
         public Builder withContext(AnyContent context) {
             wrapped.setContext(context);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link TAR} instance.
+         *
+         * @return The configured instance.
+         */
         public TAR build() {
             return wrapped;
         }

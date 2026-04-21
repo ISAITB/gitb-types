@@ -138,10 +138,18 @@ public class ProcessingModule {
         this.serviceLocation = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ProcessingModule} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ProcessingModule} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ProcessingModule wrapped;
@@ -150,11 +158,23 @@ public class ProcessingModule {
             this.wrapped = new ProcessingModule();
         }
 
+        /**
+         * Sets the module metadata.
+         *
+         * @param metadata The metadata to set.
+         * @return This builder.
+         */
         public Builder withModule(Metadata metadata) {
             wrapped.setMetadata(metadata);
             return this;
         }
 
+        /**
+         * Adds one or more module-level configuration parameter definitions.
+         *
+         * @param configs The configuration parameters to add.
+         * @return This builder.
+         */
         public Builder withConfig(Parameter... configs) {
             for (Parameter config : configs) {
                 wrapped.getConfigs().add(config);
@@ -162,6 +182,12 @@ public class ProcessingModule {
             return this;
         }
 
+        /**
+         * Adds one or more processing operation definitions to the module.
+         *
+         * @param operations The operations to add.
+         * @return This builder.
+         */
         public Builder withOperation(ProcessingOperation... operations) {
             for (ProcessingOperation operation : operations) {
                 wrapped.getOperation().add(operation);
@@ -169,21 +195,44 @@ public class ProcessingModule {
             return this;
         }
 
+        /**
+         * Sets the module identifier.
+         *
+         * @param id The identifier to set.
+         * @return This builder.
+         */
         public Builder withId(String id) {
             wrapped.setId(id);
             return this;
         }
 
+        /**
+         * Sets the URI that identifies the module.
+         *
+         * @param uri The URI to set.
+         * @return This builder.
+         */
         public Builder withUri(String uri) {
             wrapped.setUri(uri);
             return this;
         }
 
+        /**
+         * Sets the endpoint location of the service implementation.
+         *
+         * @param serviceLocation The service location to set.
+         * @return This builder.
+         */
         public Builder withServiceLocation(String serviceLocation) {
             wrapped.setServiceLocation(serviceLocation);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ProcessingModule} instance.
+         *
+         * @return The configured instance.
+         */
         public ProcessingModule build() {
             return wrapped;
         }

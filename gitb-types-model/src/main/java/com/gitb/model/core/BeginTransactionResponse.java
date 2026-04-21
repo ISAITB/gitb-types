@@ -40,10 +40,18 @@ public class BeginTransactionResponse {
         this.sessionId = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link BeginTransactionResponse} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link BeginTransactionResponse} instances using a fluent API.
+     */
     public static class Builder {
 
         private final BeginTransactionResponse wrapped;
@@ -52,11 +60,22 @@ public class BeginTransactionResponse {
             this.wrapped = new BeginTransactionResponse();
         }
 
+        /**
+         * Sets the session identifier assigned to the new transaction.
+         *
+         * @param sessionId The session identifier to set.
+         * @return This builder.
+         */
         public Builder withSessionId(String sessionId) {
             wrapped.setSessionId(sessionId);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link BeginTransactionResponse} instance.
+         *
+         * @return The configured instance.
+         */
         public BeginTransactionResponse build() {
             return wrapped;
         }

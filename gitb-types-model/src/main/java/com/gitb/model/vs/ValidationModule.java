@@ -68,16 +68,32 @@ public class ValidationModule extends TestModule {
         this.operation = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ValidationModule} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ValidationModule} instances using a fluent API.
+     *
+     * <p>Inherits common module setter methods from {@link com.gitb.model.core.TestModule.Builder}.
+     */
     public static class Builder extends TestModule.Builder<ValidationModule, Builder> {
 
         private Builder() {
             super(new ValidationModule());
         }
 
+        /**
+         * Adds one or more module-level configuration parameter definitions.
+         *
+         * @param configs The configuration parameters to add.
+         * @return This builder.
+         */
         public Builder withConfig(Parameter... configs) {
             for (Parameter config : configs) {
                 wrapped.getConfigs().add(config);
@@ -85,6 +101,12 @@ public class ValidationModule extends TestModule {
             return this;
         }
 
+        /**
+         * Sets the operation name supported by this validation module.
+         *
+         * @param operation The operation name to set.
+         * @return This builder.
+         */
         public Builder withOperation(String operation) {
             wrapped.setOperation(operation);
             return this;

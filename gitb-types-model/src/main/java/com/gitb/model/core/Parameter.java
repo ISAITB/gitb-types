@@ -135,10 +135,18 @@ public class Parameter {
         this.desc = value;
     }
 
+    /**
+     * Creates a new {@link BuilderForParameter} to construct a {@link Parameter} instance.
+     *
+     * @return A new builder instance.
+     */
     public static BuilderForParameter builderForParameter() {
         return new BuilderForParameter();
     }
 
+    /**
+     * Concrete builder for {@link Parameter} instances.
+     */
     public static class BuilderForParameter extends Builder<Parameter, BuilderForParameter> {
 
         private BuilderForParameter() {
@@ -147,6 +155,12 @@ public class Parameter {
 
     }
 
+    /**
+     * Generic builder base providing fluent setter methods for {@link Parameter} and its sub-types.
+     *
+     * @param <T> The concrete type being built.
+     * @param <B> The concrete builder type (for method chaining).
+     */
     public static class Builder<T extends Parameter, B extends Builder<T, B>> {
 
         protected final T wrapped;
@@ -155,42 +169,83 @@ public class Parameter {
             this.wrapped = wrapped;
         }
 
+        /**
+         * Sets the parameter value.
+         *
+         * @param value The value to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withValue(String value) {
             wrapped.setValue(value);
             return (B) this;
         }
 
+        /**
+         * Sets the parameter name.
+         *
+         * @param name The name to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withName(String name) {
             wrapped.setName(name);
             return (B) this;
         }
 
+        /**
+         * Sets the human-readable label for the parameter.
+         *
+         * @param label The label to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withLabel(String label) {
             wrapped.setLabel(label);
             return (B) this;
         }
 
+        /**
+         * Sets the usage requirement (required or optional) for the parameter.
+         *
+         * @param use The usage enumeration value to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withUse(UsageEnumeration use) {
             wrapped.setUse(use);
             return (B) this;
         }
 
+        /**
+         * Sets the configuration type (simple, binary or secret) for the parameter.
+         *
+         * @param kind The configuration type to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withKind(ConfigurationType kind) {
             wrapped.setKind(kind);
             return (B) this;
         }
 
+        /**
+         * Sets the description for the parameter.
+         *
+         * @param desc The description to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withDesc(String desc) {
             wrapped.setDesc(desc);
             return (B) this;
         }
 
+        /**
+         * Builds and returns the configured instance.
+         *
+         * @return The configured instance.
+         */
         public T build() {
             return wrapped;
         }

@@ -59,16 +59,32 @@ public class ProcessRequest extends BasicRequest {
         return this.input;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ProcessRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ProcessRequest} instances using a fluent API.
+     *
+     * <p>Inherits {@code withSessionId} from {@link com.gitb.model.core.BasicRequest.Builder}.
+     */
     public static class Builder extends BasicRequest.Builder<ProcessRequest, Builder> {
 
         private Builder() {
             super(new ProcessRequest());
         }
 
+        /**
+         * Adds one or more input content items to the processing request.
+         *
+         * @param inputs The content items to add.
+         * @return This builder.
+         */
         public Builder withInput(AnyContent... inputs) {
             for (AnyContent input : inputs) {
                 wrapped.getInput().add(input);
@@ -76,6 +92,12 @@ public class ProcessRequest extends BasicRequest {
             return this;
         }
 
+        /**
+         * Sets the name of the processing operation to invoke.
+         *
+         * @param operation The operation name to set.
+         * @return This builder.
+         */
         public Builder withOperation(String operation) {
             wrapped.setOperation(operation);
             return this;

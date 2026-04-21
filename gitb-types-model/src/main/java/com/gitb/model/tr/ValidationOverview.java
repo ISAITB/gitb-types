@@ -135,10 +135,18 @@ public class ValidationOverview {
         this.note = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ValidationOverview} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ValidationOverview} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ValidationOverview wrapped;
@@ -147,36 +155,77 @@ public class ValidationOverview {
             this.wrapped = new ValidationOverview();
         }
 
+        /**
+         * Sets the profile identifier used for this validation execution.
+         *
+         * @param profileID The profile identifier to set.
+         * @return This builder.
+         */
         public Builder withProfileID(String profileID) {
             wrapped.setProfileID(profileID);
             return this;
         }
 
+        /**
+         * Sets the customization identifier applied to this validation execution.
+         *
+         * @param customizationID The customization identifier to set.
+         * @return This builder.
+         */
         public Builder withCustomizationID(String customizationID) {
             wrapped.setCustomizationID(customizationID);
             return this;
         }
 
+        /**
+         * Sets the transaction identifier for this validation execution.
+         *
+         * @param transactionID The transaction identifier to set.
+         * @return This builder.
+         */
         public Builder withTransactionID(String transactionID) {
             wrapped.setTransactionID(transactionID);
             return this;
         }
 
+        /**
+         * Sets the name of the validation service that produced the report.
+         *
+         * @param validationServiceName The service name to set.
+         * @return This builder.
+         */
         public Builder withValidationServiceName(String validationServiceName) {
             wrapped.setValidationServiceName(validationServiceName);
             return this;
         }
 
+        /**
+         * Sets the version of the validation service that produced the report.
+         *
+         * @param validationServiceVersion The service version to set.
+         * @return This builder.
+         */
         public Builder withValidationServiceVersion(String validationServiceVersion) {
             wrapped.setValidationServiceVersion(validationServiceVersion);
             return this;
         }
 
+        /**
+         * Sets an optional free-text note to accompany the overview.
+         *
+         * @param note The note to set.
+         * @return This builder.
+         */
         public Builder withNote(String note) {
             wrapped.setNote(note);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ValidationOverview} instance.
+         *
+         * @return The configured instance.
+         */
         public ValidationOverview build() {
             return wrapped;
         }

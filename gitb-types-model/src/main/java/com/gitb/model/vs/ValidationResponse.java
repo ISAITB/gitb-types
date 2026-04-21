@@ -42,10 +42,18 @@ public class ValidationResponse {
         this.report = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ValidationResponse} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ValidationResponse} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ValidationResponse wrapped;
@@ -54,11 +62,22 @@ public class ValidationResponse {
             this.wrapped = new ValidationResponse();
         }
 
+        /**
+         * Sets the test assertion report produced by the validation operation.
+         *
+         * @param report The report to set.
+         * @return This builder.
+         */
         public Builder withReport(TAR report) {
             wrapped.setReport(report);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ValidationResponse} instance.
+         *
+         * @return The configured instance.
+         */
         public ValidationResponse build() {
             return wrapped;
         }

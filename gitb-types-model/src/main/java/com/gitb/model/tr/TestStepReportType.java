@@ -80,6 +80,12 @@ public abstract class TestStepReportType {
         this.id = value;
     }
 
+    /**
+     * Generic builder base providing fluent setter methods for {@link TestStepReportType} and its sub-types.
+     *
+     * @param <T> The concrete report type being built.
+     * @param <B> The concrete builder type (for method chaining).
+     */
     public static class Builder<T extends TestStepReportType, B extends Builder<T, B>> {
 
         protected final T wrapped;
@@ -88,24 +94,47 @@ public abstract class TestStepReportType {
             this.wrapped = wrapped;
         }
 
+        /**
+         * Sets the date and time at which the step was executed.
+         *
+         * @param date The date/time to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withDate(ZonedDateTime date) {
             wrapped.setDate(date);
             return (B) this;
         }
 
+        /**
+         * Sets the overall result of the step.
+         *
+         * @param result The result to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withResult(TestResultType result) {
             wrapped.setResult(result);
             return (B) this;
         }
 
+        /**
+         * Sets the report identifier.
+         *
+         * @param id The identifier to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withId(String id) {
             wrapped.setId(id);
             return (B) this;
         }
 
+        /**
+         * Builds and returns the configured instance.
+         *
+         * @return The configured instance.
+         */
         public T build() {
             return wrapped;
         }

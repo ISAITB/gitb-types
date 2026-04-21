@@ -154,10 +154,18 @@ public class ReportItem {
         this.level = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ReportItem} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ReportItem} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ReportItem wrapped;
@@ -166,41 +174,88 @@ public class ReportItem {
             this.wrapped = new ReportItem();
         }
 
+        /**
+         * Sets the assertion identifier.
+         *
+         * @param assertionID The assertion identifier to set.
+         * @return This builder.
+         */
         public Builder withAssertionID(String assertionID) {
             wrapped.setAssertionID(assertionID);
             return this;
         }
 
+        /**
+         * Sets the human-readable description of the report item.
+         *
+         * @param description The description to set.
+         * @return This builder.
+         */
         public Builder withDescription(String description) {
             wrapped.setDescription(description);
             return this;
         }
 
+        /**
+         * Sets the location reference within the validated content that triggered this item.
+         *
+         * @param location The location reference to set.
+         * @return This builder.
+         */
         public Builder withLocation(String location) {
             wrapped.setLocation(location);
             return this;
         }
 
+        /**
+         * Sets the test expression or rule that was evaluated.
+         *
+         * @param test The test expression to set.
+         * @return This builder.
+         */
         public Builder withTest(String test) {
             wrapped.setTest(test);
             return this;
         }
 
+        /**
+         * Sets the type classification of the report item.
+         *
+         * @param type The type to set.
+         * @return This builder.
+         */
         public Builder withType(String type) {
             wrapped.setType(type);
             return this;
         }
 
+        /**
+         * Sets the value associated with the report item.
+         *
+         * @param value The value to set.
+         * @return This builder.
+         */
         public Builder withValue(String value) {
             wrapped.setValue(value);
             return this;
         }
 
+        /**
+         * Sets the severity level of the report item.
+         *
+         * @param level The severity level to set.
+         * @return This builder.
+         */
         public Builder withLevel(SeverityLevel level) {
             wrapped.setLevel(level);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ReportItem} instance.
+         *
+         * @return The configured instance.
+         */
         public ReportItem build() {
             return wrapped;
         }

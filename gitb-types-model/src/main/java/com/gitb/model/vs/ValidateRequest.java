@@ -73,10 +73,18 @@ public class ValidateRequest {
         return this.input;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link ValidateRequest} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link ValidateRequest} instances using a fluent API.
+     */
     public static class Builder {
 
         private final ValidateRequest wrapped;
@@ -85,6 +93,12 @@ public class ValidateRequest {
             this.wrapped = new ValidateRequest();
         }
 
+        /**
+         * Adds one or more input content items to validate.
+         *
+         * @param inputs The content items to add.
+         * @return This builder.
+         */
         public Builder withInput(AnyContent... inputs) {
             for (AnyContent input : inputs) {
                 wrapped.getInput().add(input);
@@ -92,6 +106,12 @@ public class ValidateRequest {
             return this;
         }
 
+        /**
+         * Adds one or more configuration entries to the validation request.
+         *
+         * @param configs The configuration entries to add.
+         * @return This builder.
+         */
         public Builder withConfig(Configuration... configs) {
             for (Configuration config : configs) {
                 wrapped.getConfig().add(config);
@@ -99,11 +119,22 @@ public class ValidateRequest {
             return this;
         }
 
+        /**
+         * Sets the session identifier for this validation request.
+         *
+         * @param sessionId The session identifier to set.
+         * @return This builder.
+         */
         public Builder withSessionId(String sessionId) {
             wrapped.setSessionId(sessionId);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link ValidateRequest} instance.
+         *
+         * @return The configured instance.
+         */
         public ValidateRequest build() {
             return wrapped;
         }

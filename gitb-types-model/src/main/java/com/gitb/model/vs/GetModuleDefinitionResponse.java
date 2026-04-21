@@ -40,10 +40,18 @@ public class GetModuleDefinitionResponse {
         this.module = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link GetModuleDefinitionResponse} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link GetModuleDefinitionResponse} instances using a fluent API.
+     */
     public static class Builder {
 
         private final GetModuleDefinitionResponse wrapped;
@@ -52,11 +60,22 @@ public class GetModuleDefinitionResponse {
             this.wrapped = new GetModuleDefinitionResponse();
         }
 
+        /**
+         * Sets the validation module definition to include in the response.
+         *
+         * @param module The module definition to set.
+         * @return This builder.
+         */
         public Builder withReport(ValidationModule module) {
             wrapped.setModule(module);
             return this;
         }
 
+        /**
+         * Builds and returns the configured {@link GetModuleDefinitionResponse} instance.
+         *
+         * @return The configured instance.
+         */
         public GetModuleDefinitionResponse build() {
             return wrapped;
         }

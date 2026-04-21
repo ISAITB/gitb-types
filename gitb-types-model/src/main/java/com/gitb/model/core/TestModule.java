@@ -144,10 +144,18 @@ public class TestModule {
         this.serviceLocation = value;
     }
 
+    /**
+     * Creates a new {@link BuilderForTestModule} to construct a {@link TestModule} instance.
+     *
+     * @return A new builder instance.
+     */
     public static BuilderForTestModule builderForTestModule() {
         return new BuilderForTestModule();
     }
 
+    /**
+     * Concrete builder for {@link TestModule} instances.
+     */
     public static class BuilderForTestModule extends Builder<TestModule, BuilderForTestModule> {
 
         private BuilderForTestModule() {
@@ -156,6 +164,12 @@ public class TestModule {
 
     }
 
+    /**
+     * Generic builder base providing fluent setter methods for {@link TestModule} and its sub-types.
+     *
+     * @param <T> The concrete type being built.
+     * @param <B> The concrete builder type (for method chaining).
+     */
     public static class Builder<T extends TestModule, B extends Builder<T, B>> {
 
         protected final T wrapped;
@@ -164,6 +178,12 @@ public class TestModule {
             this.wrapped = wrapped;
         }
 
+        /**
+         * Adds one or more typed input parameter definitions.
+         *
+         * @param inputs The input parameters to add.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withInput(TypedParameter... inputs) {
             for (TypedParameter input : inputs) {
@@ -172,6 +192,12 @@ public class TestModule {
             return (B) this;
         }
 
+        /**
+         * Adds one or more typed output parameter definitions.
+         *
+         * @param outputs The output parameters to add.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withOutput(TypedParameter... outputs) {
             for (TypedParameter output : outputs) {
@@ -180,30 +206,59 @@ public class TestModule {
             return (B) this;
         }
 
+        /**
+         * Sets the module metadata.
+         *
+         * @param metadata The metadata to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withMetadata(Metadata metadata) {
             wrapped.setMetadata(metadata);
             return (B) this;
         }
 
+        /**
+         * Sets the module identifier.
+         *
+         * @param id The identifier to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withId(String id) {
             wrapped.setId(id);
             return (B) this;
         }
 
+        /**
+         * Sets the URI that identifies the module.
+         *
+         * @param uri The URI to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withUri(String uri) {
             wrapped.setUri(uri);
             return (B) this;
         }
 
+        /**
+         * Sets the endpoint location of the service implementation.
+         *
+         * @param serviceLocation The service location to set.
+         * @return This builder.
+         */
         @SuppressWarnings("unchecked")
         public B withServiceLocation(String serviceLocation) {
             wrapped.setServiceLocation(serviceLocation);
             return (B) this;
         }
 
+        /**
+         * Builds and returns the configured instance.
+         *
+         * @return The configured instance.
+         */
         public T build() {
             return wrapped;
         }

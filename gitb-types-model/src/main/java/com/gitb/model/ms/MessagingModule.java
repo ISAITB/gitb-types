@@ -137,16 +137,32 @@ public class MessagingModule extends TestModule {
         this.sendConfigs = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link MessagingModule} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link MessagingModule} instances using a fluent API.
+     *
+     * <p>Inherits common module setter methods from {@link com.gitb.model.core.TestModule.Builder}.
+     */
     public static class Builder extends TestModule.Builder<MessagingModule, Builder> {
 
         private Builder() {
             super(new MessagingModule());
         }
 
+        /**
+         * Adds one or more actor-level configuration parameter definitions.
+         *
+         * @param configs The actor configuration parameters to add.
+         * @return This builder.
+         */
         public Builder withActorConfig(Parameter... configs) {
             for (Parameter config : configs) {
                 wrapped.getActorConfigs().add(config);
@@ -154,6 +170,12 @@ public class MessagingModule extends TestModule {
             return this;
         }
 
+        /**
+         * Adds one or more transaction-level configuration parameter definitions.
+         *
+         * @param configs The transaction configuration parameters to add.
+         * @return This builder.
+         */
         public Builder withTransactionConfigs(Parameter... configs) {
             for (Parameter config : configs) {
                 wrapped.getTransactionConfigs().add(config);
@@ -161,6 +183,12 @@ public class MessagingModule extends TestModule {
             return this;
         }
 
+        /**
+         * Adds one or more listen-phase configuration parameter definitions.
+         *
+         * @param configs The listen configuration parameters to add.
+         * @return This builder.
+         */
         public Builder withListenConfigs(Parameter... configs) {
             for (Parameter config : configs) {
                 wrapped.getListenConfigs().add(config);
@@ -168,6 +196,12 @@ public class MessagingModule extends TestModule {
             return this;
         }
 
+        /**
+         * Adds one or more receive-phase configuration parameter definitions.
+         *
+         * @param configs The receive configuration parameters to add.
+         * @return This builder.
+         */
         public Builder withReceiveConfigs(Parameter... configs) {
             for (Parameter config : configs) {
                 wrapped.getReceiveConfigs().add(config);
@@ -175,6 +209,12 @@ public class MessagingModule extends TestModule {
             return this;
         }
 
+        /**
+         * Adds one or more send-phase configuration parameter definitions.
+         *
+         * @param configs The send configuration parameters to add.
+         * @return This builder.
+         */
         public Builder withSendConfigs(Parameter... configs) {
             for (Parameter config : configs) {
                 wrapped.getSendConfigs().add(config);

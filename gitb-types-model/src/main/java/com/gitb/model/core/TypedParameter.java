@@ -59,21 +59,41 @@ public class TypedParameter extends Parameter {
         this.encoding = value;
     }
 
+    /**
+     * Creates a new {@link Builder} to construct a {@link TypedParameter} instance.
+     *
+     * @return A new builder instance.
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for constructing {@link TypedParameter} instances using a fluent API.
+     */
     public static class Builder extends Parameter.Builder<TypedParameter, Builder> {
 
         private Builder() {
             super(new TypedParameter());
         }
 
+        /**
+         * Sets the value type of the parameter.
+         *
+         * @param type The type to set.
+         * @return This builder.
+         */
         public Builder withType(String type) {
             wrapped.setType(type);
             return this;
         }
 
+        /**
+         * Sets the character encoding for the parameter value.
+         *
+         * @param encoding The encoding to set.
+         * @return This builder.
+         */
         public Builder withEncoding(String encoding) {
             wrapped.setEncoding(encoding);
             return this;
