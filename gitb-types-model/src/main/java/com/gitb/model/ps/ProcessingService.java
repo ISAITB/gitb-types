@@ -16,8 +16,6 @@
 package com.gitb.model.ps;
 
 import com.gitb.model.core.BasicRequest;
-import com.gitb.model.core.BeginTransactionRequest;
-import com.gitb.model.core.BeginTransactionResponse;
 
 /**
  * Operations exposed by a processing service.

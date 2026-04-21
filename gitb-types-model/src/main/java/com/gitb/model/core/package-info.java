@@ -21,9 +21,7 @@
  *   <li>Generic content wrappers ({@link com.gitb.model.core.AnyContent}).</li>
  *   <li>Configuration and parameter definitions ({@link com.gitb.model.core.Configuration},
  *       {@link com.gitb.model.core.Parameter}, {@link com.gitb.model.core.TypedParameter}).</li>
- *   <li>Common request/response base types ({@link com.gitb.model.core.BasicRequest},
- *       {@link com.gitb.model.core.BeginTransactionRequest},
- *       {@link com.gitb.model.core.BeginTransactionResponse}).</li>
+ *   <li>Common request/response base types ({@link com.gitb.model.core.BasicRequest}.</li>
  *   <li>Module metadata ({@link com.gitb.model.core.Metadata},
  *       {@link com.gitb.model.core.TestModule}).</li>
  *   <li>Supporting enumerations ({@link com.gitb.model.core.ConfigurationType},

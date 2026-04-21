@@ -95,8 +95,10 @@ public class ValidationModule extends TestModule {
          * @return This builder.
          */
         public Builder withConfig(Parameter... configs) {
-            for (Parameter config : configs) {
-                wrapped.getConfigs().add(config);
+            if (configs != null) {
+                for (Parameter config : configs) {
+                    wrapped.getConfigs().add(config);
+                }
             }
             return this;
         }

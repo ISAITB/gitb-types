@@ -115,8 +115,10 @@ public class ProcessingOperation {
          * @return This builder.
          */
         public Builder withInput(TypedParameter... inputs) {
-            for (TypedParameter input : inputs) {
-                wrapped.getInputs().add(input);
+            if (inputs != null) {
+                for (TypedParameter input : inputs) {
+                    wrapped.getInputs().add(input);
+                }
             }
             return this;
         }
@@ -128,8 +130,10 @@ public class ProcessingOperation {
          * @return This builder.
          */
         public Builder withOutput(TypedParameter... outputs) {
-            for (TypedParameter output : outputs) {
-                wrapped.getOutputs().add(output);
+            if (outputs != null) {
+                for (TypedParameter output : outputs) {
+                    wrapped.getOutputs().add(output);
+                }
             }
             return this;
         }

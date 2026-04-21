@@ -186,8 +186,10 @@ public class TestModule {
          */
         @SuppressWarnings("unchecked")
         public B withInput(TypedParameter... inputs) {
-            for (TypedParameter input : inputs) {
-                wrapped.getInputs().add(input);
+            if (inputs != null) {
+                for (TypedParameter input : inputs) {
+                    wrapped.getInputs().add(input);
+                }
             }
             return (B) this;
         }
@@ -200,8 +202,10 @@ public class TestModule {
          */
         @SuppressWarnings("unchecked")
         public B withOutput(TypedParameter... outputs) {
-            for (TypedParameter output : outputs) {
-                wrapped.getOutputs().add(output);
+            if (outputs != null) {
+                for (TypedParameter output : outputs) {
+                    wrapped.getOutputs().add(output);
+                }
             }
             return (B) this;
         }

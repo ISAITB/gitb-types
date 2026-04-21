@@ -164,7 +164,7 @@ public class ProcessingModule {
          * @param metadata The metadata to set.
          * @return This builder.
          */
-        public Builder withModule(Metadata metadata) {
+        public Builder withMetadata(Metadata metadata) {
             wrapped.setMetadata(metadata);
             return this;
         }
@@ -176,8 +176,10 @@ public class ProcessingModule {
          * @return This builder.
          */
         public Builder withConfig(Parameter... configs) {
-            for (Parameter config : configs) {
-                wrapped.getConfigs().add(config);
+            if (configs != null) {
+                for (Parameter config : configs) {
+                    wrapped.getConfigs().add(config);
+                }
             }
             return this;
         }
@@ -189,8 +191,10 @@ public class ProcessingModule {
          * @return This builder.
          */
         public Builder withOperation(ProcessingOperation... operations) {
-            for (ProcessingOperation operation : operations) {
-                wrapped.getOperation().add(operation);
+            if (operations != null) {
+                for (ProcessingOperation operation : operations) {
+                    wrapped.getOperation().add(operation);
+                }
             }
             return this;
         }

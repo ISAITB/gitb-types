@@ -124,8 +124,10 @@ public class ActorConfiguration {
          * @return This builder.
          */
         public Builder withConfig(Configuration... configs) {
-            for (Configuration config : configs) {
-                wrapped.getConfig().add(config);
+            if (configs != null) {
+                for (Configuration config : configs) {
+                    wrapped.getConfig().add(config);
+                }
             }
             return this;
         }

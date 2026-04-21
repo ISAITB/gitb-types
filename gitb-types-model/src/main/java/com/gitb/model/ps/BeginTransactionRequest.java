@@ -13,7 +13,9 @@
  * the specific language governing permissions and limitations under the Licence.
  */
 
-package com.gitb.model.core;
+package com.gitb.model.ps;
+
+import com.gitb.model.core.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,8 +66,10 @@ public class BeginTransactionRequest {
          * @return This builder.
          */
         public Builder withConfig(Configuration... configs) {
-            for (Configuration config : configs) {
-                wrapped.getConfig().add(config);
+            if (configs != null) {
+                for (Configuration config : configs) {
+                    wrapped.getConfig().add(config);
+                }
             }
             return this;
         }

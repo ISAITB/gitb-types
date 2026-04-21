@@ -66,8 +66,10 @@ public class InitiateRequest {
          * @return This builder.
          */
         public Builder withActorConfiguration(ActorConfiguration... configs) {
-            for (ActorConfiguration config : configs) {
-                wrapped.getActorConfiguration().add(config);
+            if (configs != null) {
+                for (ActorConfiguration config : configs) {
+                    wrapped.getActorConfiguration().add(config);
+                }
             }
             return this;
         }

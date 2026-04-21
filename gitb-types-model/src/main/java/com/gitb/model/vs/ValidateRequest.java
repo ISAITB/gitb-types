@@ -100,8 +100,10 @@ public class ValidateRequest {
          * @return This builder.
          */
         public Builder withInput(AnyContent... inputs) {
-            for (AnyContent input : inputs) {
-                wrapped.getInput().add(input);
+            if (inputs != null) {
+                for (AnyContent input : inputs) {
+                    wrapped.getInput().add(input);
+                }
             }
             return this;
         }
@@ -113,8 +115,10 @@ public class ValidateRequest {
          * @return This builder.
          */
         public Builder withConfig(Configuration... configs) {
-            for (Configuration config : configs) {
-                wrapped.getConfig().add(config);
+            if (configs != null) {
+                for (Configuration config : configs) {
+                    wrapped.getConfig().add(config);
+                }
             }
             return this;
         }

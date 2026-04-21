@@ -22,7 +22,7 @@
  *   <li>Session lifecycle: {@link com.gitb.model.ms.InitiateRequest},
  *       {@link com.gitb.model.ms.InitiateResponse}, {@link com.gitb.model.ms.FinalizeRequest}.</li>
  *   <li>Message exchange: {@link com.gitb.model.ms.SendRequest},
- *       {@link com.gitb.model.ms.SendResponse}, {@link com.gitb.model.ms.ReceiveRequest}.</li>
+ *       {@link com.gitb.model.ms.SendResponse}, {@link com.gitb.model.ms.ReceiveRequest}, {@link com.gitb.model.ms.BeginTransactionRequest}.</li>
  *   <li>Module definition: {@link com.gitb.model.ms.MessagingModule},
  *       {@link com.gitb.model.ms.GetModuleDefinitionResponse}.</li>
  *   <li>Client callbacks: {@link com.gitb.model.ms.MessagingClient},

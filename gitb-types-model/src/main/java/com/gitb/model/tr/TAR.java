@@ -143,8 +143,10 @@ public class TAR extends TestStepReportType {
          * @return This builder.
          */
         public Builder withItem(ReportItem... items) {
-            for (ReportItem item : items) {
-                wrapped.getItems().add(item);
+            if (items != null) {
+                for (ReportItem item : items) {
+                    wrapped.getItems().add(item);
+                }
             }
             return this;
         }
