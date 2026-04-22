@@ -19,6 +19,13 @@
         "tags": [
           "Processing"
         ],
+        "parameters": [
+          { "$ref": "#/components/parameters/GitbReplyTo" },
+          { "$ref": "#/components/parameters/GitbTestSessionIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestCaseIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestStepIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestEngineVersion" }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -49,6 +56,13 @@
         "summary": "Close an existing processing transaction.",
         "tags": [
           "Processing"
+        ],
+        "parameters": [
+          { "$ref": "#/components/parameters/GitbReplyTo" },
+          { "$ref": "#/components/parameters/GitbTestSessionIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestCaseIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestStepIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestEngineVersion" }
         ],
         "requestBody": {
           "required": true,
@@ -95,6 +109,13 @@
         "tags": [
           "Processing"
         ],
+        "parameters": [
+          { "$ref": "#/components/parameters/GitbReplyTo" },
+          { "$ref": "#/components/parameters/GitbTestSessionIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestCaseIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestStepIdentifier" },
+          { "$ref": "#/components/parameters/GitbTestEngineVersion" }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -121,6 +142,43 @@
     }
   },
   "components": {
+    "parameters": {
+      "GitbReplyTo" : {
+        "name": "Gitb-Reply-To",
+        "in": "header",
+        "required": false,
+        "description": "The address for the test engine's root API path at which callbacks can be made (such as /log or /notifyForMessage). Callback operation sub-paths should be appended to this root URL. This header is included when an operation is called from a test session.",
+        "schema": { "type": "string" }
+      },
+      "GitbTestEngineVersion" : {
+        "name": "Gitb-Test-Engine-Version",
+        "in": "header",
+        "required": false,
+        "description": "The version number of the test engine. This header is included when an operation is called from a test session.",
+        "schema": { "type": "string" }
+      },
+      "GitbTestSessionIdentifier" : {
+        "name": "Gitb-Test-Session-Identifier",
+        "in": "header",
+        "required": false,
+        "description": "The identifier of the test session within which the relevant operation is being called. This header is included when an operation is called from a test session.",
+        "schema": { "type": "string" }
+      },
+      "GitbTestCaseIdentifier" : {
+        "name": "Gitb-Test-Case-Identifier",
+        "in": "header",
+        "required": false,
+        "description": "The identifier of the test case of the session within which the relevant operation is being called. This header is included when an operation is called from a test session.",
+        "schema": { "type": "string" }
+      },
+      "GitbTestStepIdentifier" : {
+        "name": "Gitb-Test-Step-Identifier",
+        "in": "header",
+        "required": false,
+        "description": "The identifier of the test step that relates to this operation. This header is included when an operation is called from a test session, and if the related test step has a defined identifier.",
+        "schema": { "type": "string" }
+      }
+    },
     "schemas": {
       "AnyContent": {
         "description": "Recursively defined content wrapper used to transport text, binary or referenced values.",
