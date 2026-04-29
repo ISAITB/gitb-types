@@ -503,6 +503,7 @@
 	<xsd:complexType name="Instruction">
 		<xsd:complexContent>
 			<xsd:extension base="InstructionOrRequest">
+				<xsd:attribute name="desc" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
                 <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
                 <xsd:attribute name="level" type="InstructionLevelOrVariable" />
@@ -513,6 +514,7 @@
 	<xsd:complexType name="UserRequest">
 		<xsd:complexContent>
 			<xsd:extension base="InstructionOrRequest">
+				<xsd:attribute name="desc" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="options" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="optionLabels" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="multiple" type="gitb:BooleanOrVariable"/>
@@ -529,11 +531,11 @@
 	<xsd:complexType name="InstructionOrRequest" abstract="true">
 		<xsd:complexContent>
 			<xsd:extension base="TypedBinding">
-				<xsd:attribute name="desc" type="gitb:StringOrVariable" use="required"/>
 				<xsd:attribute name="with" type="xsd:string"/>
 				<xsd:attribute name="contentType" type="gitb:ValueEmbeddingEnumeration"/>
 				<xsd:attribute name="encoding" type="xsd:string"/>
 				<xsd:attribute name="mimeType" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="included" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

@@ -289,7 +289,8 @@
 	<xsd:complexType name="AnyContent">
 		<xsd:sequence>
 			<xsd:element name="item" type="AnyContent" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="value" type="StringUriOrBase64Type" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="value" type="StringUriOrBase64Type" minOccurs="0"/>
+			<xsd:element name="metadata" type="xsd:string" minOccurs="0"/>
 		</xsd:sequence>
 		<xsd:attribute name="name" type="xsd:string"/>
 		<xsd:attribute name="embeddingMethod" type="ValueEmbeddingEnumeration" default="BASE64"/>
