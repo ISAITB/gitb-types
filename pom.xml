@@ -49,7 +49,8 @@
         <jaxb.version>2.3.1</jaxb.version>
         <jaxws.version>2.3.1</jaxws.version>
         <jws.version>1.1</jws.version>
-        <jakarta.version>4.0.5</jakarta.version>
+        <jakartaWs.version>4.0.3</jakartaWs.version>
+        <jakartaBind.version>4.0.5</jakartaBind.version>
         <!-- Plugin versions -->
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
@@ -65,12 +66,12 @@
             <dependency>
                 <groupId>jakarta.xml.bind</groupId>
                 <artifactId>jakarta.xml.bind-api</artifactId>
-                <version>${jakarta.version}</version>
+                <version>${jakartaBind.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.xml.ws</groupId>
                 <artifactId>jakarta.xml.ws-api</artifactId>
-                <version>${jakarta.version}</version>
+                <version>${jakartaWs.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.xml.bind</groupId>
