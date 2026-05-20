@@ -356,9 +356,28 @@
             <xsd:element name="endTime" type="xsd:dateTime" minOccurs="0"/>
             <xsd:element name="result" type="TestResultType"/>
             <xsd:element name="message" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="userComment" type="TestCaseCommentType" minOccurs="0"/>
+            <xsd:element name="adminComment" type="TestCaseAdminCommentType" minOccurs="0"/>
             <xsd:element name="steps" type="TestCaseStepsType" minOccurs="0"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <!-- A comment added by an administrator for a completed test session. -->
+    <xsd:complexType name="TestCaseAdminCommentType">
+        <xsd:complexContent>
+            <xsd:extension base="TestCaseCommentType">
+                <xsd:attribute name="forcedResult" type="xsd:boolean"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- A comment added by a user (the tester) for a completed test session. -->
+    <xsd:complexType name="TestCaseCommentType">
+        <xsd:sequence>
+            <xsd:element name="comment" type="xsd:string"/>
+            <xsd:element name="date" type="xsd:dateTime"/>
+        </xsd:sequence>
     </xsd:complexType>
 
     <!-- The steps included in a test case report -->
