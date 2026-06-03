@@ -347,6 +347,7 @@
 				<xsd:attribute name="success" type="gitb:BooleanOrVariable" default="false"/>
 				<xsd:attribute name="undefined" type="gitb:BooleanOrVariable" default="false"/>
                 <xsd:attribute name="actor" type="gitb:StringOrVariable"/>
+				<xsd:attribute name="scope" type="ExitScopeType" default="TEST"/>
             </xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -636,6 +637,15 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="REST"/>
 			<xsd:enumeration value="SOAP"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ExitScopeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="TEST"/>
+			<xsd:enumeration value="SCRIPTLET"/>
+			<xsd:enumeration value="SEQUENCE"/>
+			<xsd:enumeration value="LOOP"/>
+			<xsd:enumeration value="FLOW"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 </xsd:schema>
