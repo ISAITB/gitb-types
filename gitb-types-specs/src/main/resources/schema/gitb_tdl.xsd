@@ -360,6 +360,7 @@
 				<xsd:attribute name="title" type="gitb:StringOrVariable" default="flow"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
 				<xsd:attribute name="stopOnChildError" type="xsd:boolean"/>
+				<xsd:attribute name="hiddenContainer" type="gitb:BooleanOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>

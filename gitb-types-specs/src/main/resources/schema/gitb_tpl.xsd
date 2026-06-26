@@ -86,6 +86,7 @@
 				</xsd:sequence>
 				<xsd:attribute name="title" type="xsd:string"/>
 				<xsd:attribute name="collapsed" type="xsd:boolean" default="false"/>
+				<xsd:attribute name="hiddenContainer" type="xsd:boolean" default="false"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
