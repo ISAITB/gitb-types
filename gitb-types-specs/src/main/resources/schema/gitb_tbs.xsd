@@ -161,6 +161,8 @@
 				<xsd:attribute name="forceDisplay" type="xsd:boolean" default="false"/>
                 <xsd:attribute name="showControls" type="xsd:boolean" default="true"/>
                 <xsd:attribute name="level" type="gitb:InstructionLevel"/>
+                <xsd:attribute name="dependsOn" type="xsd:string"/>
+                <xsd:attribute name="dependsOnValue" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
@@ -181,6 +183,8 @@
         <xsd:attribute name="size" type="xsd:positiveInteger"/>
         <xsd:attribute name="default" type="xsd:string"/>
 		<xsd:attribute name="accept" type="xsd:string"/>
+        <xsd:attribute name="dependsOn" type="xsd:string"/>
+        <xsd:attribute name="dependsOnValue" type="xsd:string"/>
 	</xsd:complexType>
 	<xsd:complexType name="TestStepStatus">
 		<xsd:sequence>

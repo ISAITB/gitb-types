@@ -538,6 +538,8 @@
 				<xsd:attribute name="encoding" type="xsd:string"/>
 				<xsd:attribute name="mimeType" type="gitb:StringOrVariable"/>
 				<xsd:attribute name="included" type="gitb:BooleanOrVariable"/>
+				<xsd:attribute name="dependsOn" type="xsd:string"/>
+				<xsd:attribute name="dependsOnValue" type="gitb:StringOrVariable"/>
 			</xsd:extension>
 		</xsd:complexContent>
 	</xsd:complexType>
