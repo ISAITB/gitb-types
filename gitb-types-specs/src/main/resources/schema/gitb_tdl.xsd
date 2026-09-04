@@ -243,6 +243,7 @@
 			<xsd:extension base="MessagingStep">
 				<xsd:sequence>
 					<xsd:element name="output" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element name="result" type="Result" minOccurs="0"/>
 				</xsd:sequence>
 				<xsd:attribute name="timeout" type="gitb:NumberOrVariable"/>
 				<xsd:attribute name="timeoutFlag" type="gitb:StringOrVariable"/>
@@ -259,6 +260,13 @@
 		<xsd:complexContent>
 			<xsd:extension base="ReceiveOrListen"/>
 		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="Result">
+		<xsd:sequence>
+			<xsd:element name="steps" type="Sequence" minOccurs="0"/>
+			<xsd:element name="output" type="Binding" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="timeout" type="gitb:NumberOrVariable"/>
 	</xsd:complexType>
 	<xsd:complexType name="BeginTransaction">
 		<xsd:complexContent>
