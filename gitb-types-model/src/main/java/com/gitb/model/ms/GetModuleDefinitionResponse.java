@@ -66,7 +66,7 @@ public class GetModuleDefinitionResponse {
          * @param module The module definition to set.
          * @return This builder.
          */
-        public Builder withReport(MessagingModule module) {
+        public Builder withModule(MessagingModule module) {
             wrapped.setModule(module);
             return this;
         }

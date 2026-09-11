@@ -168,7 +168,7 @@ public class TAR extends TestStepReportType {
          * @param counters The counters to set.
          * @return This builder.
          */
-        public Builder withOverview(ValidationCounters counters) {
+        public Builder withCounters(ValidationCounters counters) {
             wrapped.setCounters(counters);
             return this;
         }

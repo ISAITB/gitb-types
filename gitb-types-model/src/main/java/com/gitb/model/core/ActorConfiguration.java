@@ -113,7 +113,7 @@ public class ActorConfiguration {
          * @return This builder.
          */
         public Builder withEndpoint(String endpoint) {
-            wrapped.setActor(endpoint);
+            wrapped.setEndpoint(endpoint);
             return this;
         }
 
