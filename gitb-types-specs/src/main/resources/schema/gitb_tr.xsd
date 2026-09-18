@@ -28,6 +28,7 @@
     <xsd:element name="TestStepReport" type="TestStepReportType"/>
     <xsd:element name="ConformanceStatementReport" type="ConformanceStatementReportType"/>
     <xsd:element name="ConformanceOverviewReport" type="ConformanceOverviewReportType"/>
+    <xsd:element name="ConformanceStatementDocumentationReport" type="ConformanceStatementDocumentationReportType"/>
 
     <!-- Conformance overview report -->
     <xsd:complexType name="ConformanceOverviewReportType">
@@ -159,6 +160,47 @@
         <xsd:attribute name="id" type="xsd:string"/>
     </xsd:complexType>
 
+    <!-- Conformance statement documentation report -->
+    <xsd:complexType name="ConformanceStatementDocumentationReportType">
+        <xsd:sequence>
+            <xsd:element name="metadata" type="ReportMetadata"/>
+            <xsd:element name="statement" type="ConformanceStatementObject"/>
+            <xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="testSuites" type="TestSuiteDocumentationList" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- A list of test suites with their documentation -->
+    <xsd:complexType name="TestSuiteDocumentationList">
+        <xsd:sequence>
+            <xsd:element name="testSuite" type="TestSuiteDocumentation" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The documentation for a specific test suite and its test cases -->
+    <xsd:complexType name="TestSuiteDocumentation">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="testCases" type="TestCaseDocumentationList" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- A list of test cases with their documentation -->
+    <xsd:complexType name="TestCaseDocumentationList">
+        <xsd:sequence>
+            <xsd:element name="testCase" type="TestCaseDocumentation" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- The documentation for a specific test case -->
+    <xsd:complexType name="TestCaseDocumentation">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="documentation" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
     <!-- Metadata applicable for all report types -->
     <xsd:complexType name="ReportMetadata">
         <xsd:sequence>
@@ -177,6 +219,16 @@
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Base information for reports related to conformance statements where party information is not included -->
+    <xsd:complexType name="ConformanceStatementObject">
+        <xsd:sequence>
+            <xsd:element name="domain" type="ConformanceItemInformation"/>
+            <xsd:element name="specificationGroup" type="ConformanceItemInformation" minOccurs="0"/>
+            <xsd:element name="specification" type="ConformanceItemInformation"/>
+            <xsd:element name="actor" type="ConformanceItemInformation"/>
+        </xsd:sequence>
     </xsd:complexType>
 
     <!-- The definition elements for a conformance statement report (the relevant party and specification references) -->
@@ -356,9 +408,28 @@
             <xsd:element name="endTime" type="xsd:dateTime" minOccurs="0"/>
             <xsd:element name="result" type="TestResultType"/>
             <xsd:element name="message" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="userComment" type="TestCaseCommentType" minOccurs="0"/>
+            <xsd:element name="adminComment" type="TestCaseAdminCommentType" minOccurs="0"/>
             <xsd:element name="steps" type="TestCaseStepsType" minOccurs="0"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:string" use="required"/>
+    </xsd:complexType>
+
+    <!-- A comment added by an administrator for a completed test session. -->
+    <xsd:complexType name="TestCaseAdminCommentType">
+        <xsd:complexContent>
+            <xsd:extension base="TestCaseCommentType">
+                <xsd:attribute name="forcedResult" type="xsd:boolean"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- A comment added by a user (the tester) for a completed test session. -->
+    <xsd:complexType name="TestCaseCommentType">
+        <xsd:sequence>
+            <xsd:element name="comment" type="xsd:string"/>
+            <xsd:element name="date" type="xsd:dateTime"/>
+        </xsd:sequence>
     </xsd:complexType>
 
     <!-- The steps included in a test case report -->
