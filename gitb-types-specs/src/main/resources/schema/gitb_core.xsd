@@ -381,6 +381,7 @@
 			<xsd:enumeration value="CODE"/>
 			<xsd:enumeration value="SELECT_SINGLE"/>
 			<xsd:enumeration value="SELECT_MULTIPLE"/>
+			<xsd:enumeration value="RICH_TEXT"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:simpleType name="LogLevel">
