@@ -173,7 +173,10 @@
         "enum": [
           "SIMPLE",
           "BINARY",
-          "SECRET"
+          "SECRET",
+          "MULTILINE_TEXT",
+          "CODE",
+          "RICH_TEXT"
         ]
       },
       "Metadata": {

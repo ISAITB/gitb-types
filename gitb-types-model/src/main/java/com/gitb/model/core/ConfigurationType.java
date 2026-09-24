@@ -22,7 +22,10 @@ public enum ConfigurationType {
 
     SIMPLE,
     BINARY,
-    SECRET;
+    SECRET,
+    MULTILINE_TEXT,
+    CODE,
+    RICH_TEXT;
 
     public String value() {
         return name();
