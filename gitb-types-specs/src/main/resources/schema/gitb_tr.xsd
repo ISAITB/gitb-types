@@ -410,6 +410,7 @@
             <xsd:element name="message" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
             <xsd:element name="userComment" type="TestCaseCommentType" minOccurs="0"/>
             <xsd:element name="adminComment" type="TestCaseAdminCommentType" minOccurs="0"/>
+            <xsd:element name="flag" type="xsd:string" minOccurs="0"/>
             <xsd:element name="steps" type="TestCaseStepsType" minOccurs="0"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:string" use="required"/>
