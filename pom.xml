@@ -59,6 +59,7 @@
         <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
         <license-maven-plugin.version>2.7.1</license-maven-plugin.version>
         <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+        <versions-maven-plugin.version>2.23.0</versions-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -123,6 +124,22 @@
                     <groupId>org.sonatype.central</groupId>
                     <artifactId>central-publishing-maven-plugin</artifactId>
                     <version>${central-publishing-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>none</phase>
+                            <!--
+                                Run manually with `mvn versions:set -DnewVersion=X.Y.Z`
+                            -->
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
