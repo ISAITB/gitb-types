@@ -25,7 +25,9 @@ public enum ConfigurationType {
     SECRET,
     MULTILINE_TEXT,
     CODE,
-    RICH_TEXT;
+    RICH_TEXT,
+    RADIO_BUTTON,
+    CHECKBOX;
 
     public String value() {
         return name();

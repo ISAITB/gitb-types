@@ -176,7 +176,9 @@
           "SECRET",
           "MULTILINE_TEXT",
           "CODE",
-          "RICH_TEXT"
+          "RICH_TEXT",
+          "RADIO_BUTTON",
+          "CHECKBOX"
         ]
       },
       "Metadata": {

@@ -285,6 +285,8 @@
 			<xsd:enumeration value="MULTILINE_TEXT"/>
 			<xsd:enumeration value="CODE"/>
 			<xsd:enumeration value="RICH_TEXT"/>
+			<xsd:enumeration value="RADIO_BUTTON"/>
+			<xsd:enumeration value="CHECKBOX"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!--Representation (serialization) of a GITB value -->
@@ -384,6 +386,8 @@
 			<xsd:enumeration value="SELECT_SINGLE"/>
 			<xsd:enumeration value="SELECT_MULTIPLE"/>
 			<xsd:enumeration value="RICH_TEXT"/>
+			<xsd:enumeration value="RADIO_BUTTON"/>
+			<xsd:enumeration value="CHECKBOX"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:simpleType name="LogLevel">
